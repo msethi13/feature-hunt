@@ -4,7 +4,6 @@
 from flask import Flask
 from os import environ
 from flask_cors import CORS
-import waitress
 
 app = Flask(__name__)
 from auth_controller import *
