@@ -17,6 +17,6 @@ app.secret_key = "testing"
 CORS(app)
 
 if __name__ == "__main__":
-    app.run(debug=True, port=environ.get("PORT", 5000), host='0.0.0.0')
+    app.run(debug=True, port=environ.get("PORT", 5000))
     # app.debug = True
     # waitress.serve(app, port=environ.get("PORT", 5000))
