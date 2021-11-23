@@ -9,7 +9,7 @@ this file. If not, please write to: featurehuntteam@gmail.com
 
 import os
 from sys import stderr
-from flask import request, jsonify
+from flask import request, jsonify, Response
 from flask import json
 from app import app
 
@@ -102,7 +102,7 @@ def features(product_name):
             return Response(response=json.dumps({"Error": "Please provide connection information"}),
                             status=400,
                             mimetype='application/json')
-        result = product_records.find_one_and_update({"name": productname}, {"$set": {"features": data}})
+        result = product_records.find_one_and_update({"name": product_name}, {"$set": {"features": data}})
 
     elif request.method == 'GET':
         result = product_records.find({"name": product_name}, {"features": 1})
