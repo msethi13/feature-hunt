@@ -4,10 +4,6 @@ import styled from "styled-components";
 import TextField from "@mui/material/TextField";
 import Button from '@mui/material/Button';
 import Service from "../Service";
-import FilledInput from '@mui/material/FilledInput';
-import InputLabel from '@mui/material/InputLabel';
-import InputAdornment from '@mui/material/InputAdornment';
-import FormControl from '@mui/material/FormControl';
 
 const Styles = styled.div`
  background: #218888;
@@ -93,7 +89,6 @@ function ProjectForm() {
   const [user, setUser] = React.useState([""]);
   const [tags, setTags] = React.useState("");
   const [country, setCountry] = React.useState("");
-  const [funding, setFunding] = React.useState("");
 
   React.useEffect(() => {
     setUser(ReactSession.get("username"));
@@ -119,18 +114,12 @@ function ProjectForm() {
     setCountry(e.target.value);
   }
 
-  const handleFundingChange = (e) => {
-    setFunding(e.target.value);
-  }
-
-
   const handleSubmit = (event) => {
     const form = new FormData();
     form.append("productName", name);
     form.append("productDescription", description);
     form.append("lauchCountry", country);
     form.append("imageUrl", imageURL);
-    form.append("initialFunding", imageURL);
     form.append("email", user);
     form.append("tags", tags);
     Service.post("addProduct", form)
@@ -208,18 +197,6 @@ function ProjectForm() {
                   fullWidth
                 />
                 <br />
-                <label>Initial Funding</label>
-                <FormControl fullWidth variant="filled">
-                  <FilledInput
-                    id="filled-adornment-amount"
-                    value={funding}
-                    onChange={handleFundingChange}
-                    startAdornment={<InputAdornment>$</InputAdornment>}
-                    multiline
-                    maxRows={1}
-                  />
-              </FormControl>
-              <br />
               <label>Tags</label>
                 <TextField
                   id="filled-basic"
