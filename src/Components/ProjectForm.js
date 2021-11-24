@@ -2,7 +2,6 @@ import React from 'react';
 import { ReactSession } from "react-client-session";
 import styled from "styled-components";
 import TextField from "@mui/material/TextField";
-import Button from '@mui/material/Button';
 import Service from "../Service";
 
 const Styles = styled.div`
@@ -13,7 +12,7 @@ const Styles = styled.div`
    border-bottom: 1px solid white;
    color: #6f6f6f;
    font-family: sans-serif;
-   font-size: 30px;
+   font-size: 20px;
    font-weight: 600;
    line-height: 24px;
    padding: 10px;
@@ -23,14 +22,12 @@ const Styles = styled.div`
  form {
    background: white;
    border: 1px solid #dedede;
-   border-radius: 30px;
    display: flex;
    flex-direction: column;
    justify-content: space-around;
    margin: 0 auto;
    max-width: 1000px;
-   padding: 20px 100px;
-   padding-bottom: 60px;
+   padding: 50px 200px;
  }
 
  input {
@@ -48,7 +45,6 @@ const Styles = styled.div`
    font-size: 14px;
    font-weight: 500;
    margin-bottom: 5px;
-   width: 100%;
  }
 
  .error {
@@ -64,13 +60,6 @@ const Styles = styled.div`
    font-family: sans-serif;
    font-size: 14px;
    margin: 20px 0px;
- }
-
- Button{
-  background-color: #218888;
- }
-
-
 `;
 
 //
@@ -88,7 +77,6 @@ function ProjectForm() {
   const [message, setMessage] = React.useState("");
   const [user, setUser] = React.useState([""]);
   const [tags, setTags] = React.useState("");
-  const [country, setCountry] = React.useState("");
 
   React.useEffect(() => {
     setUser(ReactSession.get("username"));
@@ -110,15 +98,10 @@ function ProjectForm() {
     setTags(e.target.value);
   }
 
-  const handleLaunchCountryChange = (e) => {
-    setCountry(e.target.value);
-  }
-
   const handleSubmit = (event) => {
     const form = new FormData();
     form.append("productName", name);
     form.append("productDescription", description);
-    form.append("lauchCountry", country);
     form.append("imageUrl", imageURL);
     form.append("email", user);
     form.append("tags", tags);
@@ -146,6 +129,7 @@ function ProjectForm() {
               <label>Name</label>
                 <TextField
                   data-testid="form_name"
+                  id="name"
                   label=""
                   multiline
                   maxRows={1}
@@ -153,15 +137,10 @@ function ProjectForm() {
                   value={name}
                   onChange={handleNameChange}
                   fullWidth
-                  id="filled-basic"
-                  variant="filled"
-                  style={{ color:'#218888'}}
                 />
-              <br />
               <label>Description</label>
                 <TextField
-                  id="filled-basic"
-                  variant="filled"
+                  id="description"
                   label=""
                   multiline
                   rows={3}
@@ -170,24 +149,9 @@ function ProjectForm() {
                   onChange={handleDescriptionChange}
                   fullWidth
                 />
-                <br />
-                <label>Country of launch</label>
-                <TextField
-                  id="filled-basic"
-                  variant="filled"
-                  label=""
-                  multiline
-                  rows={1}
-                  inputProps={{ "data-testid": "form-Desc" }}
-                  value={country}
-                  onChange={handleLaunchCountryChange}
-                  fullWidth
-                />
-                <br />
                 <label>Image URL</label>
                 <TextField
-                  id="filled-basic"
-                  variant="filled"
+                  id="imageURL"
                   label=""
                   multiline
                   maxRows={1}
@@ -196,11 +160,9 @@ function ProjectForm() {
                   onChange={handleImageURLChange}
                   fullWidth
                 />
-                <br />
               <label>Tags</label>
                 <TextField
-                  id="filled-basic"
-                  variant="filled"
+                  id="tags"
                   label=""
                   multiline
                   maxRows={1}
@@ -209,11 +171,8 @@ function ProjectForm() {
                   onChange={handleTagsChange}
                   fullWidth
                 />
-            <br /><br />
-            <Button variant="contained" size="large" data-testid="submit_button" onClick={handleSubmit} >
-            Submit
-          </Button>
-            {/* <button data-testid="submit_button" onClick={handleSubmit}>Submit</button> */}
+
+            <button data-testid="submit_button" onClick={handleSubmit}>Submit</button>
           </form>
     </div>
   );
