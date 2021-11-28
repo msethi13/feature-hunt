@@ -31,7 +31,7 @@ const ProductTile = ({ products, index, setProducts }) => {
     setProducts(products.map((product) => product.id === products[index].id ? updatedProduct : product));
   };
   const goTo = (product) => () => {
-    history.push(`/${product}` + "/getFeature");
+    history.push(`/${product}/getFeature`);
   };
   const capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
