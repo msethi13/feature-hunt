@@ -98,9 +98,9 @@ Outputs:
 
 
 @app.route('/<productname>/getFeature', methods=['GET', 'POST'])
-def get_feature(product_name):
+def get_feature(productname):
     if request.method == 'GET':
-        data = product_records.find({"name": product_name})
+        data = product_records.find({"name": productname},{"features":1})
         return dumps(data)
 
 
