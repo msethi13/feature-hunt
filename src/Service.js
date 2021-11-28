@@ -23,7 +23,8 @@ const postRequestOptionsBuilder = (method, body, headers) => {
 
 const get = async (path, params) => {
   path = sanitizePath(path);
-  if (params) path += new URLSearchParams(params);
+  
+  if (params) path += "?" + new URLSearchParams(params);
   const response = await fetch(baseUrl + path);
   const data = await response.json();
   if (response.status >= 400 && response.status < 600) {

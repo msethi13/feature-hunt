@@ -14,8 +14,9 @@ const Home = ({query}) => {
   const [sortBy, setSortBy] = useState('timestamp');
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    Service.get('products').then(products => setProducts(products));
-  }, []);
+    Service.get('products', "query=" + query).then(products => setProducts(products));
+  }, [query]);
+
   return (
     <div className="container">
       <div className="child">
@@ -36,9 +37,11 @@ const Home = ({query}) => {
           </div>
         </div>
       </div>
-      {products.map((p, index) => { p['index'] = index; return p; }).filter(p => query ? p.tags.includes(query.toLowerCase()) || p.name.toLowerCase().includes(query.toLowerCase()) : true).sort((p1, p2) => p2[sortBy] - p1[sortBy]).map(
-        (product) => <ProductTile key={product.id} products={products} index={product.index} setProducts={setProducts} />
-        , setProducts)}
+      {products
+      .map((p, index) => { p['index'] = index; return p; })
+      .sort((p1, p2) => p2[sortBy] - p1[sortBy])
+      .map((product) => <ProductTile key={product.id} products={products} index={product.index} setProducts={setProducts} />, setProducts)
+      }
     </div>
   );
 };

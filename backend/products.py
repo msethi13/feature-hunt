@@ -30,7 +30,30 @@ Outputs:
 @app.route('/products', methods=['GET', 'POST', 'DELETE', 'PATCH'])
 def products():
     if request.method == 'GET':
-        data = product_records.find()
+        data = product_records.find(
+            {"$or" : 
+                [{
+                    "name" : 
+                    { 
+                        "$regex" : request.args.get("query"),
+                        '$options' : 'i'
+                    }
+                },  
+                {
+                    "description" : 
+                    { 
+                        "$regex" : request.args.get("query"),
+                        '$options' : 'i'
+                    }
+                },
+                {
+                    "tags" : 
+                    { 
+                        "$regex" : request.args.get("query"),
+                        '$options' : 'i'
+                    }
+                }]
+            })
         return dumps(data)
 
     data = request.get_json()
@@ -75,9 +98,9 @@ Outputs:
 
 
 @app.route('/<productname>/getFeature', methods=['GET', 'POST'])
-def get_feature(product_name):
+def get_feature(productname):
     if request.method == 'GET':
-        data = product_records.find({"name": product_name})
+        data = product_records.find({"name": productname},{"features":1})
         return dumps(data)
 
 
