@@ -178,7 +178,7 @@ describe("Test ProductTile", () => {
 
     fireEvent.click(nav);
     expect(history.length).toBe(3); // after clicking on something, history.length + 1
-    expect(history.location.pathname).toBe("/feature-hunt");
+    expect(history.location.pathname).toBe("/feature-hunt/getFeature");
 
     fireEvent.click(nav2);
     expect(history.length).toBe(4); // after clicking on something, history.length + 1
