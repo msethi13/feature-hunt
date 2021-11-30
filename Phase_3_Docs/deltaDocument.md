@@ -1,6 +1,6 @@
 # Updates made in Phase 3 ✨
 
-##Bug Fixes 🐛
+## Bug Fixes 🐛
 
 * Up vote feature was breaking the UI
 <table>
