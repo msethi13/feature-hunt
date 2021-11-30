@@ -79,4 +79,15 @@
 *  
 
 ## New features and Enhancements 🎉
-
+* We have added a delete feature for users to delete their projects
+<table>
+    <tr>
+        <th>Phase 3</th>
+    </tr>
+    <tr>
+        <td>
+            User is automatically logged in
+        <img src="">
+        </td>
+    </tr>
+  </table>
