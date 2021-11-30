@@ -27,7 +27,7 @@ function Header({setQuery}) {
   };
 
   const username = ReactSession.get("username");
-  const [loggedin, setLoggedin] = useState(username !== '');
+  const [loggedin, setLoggedin] = useState(username !== '' && username!==undefined);
 
   return (
     <div className="header_div">
