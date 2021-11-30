@@ -56,7 +56,7 @@ const ProjectTile = ({ products, index, setProducts }) => {
             <span className="product-title" 
             data-testid={"ptnav:"+index}
             onClick={goTo(products[index].name)} 
-            style={{ marginTop: 'auto', marginBottom: 'auto' }}>
+            style={{ marginTop: "auto", marginBottom: 'auto' }}>
               {capitalizeFirstLetter(products[index].name)}
             </span>
             <p className="product-description">
