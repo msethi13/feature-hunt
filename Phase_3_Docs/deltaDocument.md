@@ -1,4 +1,4 @@
-# Updates made in Phase 3 ✨
+# Updates Made In Phase 3 ✨
 
 ## Bug Fixes 🐛
 
@@ -42,8 +42,8 @@
         <img src="../docs/phase_3_images/submission_form.png">
         </td>
         <td>
-            No duplicates are formed
-        <img src="../docs/phase_3_images/submitted_project_nonDuplicate.png">
+            Submission form
+        <img src="../docs/phase_3_images/updated_submission_form.png">
         </td>
     </tr>
       <tr>
@@ -52,6 +52,8 @@
         <img src="../docs/phase_3_images/submitted_project.png">
         </td>
         <td>
+            No duplicated are formed after submission
+        <img src="../docs/phase_3_images/updated_project.png">
         </td>
     </tr>
   </table>
@@ -73,5 +75,8 @@
         </td>
     </tr>
   </table>
+
+*  
+
 ## New features and Enhancements 🎉
 
