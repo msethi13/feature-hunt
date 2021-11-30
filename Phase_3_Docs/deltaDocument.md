@@ -52,7 +52,7 @@
         <img src="../docs/phase_3_images/submitted_project.png">
         </td>
         <td>
-            No duplicated are formed after submission
+            No duplicates are formed after submission
         <img src="../docs/phase_3_images/updated_project.png">
         </td>
     </tr>
