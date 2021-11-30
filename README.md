@@ -195,7 +195,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 This app has been deployed using Netlify and Heroku. Check it out [here!](https://feature-hunt-25.netlify.app/)
 
-You can now run and test the project locally and in deployments. More info about our deplyments and switching between production and devlopment can be found in our [Wiki](https://github.com/CSC510-Group-25/feature-hunt/wiki/Deployment:-Heroku-and-Netlify)
+You can now run and test the project locally and in deployments. More info about our deplyments and switching between production and devlopment can be found in our [Wiki](https://github.com/elric97/feature-hunt/wiki/Deployment)
 
 ## Future Scope
 We believe in the ability to add new features in any project (including our own). 
@@ -221,5 +221,14 @@ We believe in the ability to add new features in any project (including our own)
     <td align="center"><a href="https://github.com/jhnguye4/"><img src="https://avatars.githubusercontent.com/u/42051115?v=4" width="80px;" alt=""/><br /><sub><b>Jonathan Nguyen</b></sub></a><br /></td>
     <td align="center"><a href="https://github.com/snapcat/"><img src="https://avatars.githubusercontent.com/u/89357283?v=4" width="80px;" alt=""/><br /><sub><b>Leila Moran</b></sub></a><br /></td>
     <td align="center"><a href="https://www.github.com/shraddhamishra7"><img src="https://avatars.githubusercontent.com/u/7471821?v=4" width="80px;" alt=""/><br /><sub><b>Shraddha Mishra</b></sub></a><br /></td>
+  </tr>
+  
+  <tr>
+    <td>Group 29</td>
+    <td align="center"><a href="https://github.com/palvitgarg99/"><img src="https://avatars.githubusercontent.com/u/16212546?v=4" width="80px;" alt=""/><br /><sub><b>Palvit Garg</b></sub></a></td>
+    <td align="center"><a href="https://github.com/elric97/"><img src="https://avatars.githubusercontent.com/u/17125417?v=4" width="80px;" alt=""/><br /><sub><b>Rachit Sharma</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/aditi12200"><img src="https://avatars.githubusercontent.com/u/55187770?v=4" width="80px;" alt=""/><br /><sub><b>Aditi Bhagwat</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/anumitgarg"><img src="https://avatars.githubusercontent.com/u/32408402?v=4" width="80px;" alt=""/><br /><sub><b>Anumit Garg</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/ShreeSub"><img src="https://avatars.githubusercontent.com/u/67685445?v=4" width="80px;" alt=""/><br /><sub><b>Shree Lakshmi Ramasubramanian</b></sub></a><br /></td>
   </tr>
 </table>
