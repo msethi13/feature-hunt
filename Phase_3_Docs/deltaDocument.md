@@ -29,6 +29,29 @@
         </td>
     </tr>
   </table>
-* 
+
+* On submitting the project form, duplicate projects are created
+<table>
+    <tr>
+        <th>Phase 2</th>
+        <th>Phase 3</th>
+    </tr>
+    <tr>
+        <td>
+            Submission form
+        <img src="../docs/phase_3_images/submission_form.png">
+        </td>
+        <td>
+        </td>
+    </tr>
+      <tr>
+        <td>
+            Submitted Project
+        <img src="../docs/phase_3_images/submitted_project.png">
+        </td>
+    </tr>
+  </table>
+
+
 ## New features and Enhancements 🎉
 
