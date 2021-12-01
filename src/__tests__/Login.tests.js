@@ -99,7 +99,7 @@ describe("Login tests", () => {
     const ress = "test@test.com";
 
     const pass = getByTestId("login_inputPassword");
-    const word = "abc";
+    const word = "abcd";
 
     expect(pass).toHaveValue("");
     expect(add).toHaveValue("");
