@@ -1,11 +1,12 @@
 # pylint: disable=wrong-import-position,pointless-string-statement,undefined-variable,line-too-long
 
+import datetime
 from flask import jsonify
 from flask import request
 from app import app
 from db_init import product_records
-import datetime
 
+@app.route("/addProduct", methods=['Post'])
 #################################################################################
 ##       Function: add_product
 ##       Description: This post request is used to gather all the information from
@@ -15,26 +16,25 @@ import datetime
 ##       Outputs:
 ##           - Returns true or false if new project is able to be added
 #################################################################################
-@app.route("/addProduct", methods=['Post'])
 def add_product():
+    """To add new product in product_records"""
+    try:
+        product_name = request.form.get("productName")
+        product_description = request.form.get("productDescription")
+        image_url = request.form.get("imageUrl")
+        email = request.form.get("email")
+        tags = request.form.get("tags").split(' ')
 
-        try: 
-            product_name = request.form.get("productName")
-            product_description = request.form.get("productDescription")
-            image_url = request.form.get("imageUrl")
-            email = request.form.get("email")
-            tags = request.form.get("tags").split(' ')
+        feature_dict = {'id': 2, 'text': 'feature-1', 'votes': 1, 'timestamp': '1234567', 'tags': ['tag1']}
 
-            feature_dict = {'id': 2, 'text': 'feature-1', 'votes': 1, 'timestamp': '1234567', 'tags': ['tag1']}
+        product_input = {'uid': str(datetime.datetime.now()), 'name': product_name, 'description': product_description,
+                            'image_url': image_url, 'users': [email], 'tags': tags, 'features': feature_dict, 'votes': 0}
 
-            product_input = {'uid': str(datetime.datetime.now()), 'name': product_name, 'description': product_description,
-                             'image_url': image_url, 'users': [email], 'tags': tags, 'features': feature_dict, 'votes': 0}
+        product_records.insert_one(product_input)
 
-            product_records.insert_one(product_input)
-
-            return jsonify(success=True)
-        except:
-            return jsonify(success=False)
+        return jsonify(success=True)
+    except:
+        return jsonify(success=False)
 
 # @app.route("/<productName>/addFeature", method=['Post'])
 # def addFeature(productName):
