@@ -18,7 +18,7 @@ import datetime
 @app.route("/addProduct", methods=['Post'])
 def add_product():
 
-        try:
+        try: 
             product_name = request.form.get("productName")
             product_description = request.form.get("productDescription")
             image_url = request.form.get("imageUrl")
@@ -27,9 +27,8 @@ def add_product():
 
             feature_dict = {'id': 2, 'text': 'feature-1', 'votes': 1, 'timestamp': '1234567', 'tags': ['tag1']}
 
-            product_input = {'name': product_name, 'description': product_description,
-                             'image_url': image_url, 'users': [email], 'tags': tags, 'features': feature_dict}
-
+            product_input = {'uid': str(datetime.datetime.now()), 'name': product_name, 'description': product_description,
+                             'image_url': image_url, 'users': [email], 'tags': tags, 'features': feature_dict, 'votes': 0}
 
             product_records.insert_one(product_input)
 

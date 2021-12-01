@@ -9,6 +9,7 @@ app = Flask(__name__)
 from auth_controller import *
 from products import *
 from product_controller import *
+from user_projects_controller import *
 from db_init import db
 app.secret_key = "testing"
 CORS(app)

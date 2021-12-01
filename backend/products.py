@@ -16,6 +16,7 @@ from app import app
 from bson.json_util import dumps
 from bson.objectid import ObjectId
 from db_init import product_records
+import user_projects_controller
 
 '''
 Function: products
@@ -98,9 +99,9 @@ Outputs:
 
 
 @app.route('/<productname>/getFeature', methods=['GET', 'POST'])
-def get_feature(productname):
+def get_feature(product_name):
     if request.method == 'GET':
-        data = product_records.find({"name": productname},{"features":1})
+        data = product_records.find({"name": product_name},{"features":1})
         return dumps(data)
 
 

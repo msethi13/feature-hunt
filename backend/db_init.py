@@ -4,3 +4,4 @@ client = pymongo.MongoClient("mongodb+srv://bot:bot123@cluster0.xph5e.mongodb.ne
 db = client.get_database('feature-hunt')
 records = db.users
 product_records = db.products
+user_projects = db.user_projects
