@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ReactSession } from 'react-client-session';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
@@ -23,7 +23,7 @@ const ProductTile = ({ products, index, setProducts }) => {
   const history = useHistory();
 
   const username = ReactSession.get("username");
-  const [loggedin, setLoggedin] = useState(username !== '');
+  const loggedin = username !== ''?true:false;
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
