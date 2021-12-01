@@ -23,7 +23,7 @@ const ProductTile = ({ products, index, setProducts }) => {
   const history = useHistory();
 
   const username = ReactSession.get("username");
-  const loggedin = username !== ""?true:false;
+  const loggedin = (username !== "" && username !== undefined)?true:false;
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {

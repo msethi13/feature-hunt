@@ -28,7 +28,8 @@ function App() {
           path="/dashboard"
           children={
             <>
-              <Dashboard/>
+              <Header setQuery={setQuery}/>
+              <Dashboard query={query} setQuery={setQuery}/>
             </>
           }
         />
