@@ -1,6 +1,15 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
-import { useHistory } from 'react-router';
+import React from "react";
+import { ReactSession } from "react-client-session";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { useHistory } from "react-router";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import Service from "../Service";
 
 //
 //       Component: ProductTile
@@ -12,24 +21,95 @@ import { useHistory } from 'react-router';
 //          - NA
 const ProductTile = ({ products, index, setProducts }) => {
   const history = useHistory();
-  const upVote = () => {
-    const updatedProduct = { ...products[index] };
-    let currentVote = updatedProduct.upVoted ? 1 : (updatedProduct.downVoted ? -1 : 0);
-    updatedProduct.upVoted = !updatedProduct.upVoted;
-    updatedProduct.downVoted = false;
-    let newVote = updatedProduct.upVoted ? 1 : (updatedProduct.downVoted ? -1 : 0);
-    updatedProduct.votes = updatedProduct.votes - currentVote + newVote;
-    setProducts(products.map((product) => product.id === products[index].id ? updatedProduct : product));
+
+  const username = ReactSession.get("username");
+  const loggedin = username !== ""?true:false;
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
   };
-  const downVote = () => {
-    const updatedProduct = { ...products[index] };
-    let currentVote = updatedProduct.upVoted ? 1 : (updatedProduct.downVoted ? -1 : 0);
-    updatedProduct.downVoted = !updatedProduct.downVoted;
-    updatedProduct.upVoted = false;
-    let newVote = updatedProduct.upVoted ? 1 : (updatedProduct.downVoted ? -1 : 0);
-    updatedProduct.votes = updatedProduct.votes - currentVote + newVote;
-    setProducts(products.map((product) => product.id === products[index].id ? updatedProduct : product));
+
+  const handleClose = () => {
+    setOpen(false);
   };
+
+  const increaseUpVote = () => {
+    const form = new FormData();
+    form.append("uid", products[index].uid);
+    Service.post("addTotalVote", form)
+      .then((data) => 
+        {
+          if(data.success)
+          {
+            const updatedProduct = { ...products[index] };
+            updatedProduct.votes = updatedProduct.votes + 1;
+            setProducts(products.map((product) => product.id === products[index].id ? updatedProduct : product));
+          }
+          /*if (data.code > 200) {
+            console.log("Error");
+          } else {
+            console.log(data.success);
+          }*/
+        });
+  };
+  const handleUpVote = () => {
+    const form = new FormData();
+    form.append("emailId", username);
+    form.append("productId", index);
+    Service.post("addVote", form)
+      .then((data) => 
+        {
+          if(data.success)
+          {
+            increaseUpVote();
+          }
+          /*if (data.code > 200) {
+            console.log("Error");
+          } else {
+            console.log(data.success);
+          }*/
+        });
+  };
+
+  const decreaseUpVote = () => {
+    const form = new FormData();
+    form.append("uid", products[index].uid);
+    Service.post("subTotalVote", form)
+      .then((data) => 
+        {
+          if(data.success)
+          {
+            const updatedProduct = { ...products[index] };
+            updatedProduct.votes = updatedProduct.votes - 1;
+            setProducts(products.map((product) => product.id === products[index].id ? updatedProduct : product));
+          }
+          /*if (data.code > 200) {
+            console.log("Error");
+          } else {
+            console.log(data.success);
+          }*/
+        });
+  };
+  const handleDownVote = () => {
+    const form = new FormData();
+    form.append("emailId", username);
+    form.append("productId", index);
+    Service.post("removeVote", form)
+      .then((data) => 
+        {
+          if(data.success)
+          {
+            decreaseUpVote();
+          }
+          /*if (data.code > 200) {
+            console.log("Error");
+          } else {
+            console.log(data.success);
+          }*/
+        });
+  };
+  
   const goTo = (product) => () => {
     history.push(`/${product}/getFeature`);
   };
@@ -68,8 +148,19 @@ const ProductTile = ({ products, index, setProducts }) => {
             <FontAwesomeIcon icon={faChevronUp} size="lg" 
             className={products[index].upVoted ? 'votedUp' : 'voteup'} 
             data-testid={"pt_up:"+index}
-            onClick={upVote} />
+            onClick={loggedin?handleUpVote:handleClickOpen} />
           </span>
+          <Dialog  open={open} onClose={handleClose}>
+          <DialogTitle >Thank you </DialogTitle>
+          <DialogContent>
+            <DialogContentText >
+              Please login first for your vote to matter!
+            </DialogContentText>
+          </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose}>Ok</Button>
+            </DialogActions>
+          </Dialog>
           <span>
             {products[index].votes}
           </span>
@@ -78,8 +169,19 @@ const ProductTile = ({ products, index, setProducts }) => {
             size="lg" 
             className={products[index].downVoted ? 'votedDown' : 'votedown'} 
             data-testid={"pt_down:"+index}
-            onClick={downVote} />
+            onClick={loggedin?handleDownVote:handleClickOpen} />
           </span>
+          <Dialog  open={open} onClose={handleClose}>
+          <DialogTitle >Thank you </DialogTitle>
+          <DialogContent>
+            <DialogContentText >
+              Please login first for your vote to matter!
+            </DialogContentText>
+          </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose}>Ok</Button>
+            </DialogActions>
+          </Dialog>
         </div>
       </div>
     </div>
