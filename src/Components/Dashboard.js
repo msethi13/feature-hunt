@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { ReactSession } from 'react-client-session';
 import ProjectTile from './ProjectTile';
 import Service from '../Service';
-import Header from './Header';
 import Feature from './Feature';
 import { Alert } from '@mui/material';
 
@@ -22,9 +21,9 @@ const Dashboard = ({query}) => {
   const [user, setUser] = useState(['']);
 
   useEffect(() => {
-    Service.get('products').then(products => setProducts(products));
+    Service.get('products', "query="+ query).then(products => setProducts(products));
     setUser(ReactSession.get("username"));
-  }, []);
+  }, [query]);
 
   /**
    * This function checks whether the signed in user is associated with the product.
@@ -37,7 +36,6 @@ const Dashboard = ({query}) => {
 
   return (
     <div>
-      <Header/>
       <Alert data-testid="dash_alert" severity="success">You are logged in as {user}</Alert>
       <div className="container">
         <div className="child">
