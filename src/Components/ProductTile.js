@@ -46,11 +46,11 @@ const ProductTile = ({ products, index, setProducts }) => {
             updatedProduct.votes = updatedProduct.votes + 1;
             setProducts(products.map((product) => product.id === products[index].id ? updatedProduct : product));
           }
-          if (data.code > 200) {
+          /*if (data.code > 200) {
             console.log("Error");
           } else {
             console.log(data.success);
-          }
+          }*/
         });
   };
   const handleUpVote = () => {
@@ -64,11 +64,11 @@ const ProductTile = ({ products, index, setProducts }) => {
           {
             increaseUpVote();
           }
-          if (data.code > 200) {
+          /*if (data.code > 200) {
             console.log("Error");
           } else {
             console.log(data.success);
-          }
+          }*/
         });
   };
 
@@ -84,11 +84,11 @@ const ProductTile = ({ products, index, setProducts }) => {
             updatedProduct.votes = updatedProduct.votes - 1;
             setProducts(products.map((product) => product.id === products[index].id ? updatedProduct : product));
           }
-          if (data.code > 200) {
+          /*if (data.code > 200) {
             console.log("Error");
           } else {
             console.log(data.success);
-          }
+          }*/
         });
   };
   const handleDownVote = () => {
@@ -102,11 +102,11 @@ const ProductTile = ({ products, index, setProducts }) => {
           {
             decreaseUpVote();
           }
-          if (data.code > 200) {
+          /*if (data.code > 200) {
             console.log("Error");
           } else {
             console.log(data.success);
-          }
+          }*/
         });
   };
   
