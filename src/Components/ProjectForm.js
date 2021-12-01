@@ -99,6 +99,7 @@ function ProjectForm() {
   }
 
   const handleSubmit = (event) => {
+    console.log("Checking count of hits");
     const form = new FormData();
     form.append("productName", name);
     form.append("productDescription", description);
@@ -124,7 +125,7 @@ function ProjectForm() {
 
         </div>
       </div>
-          <form data-testid="submit_form" onSubmit={handleSubmit}>
+          <form data-testid="submit_form">
                <h3>PROJECT FORM</h3>
               <label>Name</label>
                 <TextField

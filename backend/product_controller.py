@@ -6,6 +6,7 @@ from flask import request
 from app import app
 from db_init import product_records
 
+
 @app.route("/addProduct", methods=['Post'])
 #################################################################################
 ##       Function: add_product
@@ -25,7 +26,7 @@ def add_product():
         email = request.form.get("email")
         tags = request.form.get("tags").split(' ')
 
-        feature_dict = {'id': 2, 'text': 'feature-1', 'votes': 1, 'timestamp': '1234567', 'tags': ['tag1']}
+        feature_dict = []
 
         product_input = {'uid': str(datetime.datetime.now()), 'name': product_name, 'description': product_description,
                             'image_url': image_url, 'users': [email], 'tags': tags, 'features': feature_dict, 'votes': 0}

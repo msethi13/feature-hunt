@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import {fireEvent, render, screen} from "@testing-library/react";
 import { Router as RRouter } from "react-router-dom"; // NOT A TYPO
 import Router from "react-router-dom";
 import { createMemoryHistory } from "history";
@@ -10,6 +10,7 @@ import Feature from "./Components/Feature";
 import ProductTile from "./Components/ProductTile";
 
 import "./setupTests";
+import Login from "./Components/Login";
 
 // import Service from './Service';
 
@@ -38,13 +39,41 @@ test("renders home page", () => {
 });
 
 test("renders navbar", () => {
-  render(<App />);
-  const submitProject = screen.getByText(/Submit Project/i);
-  const roadmap = screen.getByText(/Roadmap/i);
-  const feedback = screen.getByText(/Feedback/i);
-  expect(submitProject).toBeInTheDocument();
-  expect(roadmap).toBeInTheDocument();
-  expect(feedback).toBeInTheDocument();
+    const history = createMemoryHistory();
+    history.push("/:id");
+    const { getByTestId, getByText, getByRole, queryByText } = render(
+      <RRouter history={history}>
+        <Login />
+      </RRouter>
+    );
+
+    const loginb = getByTestId("login_button");
+    fireEvent.click(loginb);
+
+    const sub = getByRole("button", { name: /Submit/i });
+    expect(sub).toBeInTheDocument();
+
+    const can = getByRole("button", { name: /Cancel/i });
+    expect(can).toBeInTheDocument();
+
+    fireEvent.click(can);
+    fireEvent.click(loginb);
+
+    const add = getByTestId("login_inputEmail");
+    const ress = "test@test.com";
+
+    const pass = getByTestId("login_inputPassword");
+    const word = "abcd";
+
+    fireEvent.change(pass, { target: { value: word } });
+    fireEvent.change(add, { target: { value: ress } });
+
+    fireEvent.click(sub);
+    render(<App />);
+    const roadmap = screen.getByText(/Roadmap/i);
+    const feedback = screen.getByText(/Feedback/i);
+    expect(roadmap).toBeInTheDocument();
+    expect(feedback).toBeInTheDocument();
 });
 
 test("renders products", () => {
@@ -192,10 +221,41 @@ test("renders Product, Feature, ProductTile: additional screen checks", () => {
 });
 
 
-// TODO: login!
+
 test("display Your Projects in header with logged in user", () => {
-  render(<App />);
-  //todo: if user is not logged in, log in.
-  const yourproj = screen.getByText(/Your Projects/i);
-  expect(yourproj).toBeInTheDocument();
+    const history = createMemoryHistory();
+    history.push("/:id");
+    const { getByTestId, getByText, getByRole, queryByText } = render(
+      <RRouter history={history}>
+        <Login />
+      </RRouter>
+    );
+
+    const loginb = getByTestId("login_button");
+    fireEvent.click(loginb);
+
+    const sub = getByRole("button", { name: /Submit/i });
+    expect(sub).toBeInTheDocument();
+
+    const can = getByRole("button", { name: /Cancel/i });
+    expect(can).toBeInTheDocument();
+
+    fireEvent.click(can);
+    fireEvent.click(loginb);
+
+    const add = getByTestId("login_inputEmail");
+    const ress = "test@test.com";
+
+    const pass = getByTestId("login_inputPassword");
+    const word = "abcd";
+
+    fireEvent.change(pass, { target: { value: word } });
+    fireEvent.change(add, { target: { value: ress } });
+
+    fireEvent.click(sub);
+
+    render(<App />);
+
+    const yourproj = screen.getByText(/Your Projects/i);
+    expect(yourproj).toBeInTheDocument();
 });
