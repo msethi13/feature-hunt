@@ -5,6 +5,7 @@ import { createMemoryHistory } from "history";
 import "@testing-library/jest-dom/extend-expect";
 
 import Dashboard from "../Components/Dashboard";
+import Header from "../Components/Header";
 import "../setupTests";
 import Login from "../Components/Login";
 
@@ -66,6 +67,7 @@ describe("Dashboard tests", () => {
 
     render (
         <RRouter history={history}>
+            <Header setQuery={""}/>
             <Dashboard />
         </RRouter>
     );
