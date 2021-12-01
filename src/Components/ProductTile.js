@@ -1,15 +1,15 @@
-import React from 'react';
-import { ReactSession } from 'react-client-session';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
-import { useHistory } from 'react-router';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import Service from '../Service';
+import React from "react";
+import { ReactSession } from "react-client-session";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { useHistory } from "react-router";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import Service from "../Service";
 
 //
 //       Component: ProductTile
@@ -34,12 +34,12 @@ const ProductTile = ({ products, index, setProducts }) => {
     setOpen(false);
   };
 
-  const increaseUpVote = () =>{
+  const increaseUpVote = () => {
     const form = new FormData();
     console.log(products[index].uid);
     form.append("uid", products[index].uid);
-    Service.post('addTotalVote', form)
-      .then(data => 
+    Service.post("addTotalVote", form)
+      .then((data) => 
         {
           if(data.success)
           {
@@ -55,12 +55,12 @@ const ProductTile = ({ products, index, setProducts }) => {
           }
         });
   }
-  const handleUpVote = () =>{
+  const handleUpVote = () => {
     const form = new FormData();
     form.append("emailId", username);
     form.append("productId", index);
-    Service.post('addVote', form)
-      .then(data => 
+    Service.post("addVote", form)
+      .then((data) => 
         {
           console.log(data.code);
           if(data.success)
@@ -75,11 +75,11 @@ const ProductTile = ({ products, index, setProducts }) => {
         });
   }
 
-  const decreaseUpVote = () =>{
+  const decreaseUpVote = () => {
     const form = new FormData();
     form.append("uid", products[index].uid);
-    Service.post('subTotalVote', form)
-      .then(data => 
+    Service.post("subTotalVote", form)
+      .then((data) => 
         {
           if(data.success)
           {
@@ -95,12 +95,12 @@ const ProductTile = ({ products, index, setProducts }) => {
           }
         });
   }
-  const handleDownVote = () =>{
+  const handleDownVote = () => {
     const form = new FormData();
     form.append("emailId", username);
     form.append("productId", index);
-    Service.post('removeVote', form)
-      .then(data => 
+    Service.post("removeVote", form)
+      .then((data) => 
         {
           console.log(data.code);
           if(data.success)
