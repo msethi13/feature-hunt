@@ -44,7 +44,7 @@ const ProductTile = ({ products, index, setProducts }) => {
           {
             const updatedProduct = { ...products[index] };
             updatedProduct.votes = updatedProduct.votes + 1;
-            setProducts(products.map((product) => product.id === products[index].id ? updatedProduct : product));
+            setProducts(products.map((product) => product.uid === products[index].uid ? updatedProduct : product));
           }
           /*if (data.code > 200) {
             console.log("Error");
@@ -56,7 +56,7 @@ const ProductTile = ({ products, index, setProducts }) => {
   const handleUpVote = () => {
     const form = new FormData();
     form.append("emailId", username);
-    form.append("productId", index);
+    form.append("productId", products[index].uid);
     Service.post("addVote", form)
       .then((data) => 
         {
@@ -82,7 +82,7 @@ const ProductTile = ({ products, index, setProducts }) => {
           {
             const updatedProduct = { ...products[index] };
             updatedProduct.votes = updatedProduct.votes - 1;
-            setProducts(products.map((product) => product.id === products[index].id ? updatedProduct : product));
+            setProducts(products.map((product) => product.uid === products[index].uid ? updatedProduct : product));
           }
           /*if (data.code > 200) {
             console.log("Error");
@@ -94,7 +94,7 @@ const ProductTile = ({ products, index, setProducts }) => {
   const handleDownVote = () => {
     const form = new FormData();
     form.append("emailId", username);
-    form.append("productId", index);
+    form.append("productId", products[index].uid);
     Service.post("removeVote", form)
       .then((data) => 
         {
