@@ -18,7 +18,7 @@ from bson.json_util import dumps, loads
 #################################################################################
 @app.route("/addVote", methods=['Post'])
 def add_votes():
-    """To add vote done by user in user_project db"""
+    """To add vote done by user in user_project db."""
     try:
         product_id = request.form.get("productId")
         email_id = request.form.get("emailId")
@@ -52,7 +52,7 @@ def add_votes():
 #################################################################################
 @app.route("/removeVote", methods=['Post'])
 def remove_votes():
-    """To remove vote done by user in user_project db"""
+    """To remove vote done by user in user_project db."""
     try:
         product_id = request.form.get("productId")
         email_id = request.form.get("emailId")
@@ -90,7 +90,7 @@ def remove_votes():
 #################################################################################
 @app.route("/addTotalVote", methods=['Post'])
 def add_total_votes():
-    """To accumulate votes on any product"""
+    """To accumulate votes on any product."""
     try:
         uid = request.form.get("uid")
         print(id)
@@ -116,7 +116,7 @@ def add_total_votes():
 #################################################################################
 @app.route("/subTotalVote", methods=['Post'])
 def sub_total_votes():
-    """To reduce accumulated votes on any product"""
+    """To reduce accumulated votes on any product."""
     try:
         uid = request.form.get("uid")
         # print(name)

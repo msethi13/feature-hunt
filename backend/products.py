@@ -16,7 +16,6 @@ from app import app
 from bson.json_util import dumps
 from bson.objectid import ObjectId
 from db_init import product_records
-import user_projects_controller
 
 '''
 Function: products

@@ -18,7 +18,7 @@ from db_init import product_records
 ##           - Returns true or false if new project is able to be added
 #################################################################################
 def add_product():
-    """To add new product in product_records"""
+    """To add new product in product_records."""
     try:
         product_name = request.form.get("productName")
         product_description = request.form.get("productDescription")

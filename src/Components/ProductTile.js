@@ -23,7 +23,7 @@ const ProductTile = ({ products, index, setProducts }) => {
   const history = useHistory();
 
   const username = ReactSession.get("username");
-  const loggedin = username !== ''?true:false;
+  const loggedin = username !== ""?true:false;
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -36,7 +36,6 @@ const ProductTile = ({ products, index, setProducts }) => {
 
   const increaseUpVote = () => {
     const form = new FormData();
-    console.log(products[index].uid);
     form.append("uid", products[index].uid);
     Service.post("addTotalVote", form)
       .then((data) => 
@@ -47,14 +46,13 @@ const ProductTile = ({ products, index, setProducts }) => {
             updatedProduct.votes = updatedProduct.votes + 1;
             setProducts(products.map((product) => product.id === products[index].id ? updatedProduct : product));
           }
-          console.log(data.code);
           if (data.code > 200) {
-            console.log("Error")
+            console.log("Error");
           } else {
-            console.log(data.success)
+            console.log(data.success);
           }
         });
-  }
+  };
   const handleUpVote = () => {
     const form = new FormData();
     form.append("emailId", username);
@@ -62,18 +60,17 @@ const ProductTile = ({ products, index, setProducts }) => {
     Service.post("addVote", form)
       .then((data) => 
         {
-          console.log(data.code);
           if(data.success)
           {
             increaseUpVote();
           }
           if (data.code > 200) {
-            console.log("Error")
+            console.log("Error");
           } else {
-            console.log(data.success)
+            console.log(data.success);
           }
         });
-  }
+  };
 
   const decreaseUpVote = () => {
     const form = new FormData();
@@ -87,14 +84,13 @@ const ProductTile = ({ products, index, setProducts }) => {
             updatedProduct.votes = updatedProduct.votes - 1;
             setProducts(products.map((product) => product.id === products[index].id ? updatedProduct : product));
           }
-          console.log(data.code);
           if (data.code > 200) {
-            console.log("Error")
+            console.log("Error");
           } else {
-            console.log(data.success)
+            console.log(data.success);
           }
         });
-  }
+  };
   const handleDownVote = () => {
     const form = new FormData();
     form.append("emailId", username);
@@ -102,18 +98,17 @@ const ProductTile = ({ products, index, setProducts }) => {
     Service.post("removeVote", form)
       .then((data) => 
         {
-          console.log(data.code);
           if(data.success)
           {
             decreaseUpVote();
           }
           if (data.code > 200) {
-            console.log("Error")
+            console.log("Error");
           } else {
-            console.log(data.success)
+            console.log(data.success);
           }
         });
-  }
+  };
   
   const goTo = (product) => () => {
     history.push(`/${product}/getFeature`);
