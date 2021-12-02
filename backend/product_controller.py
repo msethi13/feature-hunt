@@ -5,6 +5,7 @@ from flask import jsonify
 from flask import request
 from app import app
 from db_init import product_records
+import time
 
 
 @app.route("/addProduct", methods=['Post'])
@@ -28,7 +29,7 @@ def add_product():
 
         feature_dict = []
 
-        product_input = {'uid': str(datetime.datetime.now()), 'name': product_name, 'description': product_description,
+        product_input = {'uid': str(int(time.time())), 'name': product_name, 'description': product_description,
                             'image_url': image_url, 'users': [email], 'tags': tags, 'features': feature_dict, 'votes': 0}
 
         product_records.insert_one(product_input)
