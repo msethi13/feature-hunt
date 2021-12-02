@@ -124,10 +124,6 @@ function ProjectForm() {
       });
    }
 
-   const func = () => {
-     console.log("Click checker");
-   }
-
   return (
     <div className="container">
       <div className="child">
