@@ -1,8 +1,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
-import { useHistory } from 'react-router';
-import Button from '@mui/material/Button';
-
+import { useHistory } from "react-router-dom";
+import Button from "@mui/material/Button";
+import Service from '../Service';
+import {ReactSession} from "react-client-session";
 
 //
 //       Component: ProductTile
@@ -15,24 +16,6 @@ import Button from '@mui/material/Button';
 const ProjectTile = ({ products, index, setProducts }) => {
 
   const history = useHistory();
-  const upVote = () => {
-    const updatedProduct = { ...products[index] };
-    let currentVote = updatedProduct.upVoted ? 1 : (updatedProduct.downVoted ? -1 : 0);
-    updatedProduct.upVoted = !updatedProduct.upVoted;
-    updatedProduct.downVoted = false;
-    let newVote = updatedProduct.upVoted ? 1 : (updatedProduct.downVoted ? -1 : 0);
-    updatedProduct.votes = updatedProduct.votes - currentVote + newVote;
-    setProducts(products.map((product) => product.id === products[index].id ? updatedProduct : product));
-  };
-  const downVote = () => {
-    const updatedProduct = { ...products[index] };
-    let currentVote = updatedProduct.upVoted ? 1 : (updatedProduct.downVoted ? -1 : 0);
-    updatedProduct.downVoted = !updatedProduct.downVoted;
-    updatedProduct.upVoted = false;
-    let newVote = updatedProduct.upVoted ? 1 : (updatedProduct.downVoted ? -1 : 0);
-    updatedProduct.votes = updatedProduct.votes - currentVote + newVote;
-    setProducts(products.map((product) => product.id === products[index].id ? updatedProduct : product));
-  };
   const goTo = (product) => () => {
     history.push(`/${product}/getFeature`);
   };
@@ -40,13 +23,17 @@ const ProjectTile = ({ products, index, setProducts }) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
 
-  const deleteDiv = (event) => {
-    const product = event.target.parentNode.parentNode.parentNode;
-    product.parentNode.removeChild(product);
-
+  const deleteDiv = (id) => {
+    const el = document.getElementById(id);
+    Service.remove('/'+id+'/delete').
+      then(data => {
+        if(data)
+          el.remove()
+    });
   };
+
   return (
-    <div className="child product">
+    <div className="child product" id={products[index].uid}>
       <div className="product-container">
         <div className="image-container">
           <img src={products[index].image_url} alt={products[index].name} />
@@ -55,7 +42,6 @@ const ProjectTile = ({ products, index, setProducts }) => {
           <div className="product-content">
             <span className="product-title" 
             data-testid={"ptnav:"+index}
-            onClick={goTo(products[index].name)} 
             style={{ marginTop: 'auto', marginBottom: 'auto' }}>
               {capitalizeFirstLetter(products[index].name)}
             </span>
@@ -72,28 +58,10 @@ const ProjectTile = ({ products, index, setProducts }) => {
             )}
           </div>
         </div>
-        <div className="votes-container">
-          <span>
-            <FontAwesomeIcon icon={faChevronUp} size="lg" 
-            className={products[index].upVoted ? 'votedUp' : 'voteup'} 
-            data-testid={"pt_up:"+index}
-            onClick={upVote} />
-          </span>
-          <span>
-            {products[index].votes}
-          </span>
-          <span>
-            <FontAwesomeIcon icon={faChevronDown} 
-            size="lg" 
-            className={products[index].downVoted ? 'votedDown' : 'votedown'} 
-            data-testid={"pt_down:"+index}
-            onClick={downVote} />
-          </span>
-        </div>
         <br/>
         <div id ="delete_button" className="delete_project" style={{marginLeft:'25px'}}>
           <Button variant="text" style={{color:'#218888'}}
-          onClick={deleteDiv}>Delete</Button>
+          onClick={() => deleteDiv(products[index].uid)}>Delete</Button>
         </div>
       </div>
     </div>
