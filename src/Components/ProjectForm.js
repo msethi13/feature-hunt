@@ -3,6 +3,7 @@ import { ReactSession } from "react-client-session";
 import styled from "styled-components";
 import TextField from "@mui/material/TextField";
 import Service from "../Service";
+import { useHistory } from 'react-router-dom';
 
 const Styles = styled.div`
  background: #218888;
@@ -71,6 +72,7 @@ const Styles = styled.div`
 //       Outputs:
 //          - NA
 function ProjectForm() {
+  const history = useHistory();
   const [name, setName] = React.useState("");
   const [description, setDescription] = React.useState("");
   const [imageURL, setImageURL] = React.useState("");
@@ -99,6 +101,7 @@ function ProjectForm() {
   }
 
   const handleSubmit = (event) => {
+    event.preventDefault();
     console.log("Checking count of hits");
     const form = new FormData();
     form.append("productName", name);
@@ -110,12 +113,19 @@ function ProjectForm() {
       .then((data) =>
         {setMessage(data.message);
           console.log(data.code);
+          console.log(data)
           if (data.code > 200) {
             console.log(message)
+          } else {
+              history.push("/dashboard");
           }
         }).catch(function(err){
           setMessage("There was a problem submitting your product. Please try again later.")
       });
+   }
+
+   const func = () => {
+     console.log("Click checker");
    }
 
   return (
@@ -125,56 +135,56 @@ function ProjectForm() {
 
         </div>
       </div>
-          <form data-testid="submit_form">
-               <h3>PROJECT FORM</h3>
-              <label>Name</label>
-                <TextField
-                  data-testid="form_name"
-                  id="name"
-                  label=""
-                  multiline
-                  maxRows={1}
-                  inputProps={{ "data-testid": "form-inputName" }}
-                  value={name}
-                  onChange={handleNameChange}
-                  fullWidth
-                />
-              <label>Description</label>
-                <TextField
-                  id="description"
-                  label=""
-                  multiline
-                  rows={3}
-                  inputProps={{ "data-testid": "form-Desc" }}
-                  value={description}
-                  onChange={handleDescriptionChange}
-                  fullWidth
-                />
-                <label>Image URL</label>
-                <TextField
-                  id="imageURL"
-                  label=""
-                  multiline
-                  maxRows={1}
-                  inputProps={{ "data-testid": "form-Img" }}
-                  value={imageURL}
-                  onChange={handleImageURLChange}
-                  fullWidth
-                />
-              <label>Tags</label>
-                <TextField
-                  id="tags"
-                  label=""
-                  multiline
-                  maxRows={1}
-                  inputProps={{ "data-testid": "form-Tags" }}
-                  value={tags}
-                  onChange={handleTagsChange}
-                  fullWidth
-                />
+      <form data-testid="submit_form" onSubmit={handleSubmit}>
+          <h3>PROJECT FORM</h3>
+          <label>Name</label>
+            <TextField
+              data-testid="form_name"
+              id="name"
+              label=""
+              multiline
+              maxRows={1}
+              inputProps={{ "data-testid": "form-inputName" }}
+              value={name}
+              onChange={handleNameChange}
+              fullWidth
+            />
+          <label>Description</label>
+            <TextField
+              id="description"
+              label=""
+              multiline
+              rows={3}
+              inputProps={{ "data-testid": "form-Desc" }}
+              value={description}
+              onChange={handleDescriptionChange}
+              fullWidth
+            />
+            <label>Image URL</label>
+            <TextField
+              id="imageURL"
+              label=""
+              multiline
+              maxRows={1}
+              inputProps={{ "data-testid": "form-Img" }}
+              value={imageURL}
+              onChange={handleImageURLChange}
+              fullWidth
+            />
+          <label>Tags</label>
+            <TextField
+              id="tags"
+              label=""
+              multiline
+              maxRows={1}
+              inputProps={{ "data-testid": "form-Tags" }}
+              value={tags}
+              onChange={handleTagsChange}
+              fullWidth
+            />
 
-            <button data-testid="submit_button" onClick={handleSubmit}>Submit</button>
-          </form>
+          <button data-testid="submit_button">Submit</button>
+      </form>
     </div>
   );
 }
