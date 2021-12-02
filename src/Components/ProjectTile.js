@@ -1,9 +1,5 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
-import { useHistory } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Service from '../Service';
-import {ReactSession} from "react-client-session";
 
 //
 //       Component: ProductTile
@@ -15,20 +11,16 @@ import {ReactSession} from "react-client-session";
 //          - NA
 const ProjectTile = ({ products, index, setProducts }) => {
 
-  const history = useHistory();
-  const goTo = (product) => () => {
-    history.push(`/${product}/getFeature`);
-  };
   const capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
 
   const deleteDiv = (id) => {
     const el = document.getElementById(id);
-    Service.remove('/'+id+'/delete').
-      then(data => {
-        if(data)
-          el.remove()
+    Service.remove('/'+id+'/delete')
+        .then(data => {
+            if(data)
+              el.remove()
     });
   };
 
