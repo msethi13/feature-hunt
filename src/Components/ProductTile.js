@@ -116,6 +116,7 @@ const ProductTile = ({ products, index, setProducts }) => {
   const capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
+  
   return (
     <div className="child product">
       <div className="product-container">

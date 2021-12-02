@@ -130,3 +130,11 @@ def features(product_name):
     elif request.method == 'GET':
         result = product_records.find({"name": product_name}, {"features": 1})
     return dumps(result)
+
+
+@app.route('/<uid>/delete', methods=['DELETE'])
+def delete(uid):
+    strId = str(uid)
+    result = product_records.delete_one({"uid": strId})
+    print(result)
+    return jsonify({'ok': True, 'message': 'record deleted'}), 200
