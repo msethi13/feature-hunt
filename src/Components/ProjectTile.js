@@ -50,7 +50,7 @@ const ProjectTile = ({ products, index, setProducts }) => {
             </p>
           </div>
           <div className="tag-container">
-            {products[index]['tags'].map(tag =>
+            {products[index]['tags'].map((tag) =>
               <div key={tag}>
                 <span className="tag">{tag.toUpperCase()}</span>
                 <div>&nbsp;</div>
