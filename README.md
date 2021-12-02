@@ -2,14 +2,14 @@
 <img width="657" alt="Feature Hunt" src="https://user-images.githubusercontent.com/11090612/135201949-a1f1de9d-f80a-4adf-a7ac-886c77c4c226.png">
 </p>
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/bb78c7431a71487595f3031af06dac4c)](https://app.codacy.com/gh/CSC510-Group-25/feature-hunt?utm_source=github.com&utm_medium=referral&utm_content=CSC510-Group-25/feature-hunt&utm_campaign=Badge_Grade_Settings)
-[![DOI](https://zenodo.org/badge/413987683.svg)](https://zenodo.org/badge/latestdoi/413987683)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/6ce3145d4fd9471594d957b90167c2d5)](https://www.codacy.com/gh/elric97/feature-hunt/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=elric97/feature-hunt&amp;utm_campaign=Badge_Grade)
+[![DOI](https://zenodo.org/badge/426076067.svg)](https://zenodo.org/badge/latestdoi/426076067)
 [![GitHub license](https://img.shields.io/github/license/shahrk/feature-hunt)](https://github.com/shahrk/feature-hunt/blob/main/LICENSE)
 [![made-with-javascript](https://img.shields.io/badge/Made%20with-JavaScript-blue)](https://www.javascript.com)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![Docker](https://img.shields.io/badge/Containerized-Docker-blue)](https://docs.docker.com/compose/)
-[![GitHub issues](https://img.shields.io/github/issues/CSC510-Group-25/feature-hunt)](https://github.com/CSC510-Group-25/feature-hunt/issues)
-[![GitHub closed issues](https://img.shields.io/github/issues-closed/CSC510-Group-25/feature-hunt?color=red)](https://github.com/CSC510-Group-25/feature-hunt/issues?q=is%3Aissue+is%3Aclosed)
+[![GitHub issues](https://img.shields.io/github/issues/CSC510-Group-25/feature-hunt)](https://github.com/elric97/feature-hunt/issues)
+[![GitHub closed issues](https://img.shields.io/github/issues-closed/CSC510-Group-25/feature-hunt?color=red)](https://github.com/elric97/feature-hunt/issues?q=is%3Aissue+is%3Aclosed)
 [![Build](https://github.com/CSC510-Group-25/feature-hunt/actions/workflows/nodejs.yml/badge.svg)](https://github.com/CSC510-Group-25/feature-hunt/actions/workflows/nodejs.yml)
 [![Tests](https://github.com/CSC510-Group-25/feature-hunt/actions/workflows/nodejs_tests.yml/badge.svg)](https://github.com/CSC510-Group-25/feature-hunt/actions/workflows/nodejs_tests.yml)
 [![Coverage Status](https://coveralls.io/repos/github/CSC510-Group-25/feature-hunt/badge.svg?branch=main)](https://coveralls.io/github/CSC510-Group-25/feature-hunt?branch=main)
@@ -195,7 +195,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 This app has been deployed using Netlify and Heroku. Check it out [here!](https://feature-hunt-25.netlify.app/)
 
-You can now run and test the project locally and in deployments. More info about our deplyments and switching between production and devlopment can be found in our [Wiki](https://github.com/CSC510-Group-25/feature-hunt/wiki/Deployment:-Heroku-and-Netlify)
+You can now run and test the project locally and in deployments. More info about our deplyments and switching between production and devlopment can be found in our [Wiki](https://github.com/elric97/feature-hunt/wiki/Deployment)
 
 ## Future Scope
 We believe in the ability to add new features in any project (including our own). 
@@ -221,5 +221,14 @@ We believe in the ability to add new features in any project (including our own)
     <td align="center"><a href="https://github.com/jhnguye4/"><img src="https://avatars.githubusercontent.com/u/42051115?v=4" width="80px;" alt=""/><br /><sub><b>Jonathan Nguyen</b></sub></a><br /></td>
     <td align="center"><a href="https://github.com/snapcat/"><img src="https://avatars.githubusercontent.com/u/89357283?v=4" width="80px;" alt=""/><br /><sub><b>Leila Moran</b></sub></a><br /></td>
     <td align="center"><a href="https://www.github.com/shraddhamishra7"><img src="https://avatars.githubusercontent.com/u/7471821?v=4" width="80px;" alt=""/><br /><sub><b>Shraddha Mishra</b></sub></a><br /></td>
+  </tr>
+  
+  <tr>
+    <td>Group 29</td>
+    <td align="center"><a href="https://github.com/palvitgarg99/"><img src="https://avatars.githubusercontent.com/u/16212546?v=4" width="80px;" alt=""/><br /><sub><b>Palvit Garg</b></sub></a></td>
+    <td align="center"><a href="https://github.com/elric97/"><img src="https://avatars.githubusercontent.com/u/17125417?v=4" width="80px;" alt=""/><br /><sub><b>Rachit Sharma</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/aditi12200"><img src="https://avatars.githubusercontent.com/u/55187770?v=4" width="80px;" alt=""/><br /><sub><b>Aditi Bhagwat</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/anumitgarg"><img src="https://avatars.githubusercontent.com/u/32408402?v=4" width="80px;" alt=""/><br /><sub><b>Anumit Garg</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/ShreeSub"><img src="https://avatars.githubusercontent.com/u/67685445?v=4" width="80px;" alt=""/><br /><sub><b>Shree Lakshmi Ramasubramanian</b></sub></a><br /></td>
   </tr>
 </table>

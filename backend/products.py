@@ -9,7 +9,7 @@ this file. If not, please write to: featurehuntteam@gmail.com
 
 import os
 from sys import stderr
-from flask import request, jsonify
+from flask import request, jsonify, Response
 from flask import json
 from app import app
 
@@ -30,7 +30,30 @@ Outputs:
 @app.route('/products', methods=['GET', 'POST', 'DELETE', 'PATCH'])
 def products():
     if request.method == 'GET':
-        data = product_records.find()
+        data = product_records.find(
+            {"$or" : 
+                [{
+                    "name" : 
+                    { 
+                        "$regex" : request.args.get("query"),
+                        '$options' : 'i'
+                    }
+                },  
+                {
+                    "description" : 
+                    { 
+                        "$regex" : request.args.get("query"),
+                        '$options' : 'i'
+                    }
+                },
+                {
+                    "tags" : 
+                    { 
+                        "$regex" : request.args.get("query"),
+                        '$options' : 'i'
+                    }
+                }]
+            })
         return dumps(data)
 
     data = request.get_json()
@@ -77,7 +100,7 @@ Outputs:
 @app.route('/<productname>/getFeature', methods=['GET', 'POST'])
 def get_feature(product_name):
     if request.method == 'GET':
-        data = product_records.find({"name": product_name})
+        data = product_records.find({"name": product_name},{"features":1})
         return dumps(data)
 
 
@@ -102,8 +125,16 @@ def features(product_name):
             return Response(response=json.dumps({"Error": "Please provide connection information"}),
                             status=400,
                             mimetype='application/json')
-        result = product_records.find_one_and_update({"name": productname}, {"$set": {"features": data}})
+        result = product_records.find_one_and_update({"name": product_name}, {"$set": {"features": data}})
 
     elif request.method == 'GET':
         result = product_records.find({"name": product_name}, {"features": 1})
     return dumps(result)
+
+
+@app.route('/<uid>/delete', methods=['DELETE'])
+def delete(uid):
+    strId = str(uid)
+    result = product_records.delete_one({"uid": strId})
+    print(result)
+    return jsonify({'ok': True, 'message': 'record deleted'}), 200
