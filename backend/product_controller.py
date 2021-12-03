@@ -1,6 +1,7 @@
 # pylint: disable=wrong-import-position,pointless-string-statement,undefined-variable,line-too-long
 
 import datetime
+import os
 from flask import jsonify
 from flask import request
 from app import app
@@ -9,16 +10,15 @@ import datetime
 from werkzeug.utils import secure_filename
 import boto3
 from botocore.client import Config
+import time
 
 s3 = boto3.client(
     "s3",
-    aws_access_key_id="AKIA6RGMAFYCJPCLFAUS",
-    aws_secret_access_key="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",
+    aws_access_key_id=os.environ.get("ACCESS_KEY"),
+    aws_secret_access_key=os.environ.get("SECRET_KEY"),
     region_name='us-east-1',
     config=Config(signature_version='s3v4')
 )
-
-import time
 
 
 @app.route("/addProduct", methods=['Post'])
@@ -39,9 +39,11 @@ def add_product():
         image_url = request.form.get("imageUrl")
         email = request.form.get("email")
         tags = request.form.get("tags").split(' ')
-        img = request.files['file']
 
-        if img:
+        file_name = ''
+
+        if request.files:
+            img = request.files['file']
             file_name = secure_filename(img.filename)
             s3.upload_fileobj(
                 img,
@@ -52,16 +54,11 @@ def add_product():
                 }
             )
 
-            response = s3.generate_presigned_url('get_object',
-                                                 Params={'Bucket': "feature-hunt", 'Key': img.filename},
-                                                 ExpiresIn=500)
-
-            print(response)
-
         feature_dict = []
 
         product_input = {'uid': str(int(time.time())), 'name': product_name, 'description': product_description,
-                            'image_url': image_url, 'users': [email], 'tags': tags, 'features': feature_dict, 'votes': 0}
+                         'image_url': image_url, 'users': [email], 'tags': tags, 'features': feature_dict, 'votes': 0,
+                         'file_name': file_name}
 
         product_records.insert_one(product_input)
 
