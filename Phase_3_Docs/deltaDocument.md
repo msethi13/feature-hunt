@@ -76,31 +76,7 @@
     </tr>
   </table>
 
-* Adding new feature doesn't persist
-<table>
-    <tr>
-        <th>Phase 2</th>
-        <th>Phase 3</th>
-    </tr>
-    <tr>
-        <td>
-            User adds a new feature
-        <img src="../docs/phase_3_images/feature_added.png">
-        </td>
-<td>
-            We have fixed the bug
-        <img src="../docs/phase_3_images/feature_update_fixed.png">
-        </td>
-    </tr>
-      <tr>
-        <td>
-            The feature does not persist
-        <img src="../docs/phase_3_images/feature_not_updated.png">
-        </td>
-        <td>
-        </td>
-    </tr>
-  </table>
+*  
 
 ## New features and Enhancements 🎉
 
@@ -124,8 +100,25 @@
     </tr>
     <tr>
         <td>
-            User is automatically logged in
-        <img src="">
-        </td>
+	Added delete functionality for features
+	<img src="../docs/phase_3_images/delete_project.png">
+	</td>
     </tr>
-  </table>
+ </table>
+
+* We have provided functionality to upload images from your local device. This gives you the functionality to upload images if you do not have image url.
+<table>
+    <tr>
+        <th>Phase 3</th>
+    </tr>
+    <tr>
+        <td>
+	Functionality to upload images
+	<img src="../docs/phase_3_images/upload_image.png">
+	</td>
+    </tr>
+</table>
+
+
+* Automated heroku deployment. Whenever something is pushed to main branch
+<br> Check out the github action here [https://github.com/elric97/feature-hunt/blob/main/.github/workflows/deploy.yml]
