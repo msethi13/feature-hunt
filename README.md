@@ -89,6 +89,8 @@ You can now create an account and mange the products you are a part of! This inc
 **Tag Management** - You can now give feature feedback though tags. Want to say that you are working on a feature? Add a `IN DEVELOPMENT` tag!
 <img width="1200" alt="Screen Shot 2021-09-19 at 5 24 43 PM" src="https://user-images.githubusercontent.com/78971563/140238752-a6ebe8ab-942f-462e-94b6-5d3d4064115e.png"> 
 
+### Phase 3 Enhancements :
+We have fixed various bugs in the Project and we have also added new features. To know more details please check our [deltaDocument](https://github.com/elric97/feature-hunt/blob/main/Phase_3_Docs/deltaDocument.md)
 ## Getting Started
 #### Before you get started, if you are using Windows, please visit our [wiki page on Windows development](https://github.com/CSC510-Group-25/feature-hunt/wiki/How-to-develop-with-Windows).
 There are two ways to install and develop for featurehunt 
@@ -150,9 +152,7 @@ You will also see any lint errors in the console.
 
 To run backend flask api in development mode:  
  
- export DB="mongodb+srv://bot:bot123@feature-hunt.6gqvj.mongodb.net/feature-hunt?retryWrites=true&w=majority"
-
- export ROOT_PATH="./"
+ export DB_PATH='<Your mongoDb connection URL>'
 
 #### 6. `yarn start-api`
 
@@ -169,6 +169,9 @@ Requests made to [http://localhost:3000](http://localhost:3000) that don't exist
 #### Check out our [tutorial](https://github.com/CSC510-Group-25/feature-hunt/wiki/Getting-Started-with-Database-Development:-Connection-and-Setup) to get started with creating and connecting to a database.
 
 > You can also connect to the database from your shell using [mongosh](https://docs.mongodb.com/mongodb-shell/)
+
+#### Update :
+> Connecting with DB - We have introduced an environment variable DB_PATH, make sure that you set it to your local or deployed environment
 
 ## Other Available Scripts
 
@@ -189,18 +192,15 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
 ## Deployment
 
-This app has been deployed using Netlify and Heroku. Check it out [here!](https://feature-hunt-25.netlify.app/)
-
-You can now run and test the project locally and in deployments. More info about our deplyments and switching between production and devlopment can be found in our [Wiki](https://github.com/elric97/feature-hunt/wiki/Deployment)
-
+We have deployed our app's front end you can check it out [here]( https://feature-hunt-g29.netlify.app/)
+the application's backend can be found [here](https://feature-hunt-final.herokuapp.com/)
+To know more about how we worked on this check our [wiki page](https://github.com/elric97/feature-hunt/wiki/Deployment)
 ## Future Scope
 We believe in the ability to add new features in any project (including our own). 
 
-#### Check out our ideas for the future: [Future scope](https://github.com/CSC510-Group-25/feature-hunt/projects/3)
+#### Check out our ideas for the future: [Future scope](https://github.com/elric97/feature-hunt/projects/1)
 
 ## Contributors 🎯
 
