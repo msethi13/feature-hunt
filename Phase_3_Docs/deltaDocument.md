@@ -105,6 +105,21 @@
 	</td>
     </tr>
  </table>
+ 
+ * We have improved existing search functionality
+<table>
+    <tr>
+        <th>Phase 3</th>
+    </tr>
+    <tr>
+        <td>
+	1) The search was done in frontend server, which was wrong from design point of view. In future when data size increases its better to filter the results at backend.
+	<br>
+	2) Many searches were failing, because search query was not correct. Like tags were not correctly identified because of wrong case. This part is corrected.
+	<img src="../docs/phase_3_images/Search.png">
+	</td>
+    </tr>
+ </table>
 
 * We have provided functionality to upload images from your local device. This gives you the functionality to upload images if you do not have an image url (Frontend part is pending, can be picked at a later stage).
 <table>
