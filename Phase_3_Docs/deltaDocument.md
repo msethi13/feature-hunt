@@ -103,6 +103,20 @@
   </table>
 
 ## New features and Enhancements 🎉
+
+* We have added a check to validate if user is logged in before voting
+<table>
+    <tr>
+        <th>Phase 3</th>
+    </tr>
+    <tr>
+        <td>
+	Added login check for upvoting
+	<img src="../docs/phase_3_images/login_check.png">
+	</td>
+    </tr>
+</table>
+
 * We have added a delete feature for users to delete their projects
 <table>
     <tr>
