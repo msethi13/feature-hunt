@@ -20,7 +20,7 @@
 |.5|test cases exist  | [tests](https://github.com/elric97/feature-hunt/tree/main/test) exist, we have added tests for all the pages and features|.5|
 |.5|Use of code coverage  | [code coverage](https://codecov.io/gh/ShreeSub/CmyPlot) is automatically checked here as well as in [config](https://github.com/ShreeSub/CmyPlot/blob/main/.github/workflows/python-app.yml) file|.5|
 |.5|other automated analysis tools  | Codacy, Snyk, Dependabot, CodeQL |.5|
-|.5|test cases:.a large proportion of the issues related to handling failing cases. | [tests were updated](https://github.com/ShreeSub/CmyPlot/commit/1360a5f02baa5412c768d925ff001fda75e7b28b)|.5|
+|.5|test cases:.a large proportion of the issues related to handling failing cases. | [tests were updated](https://github.com/elric97/feature-hunt/tree/main/test)|.5|
 |.5|test cases are routinely executed |[Pipeline](https://github.com/elric97/feature-hunt/actions)|.5|
 |1|Documentation describing how this version improves on the older version|[Delta Document](https://github.com/elric97/feature-hunt/blob/main/Phase_3_Docs/deltaDocument.md)|1| 
 |3|This version is a little(1), some(2), much(3) improved on the last version.|Tutor's assessment.|3|
