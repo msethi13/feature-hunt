@@ -11,7 +11,7 @@
 |1|Docs: what: point descriptions of each class/function (in isolation)  |[Docs](https://elric97.github.io/CmyPlot/)|1|
 |.5|Number of commits: by different people  | [commits](https://github.com/elric97/feature-hunt/pulse)|.5|
 |1|issues are being closed | [closed issues](https://github.com/elric97/feature-hunt/issues?q=is%3Aissue+is%3Aclosed)|1|
-|.5|issues are discussed before they are closed | [evidence 1](https://github.com/elric97/feature-hunt/issues/28) [evidence 2](https://github.com/elric97/feature-hunt/issues/16) . Issues were discussed before assigning as well as closing|.5|
+|.5|issues are discussed before they are closed | [evidence 1](https://github.com/elric97/feature-hunt/issues/21) [evidence 2](https://github.com/elric97/feature-hunt/issues/16) . Issues were discussed before assigning as well as closing|.5|
 |.5|Use of syntax checkers. | flake is used as syntax checker[config file](https://github.com/ShreeSub/CmyPlot/blob/main/.github/workflows/python-app.yml)|.5|
 |1|Issues reports: there are many  |[Open issues](https://github.com/elric97/feature-hunt/issues?q=is%3Aopen+is%3Aissue) [Closed issues](https://github.com/elric97/feature-hunt/issues?q=is%3Aissue+is%3Aclosed)|1|
 |.5|Use of code formatters. |package.json, Prettier |.5|
