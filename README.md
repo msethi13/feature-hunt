@@ -193,10 +193,11 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 ## Deployment
+We used Heroku and Netlify for deploying the application.
+We have deployed our application's front end you can check it out [here]( https://feature-hunt-g29.netlify.app/)
+, the application's backend can be found [here](https://feature-hunt-final.herokuapp.com/).
 
-We have deployed our app's front end you can check it out [here]( https://feature-hunt-g29.netlify.app/)
-the application's backend can be found [here](https://feature-hunt-final.herokuapp.com/)
-To know more about how we worked on this check our [wiki page](https://github.com/elric97/feature-hunt/wiki/Deployment)
+Check out our [wiki page](https://github.com/elric97/feature-hunt/wiki/Deployment) to understand how to deploy the application.
 ## Future Scope
 We believe in the ability to add new features in any project (including our own). 
 
