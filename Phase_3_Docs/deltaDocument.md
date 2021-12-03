@@ -106,7 +106,7 @@
     </tr>
  </table>
 
-* We have provided functionality to upload images from your local device. This gives you the functionality to upload images if you do not have image url.
+* We have provided functionality to upload images from your local device. This gives you the functionality to upload images if you do not have an image url (Frontend part is pending, can be picked at a later stage).
 <table>
     <tr>
         <th>Phase 3</th>
