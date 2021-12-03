@@ -18,7 +18,7 @@
 |.5|Use of style checkers |Pylint and Codacy |.5|
 |.5|Docs: short video, animated, hosted on your repo. That convinces people why they want to work on your code. |[Video](https://github.com/ShreeSub/CmyPlot#visual-walkthrough)|.5|
 |.5|test cases exist  | [tests](https://github.com/elric97/feature-hunt/tree/main/test) exist, we have added tests for all the pages and features|.5|
-|.5|Use of code coverage  | [code coverage](https://codecov.io/gh/ShreeSub/CmyPlot) is automatically checked here as well as in [config](https://github.com/ShreeSub/CmyPlot/blob/main/.github/workflows/python-app.yml) file|.5|
+|.5|Use of code coverage  | [Codacy](https://app.codacy.com/gh/elric97/feature-hunt/dashboard) [Coveralls](https://coveralls.io/github/elric97/feature-hunt) |.5|
 |.5|other automated analysis tools  | Codacy, Snyk, Dependabot, CodeQL |.5|
 |.5|test cases:.a large proportion of the issues related to handling failing cases. | [tests were updated](https://github.com/elric97/feature-hunt/tree/main/test)|.5|
 |.5|test cases are routinely executed |[Pipeline](https://github.com/elric97/feature-hunt/actions)|.5|
