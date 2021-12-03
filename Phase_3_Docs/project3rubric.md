@@ -15,7 +15,7 @@
 |.5|Use of syntax checkers. | flake is used as syntax checker[config file](https://github.com/ShreeSub/CmyPlot/blob/main/.github/workflows/python-app.yml)|.5|
 |1|Issues reports: there are many  |[Open issues](https://github.com/elric97/feature-hunt/issues?q=is%3Aopen+is%3Aissue) [Closed issues](https://github.com/elric97/feature-hunt/issues?q=is%3Aissue+is%3Aclosed)|1|
 |.5|Use of code formatters. |we added black as the code formatter[config file](https://github.com/ShreeSub/CmyPlot/blob/main/.github/workflows/python-app.yml#L29)|.5|
-|.5|Use of style checkers |flake is used as style checker [config file](https://github.com/ShreeSub/CmyPlot/blob/main/.github/workflows/python-app.yml#L32)|.5|
+|.5|Use of style checkers |Pylint and Codacy |.5|
 |.5|Docs: short video, animated, hosted on your repo. That convinces people why they want to work on your code. |[Video](https://github.com/ShreeSub/CmyPlot#visual-walkthrough)|.5|
 |.5|test cases exist  | [tests](https://github.com/elric97/feature-hunt/tree/main/test) exist, we have added tests for all the pages and features|.5|
 |.5|Use of code coverage  | [code coverage](https://codecov.io/gh/ShreeSub/CmyPlot) is automatically checked here as well as in [config](https://github.com/ShreeSub/CmyPlot/blob/main/.github/workflows/python-app.yml) file|.5|
