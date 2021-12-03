@@ -76,7 +76,31 @@
     </tr>
   </table>
 
-*  
+* Adding new feature doesn't persist
+<table>
+    <tr>
+        <th>Phase 2</th>
+        <th>Phase 3</th>
+    </tr>
+    <tr>
+        <td>
+            User adds a new feature
+        <img src="../docs/phase_3_images/feature_added.png">
+        </td>
+<td>
+            We have fixed the bug
+        <img src="../docs/phase_3_images/feature_update_fixed.png">
+        </td>
+    </tr>
+      <tr>
+        <td>
+            The feature does not persist
+        <img src="../docs/phase_3_images/feature_not_updated.png">
+        </td>
+        <td>
+        </td>
+    </tr>
+  </table>
 
 ## New features and Enhancements 🎉
 * We have added a delete feature for users to delete their projects
