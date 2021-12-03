@@ -19,7 +19,7 @@
 |.5|Docs: short video, animated, hosted on your repo. That convinces people why they want to work on your code. |[Video](https://github.com/ShreeSub/CmyPlot#visual-walkthrough)|.5|
 |.5|test cases exist  | [tests](https://github.com/elric97/feature-hunt/tree/main/test) exist, we have added tests for all the pages and features|.5|
 |.5|Use of code coverage  | [code coverage](https://codecov.io/gh/ShreeSub/CmyPlot) is automatically checked here as well as in [config](https://github.com/ShreeSub/CmyPlot/blob/main/.github/workflows/python-app.yml) file|.5|
-|.5|other automated analysis tools  | we have used multiple tools such as [code formatters,synatx checkers, style checkers](https://github.com/ShreeSub/CmyPlot/blob/main/.github/workflows/python-app.yml) [code coverage](https://codecov.io/gh/ShreeSub/CmyPlot) and [automated Pipeline](https://github.com/ShreeSub/CmyPlot/actions/workflows/python-app.yml)|.5|
+|.5|other automated analysis tools  | Codacy, Snyk, Dependabot, CodeQL |.5|
 |.5|test cases:.a large proportion of the issues related to handling failing cases. | [tests were updated](https://github.com/ShreeSub/CmyPlot/commit/1360a5f02baa5412c768d925ff001fda75e7b28b)|.5|
 |.5|test cases are routinely executed |[Pipeline](https://github.com/elric97/feature-hunt/actions)|.5|
 |1|Documentation describing how this version improves on the older version|[Delta Document](https://github.com/elric97/feature-hunt/blob/main/Phase_3_Docs/deltaDocument.md)|1| 
