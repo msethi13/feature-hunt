@@ -25,7 +25,7 @@ Feature Hunt is a platform that allows you to do just that. Users can share/vote
 
 ### Watch this short video to know more:
 
-[<img src="../docs/phase_3_images/video_thumbnail.png" width="50%">](https://youtu.be/watch?v=TEacECgr1qk)
+[<img src="https://github.com/elric97/feature-hunt/blob/main/docs/phase_3_images/video_thumbnail.png">](https://youtu.be/watch?v=TEacECgr1qk)
 
 The following technologies were used for the development of this project:  
 
