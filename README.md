@@ -8,14 +8,14 @@
 [![made-with-javascript](https://img.shields.io/badge/Made%20with-JavaScript-blue)](https://www.javascript.com)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![Docker](https://img.shields.io/badge/Containerized-Docker-blue)](https://docs.docker.com/compose/)
-[![GitHub issues](https://img.shields.io/github/issues/CSC510-Group-25/feature-hunt)](https://github.com/elric97/feature-hunt/issues)
-[![GitHub closed issues](https://img.shields.io/github/issues-closed/CSC510-Group-25/feature-hunt?color=red)](https://github.com/elric97/feature-hunt/issues?q=is%3Aissue+is%3Aclosed)
-[![Build](https://github.com/CSC510-Group-25/feature-hunt/actions/workflows/nodejs.yml/badge.svg)](https://github.com/CSC510-Group-25/feature-hunt/actions/workflows/nodejs.yml)
-[![Tests](https://github.com/CSC510-Group-25/feature-hunt/actions/workflows/nodejs_tests.yml/badge.svg)](https://github.com/CSC510-Group-25/feature-hunt/actions/workflows/nodejs_tests.yml)
-[![Coverage Status](https://coveralls.io/repos/github/CSC510-Group-25/feature-hunt/badge.svg?branch=main)](https://coveralls.io/github/CSC510-Group-25/feature-hunt?branch=main)
-[![CodeQL](https://github.com/CSC510-Group-25/feature-hunt/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/CSC510-Group-25/feature-hunt/actions/workflows/codeql-analysis.yml)
-[![Pylint](https://github.com/CSC510-Group-25/feature-hunt/actions/workflows/pylint.yml/badge.svg)](https://github.com/CSC510-Group-25/feature-hunt/actions/workflows/pylint.yml)
-[![Netlify](https://img.shields.io/netlify/dbecc37c-c273-4b45-bfff-3fd33d20cae0)](https://feature-hunt-25.netlify.app/)
+[![GitHub issues](https://img.shields.io/badge/issues-6%20open-green)](https://github.com/elric97/feature-hunt/issues)
+[![GitHub closed issues](https://img.shields.io/badge/issues-12%20closed-red)](https://github.com/elric97/feature-hunt/issues?q=is%3Aissue+is%3Aclosed)
+[![Build](https://github.com/CSC510-Group-25/feature-hunt/actions/workflows/nodejs.yml/badge.svg)](https://github.com/elric97/feature-hunt/blob/main/.github/workflows/nodejs.yml)
+[![Tests](https://github.com/CSC510-Group-25/feature-hunt/actions/workflows/nodejs_tests.yml/badge.svg)](https://github.com/elric97/feature-hunt/blob/main/.github/workflows/nodejs_tests.yml)
+[![Coverage Status](https://coveralls.io/repos/github/CSC510-Group-25/feature-hunt/badge.svg?branch=main)](https://coveralls.io/github/elric97/feature-hunt)
+[![CodeQL](https://github.com/CSC510-Group-25/feature-hunt/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/elric97/feature-hunt/blob/main/.github/workflows/codeql-analysis.yml)
+[![Pylint](https://github.com/CSC510-Group-25/feature-hunt/actions/workflows/pylint.yml/badge.svg)](https://github.com/elric97/feature-hunt/blob/main/.github/workflows/pylint.yml)
+[![Netlify](https://img.shields.io/netlify/dbecc37c-c273-4b45-bfff-3fd33d20cae0)](https://feature-hunt-g29.netlify.app/)
 
 Have a look at [Phase3-Video](https://youtu.be/watch?v=TEacECgr1qk)
 ## INTRODUCTION ⚡️
@@ -84,7 +84,7 @@ You can now create an account and mange the products you are a part of! This inc
 <img width="1200" alt="Screen Shot 2021-09-19 at 5 24 43 PM" src="https://user-images.githubusercontent.com/78971563/140238752-a6ebe8ab-942f-462e-94b6-5d3d4064115e.png"> 
 
 ### Phase 3 Enhancements :
-We have fixed various bugs in the Project and we have also added new features. To know more details please check our [deltaDocument](https://github.com/elric97/feature-hunt/blob/main/Phase_3_Docs/deltaDocument.md)
+We have fixed various bugs in the Project and we have also added new features. To know more details please check our [Delta Document](https://github.com/elric97/feature-hunt/blob/main/Phase_3_Docs/deltaDocument.md)
 ## Getting Started
 #### Before you get started, if you are using Windows, please visit our [wiki page on Windows development](https://github.com/CSC510-Group-25/feature-hunt/wiki/How-to-develop-with-Windows).
 There are two ways to install and develop for featurehunt 
@@ -101,7 +101,7 @@ https://docs.docker.com/get-docker
 ```
 #### 2. Git clone the Repository using 
 ```
-git clone https://github.com/CSC510-Group-25/feature-hunt.git
+git clone https://github.com/elric97/feature-hunt.git
 ```
 
 #### 3. Run the following Commands
@@ -119,7 +119,7 @@ This will run two docker containers. The frontend will run on port 3000 and the 
 
 #### 1. Git clone the Repository using 
 ```
-git clone https://github.com/CSC510-Group-25/feature-hunt.git
+git clone https://github.com/elric97/feature-hunt.git
 ```
 #### 2. Run the following Commands
 ```
@@ -146,7 +146,7 @@ You will also see any lint errors in the console.
 
 To run backend flask api in development mode:  
  
- export DB_PATH='<Your mongoDb connection URL>'
+ export DB_PATH='Your mongoDb connection URL'
 
 #### 6. `yarn start-api`
 
