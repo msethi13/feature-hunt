@@ -49,6 +49,11 @@ const ProjectTile = ({ products, index, setProducts }) => {
               </div>
             )}
           </div>
+          <div className="tag-container">
+          views : {
+            products[index].views?products[index].views.length:0
+          }
+          </div>
         </div>
         <br/>
         <div id ="delete_button" className="delete_project" style={{marginLeft:'25px'}}>

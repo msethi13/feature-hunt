@@ -1,7 +1,7 @@
 // const baseUrl = "https://feature-hunt-final.herokuapp.com/";
  //const baseUrl = "https://damp-citadel-25681.herokuapp.com/"
 
- const baseUrl = "http://localhost:6060/"
+ const baseUrl = "http://127.0.0.1:5000/"
  const requestOptionsBuilder = (method, body, headers) => {
    let options = {
        method: method,

@@ -130,3 +130,26 @@ def sub_total_votes():
         return jsonify(success=True)
     except:
         return jsonify(success=False)
+
+
+@app.route("/addUserView", methods=['Post'])
+def add_user_view():
+    try:
+        name = request.form.get("name")
+        email = request.form.get("useremail")
+        # dat = user_projects.find({"email" : email})
+        # results = list(dat)
+        print(name)
+        dat = product_records.find({"name" : name})
+        results = list(dat)
+        data = loads(dumps(results))
+        views = data[0]['views']
+        uid = data[0]['uid']
+        if email not in views:
+            views.append(email)
+        product_records.update_one({'uid': uid}, {'$set': {'views': views}})
+        return dumps(data)
+    except:
+        return jsonify(success=False)
+
+

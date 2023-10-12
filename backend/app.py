@@ -6,6 +6,7 @@ from os import environ
 from flask_cors import CORS
 
 app = Flask(__name__)
+app.config['DEBUG']=True
 from auth_controller import *
 from products import *
 from product_controller import *
@@ -15,6 +16,8 @@ from ping import *
 
 app.secret_key = "testing"
 CORS(app)
+
+
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))

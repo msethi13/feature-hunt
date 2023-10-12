@@ -143,6 +143,11 @@ const ProductTile = ({ products, index, setProducts }) => {
               </div>
             )}
           </div>
+          <div className="tag-container">
+          views : {
+            products[index].views?products[index].views.length:0
+          }
+          </div>
         </div>
         <div className="votes-container">
           <span>
