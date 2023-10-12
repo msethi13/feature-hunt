@@ -56,6 +56,38 @@ const Product = ({query}) => {
     });
   }, [user]);
 
+  const [viewsLength, setViewsLength] = useState(0);
+  const addUserView = () => {
+    const form = new FormData();
+    form.append("name", id);
+    form.append("useremail",ReactSession.get("username"))
+    console.log(ReactSession.get("username"))
+    console.log(form.get("name"))
+    Service.post("/addUserView", form)
+      .then((data) => 
+        {
+          if(data)
+          { 
+            
+            console.log(data)
+          }else{
+            console.log(data)
+          }
+          /*if (data.code > 200) {
+            console.log("Error");
+          } else {
+            console.log(data.success);
+          }*/
+        });
+  };
+
+  useEffect(()=>{
+    console.log("here")
+    addUserView();
+  },[])
+
+
+
   return (
     <div className="container">
       <div className="child">

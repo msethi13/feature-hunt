@@ -16,6 +16,14 @@ from ping import *
 app.secret_key = "testing"
 CORS(app)
 
+import pymongo
+
+client = pymongo.MongoClient("mongodb+srv://akshat1701:SEDemo1234@cluster0.udjlpg8.mongodb.net/?retryWrites=true&w=majority")
+db = client.get_database('feature-hunt')
+records = db.users
+product_records = db.products
+user_projects = db.user_projects
+
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port, debug=True)
