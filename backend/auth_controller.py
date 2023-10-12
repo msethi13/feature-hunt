@@ -42,7 +42,7 @@ def signup():
     message = json.dumps(error_dict)
     return message
 
-redirect_url = 'https://damp-citadel-25681.herokuapp.com/'
+redirect_url = 'http://localhost:6060/'
 
 #################################################################################
 ##       Function: logged_in
