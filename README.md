@@ -165,7 +165,7 @@ Requests made to [http://localhost:3000](http://localhost:3000) that don't exist
 > You can also connect to the database from your shell using [mongosh](https://docs.mongodb.com/mongodb-shell/)
 
 #### Update :
-> Connecting with DB - We have introduced an environment variable DB_PATH, make sure that you set it to your local or deployed environment
+> Connecting with DB - We have introduced an environment variable DB_PATH, to make sure that you set it to your local or deployed environment
 
 ## Other Available Scripts
 
