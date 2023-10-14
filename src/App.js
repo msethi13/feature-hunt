@@ -62,7 +62,7 @@ function App() {
               <Product query={query} />
               <br />
               <br />
-              <Comments />
+              
             </>
           }
         />
