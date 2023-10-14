@@ -42,7 +42,7 @@ def signup():
     message = json.dumps(error_dict)
     return message
 
-redirect_url = 'http://localhost:6060/'
+redirect_url = 'http://127.0.0.1:5000/'
 
 #################################################################################
 ##       Function: logged_in
