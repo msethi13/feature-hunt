@@ -16,6 +16,7 @@ import SignUp from './SignUp';
 function Header({setQuery}) {
   const history = useHistory();
   const goTo = (page) => () => {
+    setQuery('')
     history.push('/' + page);
   };
   const location = useLocation();

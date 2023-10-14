@@ -55,7 +55,7 @@ function App() {
           }
         />
         <Route
-          path="/:id"
+          path="/:id/getFeature"
           children={
             <>
               <Header setQuery={setQuery} />

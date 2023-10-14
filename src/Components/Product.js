@@ -56,7 +56,7 @@ const Product = ({query}) => {
     });
   }, [user]);
 
-  const [viewsLength, setViewsLength] = useState(0);
+  // const [viewsLength, setViewsLength] = useState(0);
   const addUserView = () => {
     const form = new FormData();
     form.append("name", id);
@@ -69,7 +69,7 @@ const Product = ({query}) => {
           if(data)
           { 
             
-            console.log(data)
+            console.log("OK")
           }else{
             console.log(data)
           }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import ProductTile from './ProductTile';
 import Service from '../Service';
-
+import { useHistory, useLocation } from 'react-router-dom';
 //
 //       Component: Home
 //       Description: This component is the homepage which contains all the projects
@@ -10,16 +10,23 @@ import Service from '../Service';
 //           - NA
 //       Outputs:
 //          - NA
-const Home = ({query}) => {
+const Home = ({query,setQuery}) => {
   const [sortBy, setSortBy] = useState('timestamp');
   const [products, setProducts] = useState([]);
+  const history = useHistory();
   useEffect(() => {
     Service.get('products', "query=" + query).then(products => setProducts(products));
   }, [query]);
 
+  const goTo = (page) => () => {
+    setQuery('')
+    history.push('/' + page);
+  };
+
   return (
     <div className="container">
       <div className="child">
+        <div className='product-title' onClick={goTo('')}>All Products</div>
         <div className="product-title">
           <h3 data-testid="home_header">PRODUCTS</h3>
           <div className="sort">
