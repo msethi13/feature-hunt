@@ -31,12 +31,20 @@ def add_votes():
             dat = user_projects.find({"email" : email_id})
 
         data = loads(dumps(results))
-        #print(data[0]['email'])
-        if product_id in data[0]['votes']:
-            print("Voteup already exists")
+        if (product_id + "up") in data[0]['votes'] and (product_id + "down") not in data[0]['votes']:
+            print(data[0])
+            print("Not allowed to upvote")
             return jsonify(success=False)
+        
+        if (product_id + "down") in data[0]['votes'] and (product_id + "up") in data[0]['votes']:
+            print("allowed to upvote once more")
+            user_projects.update_one({'email': email_id}, {'$pull': {'votes': product_id + "down"}})
+            print(data[0])
+            return jsonify(success=True)
 
-        user_projects.update_one({'email': email_id}, {'$push': {'votes': product_id}})
+        user_projects.update_one({'email': email_id}, {'$push': {'votes': product_id + "up"}})
+        print("first upvote - success")
+        print(data[0])
         return jsonify(success=True)
     except:
         return jsonify(success=False)
@@ -67,14 +75,29 @@ def remove_votes():
             return jsonify(success=False)
 
         data = loads(dumps(results))
-        #print(data[0]['email'])
-        if product_id in data[0]['votes']:
-            print("Voteup was done remove this element")
-            user_projects.update_one({'email': email_id}, {'$pull': {'votes': product_id}})
+        if (product_id + "down") in data[0]['votes'] and (product_id + "up") not in data[0]['votes']:
+            print(data[0])
+            print("not allowed to downvote")
+            return jsonify(success=False)
+        
+        if (product_id + "down") in data[0]['votes'] and (product_id + "up") in data[0]['votes']:
+            print("allowed to downvote once more")
+            user_projects.update_one({'email': email_id}, {'$pull': {'votes': product_id + "up"}})
+            print(data[0])
             return jsonify(success=True)
 
+        user_projects.update_one({'email': email_id}, {'$push': {'votes': product_id + "down"}})
+        print("first downvote - success")
+        print(data[0])
+        return jsonify(success=True)
+        
+        # if product_id in data[0]['votes']:
+        #     print("Voteup was done remove this element")
+        #     user_projects.update_one({'email': email_id}, {'$pull': {'votes': product_id}})
+        #     return jsonify(success=True)
+
         # Not votedup, nothing to remove
-        return jsonify(success=False)
+        
     except:
         return jsonify(success=False)
 
