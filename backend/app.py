@@ -14,6 +14,9 @@ from user_projects_controller import *
 from db_init import db
 from ping import *
 
+from collections.abc import Mapping
+
+
 app.secret_key = "testing"
 CORS(app)
 

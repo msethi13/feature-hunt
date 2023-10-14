@@ -16,7 +16,7 @@ from app import app
 from bson.json_util import dumps
 from bson.objectid import ObjectId
 
-from product_controller import s3
+# from product_controller import s3
 from db_init import product_records
 
 '''
@@ -59,7 +59,7 @@ def products():
         iterate = []
         for obj in data:
             if obj["image_url"] is None and obj["file_name"] is not None:
-                url = get_pre_signed(obj["file_name"])
+                url = ""
                 obj["image_url"] = url
             iterate.append(obj)
 
@@ -96,11 +96,11 @@ def products():
             return jsonify({'ok': False, 'message': 'Bad request parameters!'}), 400
 
 
-def get_pre_signed(file_name):
-    response = s3.generate_presigned_url('get_object',
-                                         Params={'Bucket': "feature-hunt", 'Key': file_name},
-                                         ExpiresIn=500)
-    return response
+# def get_pre_signed(file_name):
+#     response = s3.generate_presigned_url('get_object',
+#                                          Params={'Bucket': "feature-hunt", 'Key': file_name},
+#                                          ExpiresIn=500)
+#     return response
 
 
 '''
