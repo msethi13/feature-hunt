@@ -3,8 +3,7 @@ import { useParams } from 'react-router-dom';
 import { ReactSession } from 'react-client-session';
 import Feature from './Feature';
 import Service from '../Service';
-
-//
+import Comments from './Comments';
 //       Component: Product
 //       Description: This component allows the user to add specific features and
 //       allows the user to upvote or downvote the features
@@ -15,8 +14,27 @@ import Service from '../Service';
 //          - NA
 const Product = ({query}) => {
   const { id } = useParams();
+ 
+ 
+ 
+  // (data => {
+  //   console.log("WE ARE HERE");
+  //   if (!data[0]) {
+  //     console.log("NOT FOUND YOO");
+  //     return (<div>NOT FOUND PRODUCT</div>);
+  //   }
+  // });
+
+
+  // count = product_records.find({"name": id}).count();
+  // if(count == 0){
+  //   console.log("NOT FOUND PRODUCT");
+  //   return (<div>not found</div>);
+  // }
+  // console.log("FOUND PRODUCT");
   const [newFeature, setNewFeature] = useState('');
   const [sortBy, setSortBy] = useState('votes');
+
   const handleNewFeatureChange = (event) => {
     setNewFeature(event.target.value);
   };
@@ -56,7 +74,7 @@ const Product = ({query}) => {
     });
   }, [user]);
 
-  const [viewsLength, setViewsLength] = useState(0);
+  const [flag, setFlag] = useState(0);
   const addUserView = () => {
     const form = new FormData();
     form.append("name", id);
@@ -83,11 +101,23 @@ const Product = ({query}) => {
 
   useEffect(()=>{
     console.log("here")
+    Service.get(window.location.pathname).then(data=>{
+      console.log(data.length);
+      if(data.length==0){
+        console.log("okay okay oky")
+        setFlag(0)
+      }
+    })
     addUserView();
+
   },[])
 
 
 
+  if(flag==0)
+  {
+    return (<div>PRODUCT NOT FOUND</div>);
+  }
   return (
     <div className="container">
       <div className="child">
@@ -114,6 +144,7 @@ const Product = ({query}) => {
       {features.map((f, index) => { f['index'] = index; return f; }).filter(f => query ? f.tags.includes(query.toLowerCase()) || f.text.toLowerCase().includes(query.toLowerCase()) : true).sort((f1, f2) => f2[sortBy] - f1[sortBy]).map(
         (feature) => <Feature key={feature.id} features={features} index={feature.index} setFeatures={setFeatures} editable={editable}/>
         , setFeatures)}
+      <Comments />
     </div>
   );
 };

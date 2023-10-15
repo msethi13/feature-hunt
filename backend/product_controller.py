@@ -6,17 +6,17 @@ from app import app
 from db_init import product_records
 import datetime
 from werkzeug.utils import secure_filename
-import boto3
-from botocore.client import Config
+# import boto3
+# from botocore.client import Config
 import time
 
-s3 = boto3.client(
-    "s3",
-    aws_access_key_id=os.environ.get("ACCESS_KEY"),
-    aws_secret_access_key=os.environ.get("SECRET_KEY"),
-    region_name='us-east-1',
-    config=Config(signature_version='s3v4')
-)
+# s3 = boto3.client(
+#     "s3",
+#     aws_access_key_id=os.environ.get("ACCESS_KEY"),
+#     aws_secret_access_key=os.environ.get("SECRET_KEY"),
+#     region_name='us-east-1',
+#     config=Config(signature_version='s3v4')
+# )
 
 
 @app.route("/addProduct", methods=['Post'])
@@ -43,14 +43,14 @@ def add_product():
         if request.files:
             img = request.files['file']
             file_name = secure_filename(img.filename)
-            s3.upload_fileobj(
-                img,
-                "feature-hunt",
-                file_name,
-                ExtraArgs={
-                    "ContentType": img.content_type  # Set appropriate content type as per the file
-                }
-            )
+            # s3.upload_fileobj(
+            #     img,
+            #     "feature-hunt",
+            #     file_name,
+            #     ExtraArgs={
+            #         "ContentType": img.content_type  # Set appropriate content type as per the file
+            #     }
+            # )
 
         feature_dict = []
 
