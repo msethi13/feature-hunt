@@ -104,7 +104,7 @@ const Product = ({query}) => {
     Service.get(window.location.pathname).then(data=>{
       console.log(data.length);
       if(data.length==0){
-        console.log("okay okay oky")
+        //console.log("okay okay oky")
         setFlag(1)
       }
     })
