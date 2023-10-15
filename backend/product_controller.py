@@ -37,7 +37,7 @@ def add_product():
         image_url = request.form.get("imageUrl")
         email = request.form.get("email")
         tags = request.form.get("tags").split(' ')
-
+        views = []
         file_name = ''
 
         if request.files:
@@ -56,7 +56,7 @@ def add_product():
 
         product_input = {'uid': str(int(time.time())), 'name': product_name, 'description': product_description,
                          'image_url': image_url, 'users': [email], 'tags': tags, 'features': feature_dict, 'votes': 0,
-                         'file_name': file_name}
+                         'file_name': file_name,'views':views}
 
         product_records.insert_one(product_input)
 
