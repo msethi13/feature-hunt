@@ -14,7 +14,7 @@ const Comments = () => {
         return;
       }
       const scriptElem = document.createElement('script');
-      scriptElem.src = 'https://utteranc.es/client.js';
+      // scriptElem.src = 'https://utteranc.es/client.js';
       scriptElem.async = true;
       scriptElem.crossOrigin = 'anonymous';
       scriptElem.setAttribute('repo', 'shahrk/feature-vote-comments');
