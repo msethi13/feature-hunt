@@ -80,6 +80,7 @@ const Product = ({query}) => {
     console.log(window.location.pathname);
     setUser(ReactSession.get("username"));
     Service.get(window.location.pathname).then(data => {
+      
       setFeatures(data[0] ? data[0].features : []);
       if (data[0] && data[0].users && data[0].users.includes(user)) {
         setEditable(true);
@@ -93,7 +94,7 @@ const Product = ({query}) => {
     Service.get('/'+id+'/getTimeline')
         .then(data => {
           if(data){
-            console.log(data[0]['timeline'])
+            //console.log(data[0]['timeline'])
             setTimeline(data[0]['timeline'])
           }
         });

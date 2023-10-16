@@ -77,25 +77,26 @@ const Feature = ({ features, index, setFeatures, editable, setTimeline }) => {
             )}
             {editable && 
             <div>
-              <TextField
+              {/* <TextField
                 data-testid={"feature_addtag:"+ features[index].id}
                 label="Add New Tag"
                 inputProps={{ "data-testid": "newTag-input:" + features[index].id }}
                 value={newTag}
                 size="small"
                 onChange={handleTextChange}
-              />
-              <Button 
+              /> */}
+              {/* <Button 
               data-testid={"feature_tagbutton:" + features[index].id}
-              onClick={addNewTag}>Add</Button> 
+              onClick={addNewTag}>Add</Button>  */}
             </div> }
           </div>
-        </div>
-        <div>
-          <Button onClick={handleButtonClick}>
+          <div className='button-container'>
+          {editable && <Button onClick={handleButtonClick}>
             Add 
-          </Button>
+          </Button>}
         </div>
+        </div>
+        
         <div className="votes-container">
           <span>
             <FontAwesomeIcon icon={faChevronUp} 

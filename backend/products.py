@@ -116,7 +116,7 @@ Outputs:
 @app.route('/<product_name>/getFeature', methods=['GET', 'POST'])
 def get_feature(product_name):
     if request.method == 'GET':
-        data = product_records.find({"name": product_name}, {"features": 1})
+        data = product_records.find({"name": product_name}, {"features": 1,"users":1})
         return dumps(data)
 
 @app.route('/<product_name>/getTimeline', methods=['GET'])
