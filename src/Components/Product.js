@@ -59,10 +59,21 @@ const Product = ({query}) => {
       setNewFeature('');
     }
   };
+  
   const [features, setFeatures] = useState([]);
   const [user, setUser] = useState('');
   const [editable, setEditable] = useState(false);
 
+  const [timeline, setTimeline] = useState([]);
+  const getTimeline = (product_name) => {
+    Service.get('/'+product_name+'/getTimeline')
+        .then(data => {
+          if(data){
+            setTimeline(data[0].timeline)
+            console.log(timeline)
+          }
+        });
+  }
   useEffect(() => {
     console.log(window.location.pathname);
     setUser(ReactSession.get("username"));
@@ -71,8 +82,14 @@ const Product = ({query}) => {
       if (data[0] && data[0].users && data[0].users.includes(user)) {
         setEditable(true);
       }
+
+      
     });
   }, [user]);
+
+  useEffect(()=>{
+    getTimeline(id);
+  },[])
 
   const [flag, setFlag] = useState(0);
   const addUserView = () => {
@@ -111,6 +128,7 @@ const Product = ({query}) => {
 
       }
     })
+   
     addUserView();
 
   },[])

@@ -39,7 +39,7 @@ def add_product():
         tags = request.form.get("tags").split(' ')
         views = []
         file_name = ''
-
+        timeline = []
         if request.files:
             img = request.files['file']
             file_name = secure_filename(img.filename)
@@ -56,7 +56,7 @@ def add_product():
 
         product_input = {'uid': str(int(time.time())), 'name': product_name, 'description': product_description,
                          'image_url': image_url, 'users': [email], 'tags': tags, 'features': feature_dict, 'votes': 0,
-                         'file_name': file_name,'views':views}
+                         'file_name': file_name,'views':views, 'timeline':timeline}
 
         product_records.insert_one(product_input)
 

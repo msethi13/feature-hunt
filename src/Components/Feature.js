@@ -39,6 +39,11 @@ const Feature = ({ features, index, setFeatures, editable }) => {
   const handleTextChange = (e) => {
     setNewTag(e.target.value);
   }
+  const handleButtonClick = () => {
+    const form = new FormData();
+    form.append("feature_id", features[index].id);
+    Service.post(window.location.pathname + "/addToTimeline", form).then(data => {});
+  }
 
   /* TODO : save new tag to database */
   const addNewTag = () => {
@@ -80,6 +85,11 @@ const Feature = ({ features, index, setFeatures, editable }) => {
               onClick={addNewTag}>Add</Button> 
             </div> }
           </div>
+        </div>
+        <div>
+          <Button onClick={handleButtonClick}>
+            Add 
+          </Button>
         </div>
         <div className="votes-container">
           <span>
