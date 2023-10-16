@@ -116,7 +116,7 @@ Outputs:
 @app.route('/<product_name>/getFeature', methods=['GET', 'POST'])
 def get_feature(product_name):
     if request.method == 'GET':
-        data = product_records.find({"name": product_name}, {"features": 1})
+        data = product_records.find({"name": product_name}, {"features": 1, "uid": 1})
         return dumps(data)
 
 
@@ -135,6 +135,7 @@ def features(product_name):
     result = ''
     if request.method == 'POST':
         data = request.form.get('features')
+        print(data)
         data = json.loads(data)
         print(data, flush=True)
         if data is None or data == {}:
