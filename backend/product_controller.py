@@ -53,17 +53,23 @@ def add_product():
             #     }
             # )
 
-        feature_dict = []
+        # Convert the product name to lowercase for a case-insensitive search
+        product_name_lower = product_name.lower()
 
+        # Check if a product with the same name (case-insensitive) already exists
+        if product_records.find_one({"name": product_name_lower}):
+            return jsonify(success=False, message="Product with the same name already exists. Please try a different name.")
+
+        feature_dict = []
         product_input = {'uid': str(int(time.time())), 'name': product_name, 'description': product_description,
                          'image_url': image_url, 'users': [email], 'tags': tags, 'features': feature_dict, 'votes': 0,
                          'file_name': file_name,'views':views, 'timeline':timeline}
 
         product_records.insert_one(product_input)
 
-        return jsonify(success=True)
+        return jsonify(success=True, message="Product succesfully created!")
     except:
-        return jsonify(success=False)
+        return jsonify(success=False, message = "There was an error while creating the product. Please try again.")
 
 # @app.route("/<productName>/addFeature", method=['Post'])
 # def addFeature(productName):

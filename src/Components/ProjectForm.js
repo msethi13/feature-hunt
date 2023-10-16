@@ -4,6 +4,12 @@ import styled from "styled-components";
 import TextField from "@mui/material/TextField";
 import Service from "../Service";
 import { useHistory } from 'react-router-dom';
+import {Button} from '@mui/material';
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 
 const Styles = styled.div`
  background: #218888;
@@ -79,6 +85,19 @@ function ProjectForm() {
   const [message, setMessage] = React.useState("");
   const [user, setUser] = React.useState([""]);
   const [tags, setTags] = React.useState("");
+  const [open, setOpen] = React.useState(false);
+  const [redirectToDashboard, setRedirectToDashboard] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    if (redirectToDashboard) {
+      history.push("/dashboard");
+    }
+  };
 
   React.useEffect(() => {
     setUser(ReactSession.get("username"));
@@ -112,12 +131,13 @@ function ProjectForm() {
     Service.post("addProduct", form)
       .then((data) =>
         {setMessage(data.message);
-          console.log(data.code);
+          handleClickOpen();
           console.log(data)
-          if (data.code > 200) {
-            console.log(message)
+          if (data.success == "False") {
+            setRedirectToDashboard(false);
+            console.log(data.message)
           } else {
-              history.push("/dashboard");
+            setRedirectToDashboard(true);
           }
         }).catch(function(err){
           setMessage("There was a problem submitting your product. Please try again later.")
@@ -180,6 +200,17 @@ function ProjectForm() {
             />
 
           <button data-testid="submit_button">Submit</button>
+          <Dialog  open={open} onClose={handleClose} PaperProps={{ style: { minWidth: '400px' } }}>
+          <DialogTitle>Form Submission Message</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+            {message}
+            </DialogContentText>
+          </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose}>Ok</Button>
+            </DialogActions>
+          </Dialog>
       </form>
     </div>
   );
