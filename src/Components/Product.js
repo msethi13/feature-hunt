@@ -110,7 +110,9 @@ const Product = ({query}) => {
 
       //console.log(data.length);
       if(data.length==0){
+        //console.log("okay okay oky")
         setFlag(1)
+
       }
       
     })
@@ -118,23 +120,10 @@ const Product = ({query}) => {
 
   },[])
 
-  // useEffect(()=>{
-  //   if(reload==0){
-  //     setReload(1)
-  //     window.location.reload();
-  //   }
-    
-
-    
-  //   console.log("Haan haan");
-  // },[reload])
-
-  // useEffect(()=>{
-  //   window.location.reload();
-  // },[])
 
 
   if(flag==1)
+
   {
     return (<div>PRODUCT NOT FOUND</div>);
   }
