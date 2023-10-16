@@ -197,11 +197,11 @@ const Feature = ({ features, index, setFeatures, editable, productId}) => {
             data-testid={"feature_upvote:"+features[index].id}
             onClick={loggedin?handleUpvote:handleClickOpen} />
           </span>
-          <Dialog  open={open} onClose={handleClose}>
-          <DialogTitle >Thank you </DialogTitle>
+          <Dialog  open={open} onClose={handleClose} PaperProps={{ style: { minWidth: '400px' } }}>
+          <DialogTitle >Action Required</DialogTitle>
           <DialogContent>
             <DialogContentText >
-              Please login first for your vote to matter!
+            Please login to vote!
             </DialogContentText>
           </DialogContent>
             <DialogActions>
@@ -220,6 +220,17 @@ const Feature = ({ features, index, setFeatures, editable, productId}) => {
             data-testid={"feature_downvote:" + features[index].id}
             onClick={loggedin?handleDownvote:handleClickOpen} />
           </span>
+          <Dialog  open={open} onClose={handleClose} PaperProps={{ style: { minWidth: '400px' } }}>
+          <DialogTitle >Action Required</DialogTitle>
+          <DialogContent>
+            <DialogContentText >
+              Please login to vote!
+            </DialogContentText>
+          </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose}>Ok</Button>
+            </DialogActions>
+          </Dialog>
         </div>
       </div>
     </div>
