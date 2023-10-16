@@ -104,8 +104,11 @@ const Product = ({query}) => {
     Service.get(window.location.pathname).then(data=>{
       console.log(data.length);
       if(data.length==0){
+
+
         //console.log("okay okay oky")
         setFlag(1)
+
       }
     })
     addUserView();
@@ -114,7 +117,9 @@ const Product = ({query}) => {
 
 
 
+
   if(flag==1)
+
   {
     return (<div>PRODUCT NOT FOUND</div>);
   }
