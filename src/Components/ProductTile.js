@@ -156,11 +156,11 @@ const ProductTile = ({ products, index, setProducts }) => {
             data-testid={"pt_up:"+index}
             onClick={loggedin?handleUpVote:handleClickOpen} />
           </span>
-          <Dialog  open={open} onClose={handleClose}>
-          <DialogTitle >Thank you </DialogTitle>
+          <Dialog  open={open} onClose={handleClose} PaperProps={{ style: { minWidth: '400px' } }}>
+          <DialogTitle>Action Required</DialogTitle>
           <DialogContent>
             <DialogContentText >
-              Please login first for your vote to matter!
+              Please login to vote!
             </DialogContentText>
           </DialogContent>
             <DialogActions>
@@ -177,11 +177,11 @@ const ProductTile = ({ products, index, setProducts }) => {
             data-testid={"pt_down:"+index}
             onClick={loggedin?handleDownVote:handleClickOpen} />
           </span>
-          <Dialog  open={open} onClose={handleClose}>
-          <DialogTitle >Thank you </DialogTitle>
+          <Dialog  open={open} onClose={handleClose} PaperProps={{ style: { minWidth: '400px' } }}>
+          <DialogTitle>Action Required</DialogTitle>
           <DialogContent>
             <DialogContentText >
-              Please login first for your vote to matter!
+              Please login to vote!
             </DialogContentText>
           </DialogContent>
             <DialogActions>

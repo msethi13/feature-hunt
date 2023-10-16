@@ -1,8 +1,15 @@
+import React from "react";
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ReactSession } from 'react-client-session';
 import Feature from './Feature';
 import Service from '../Service';
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 import Comments from './Comments';
 import ProductTimeline from './Timeline';
 import Timeline from '@mui/lab/Timeline';
@@ -17,8 +24,18 @@ import Timeline from '@mui/lab/Timeline';
 //          - NA
 const Product = ({query}) => {
   const { id } = useParams();
- 
- 
+  
+  const username = ReactSession.get("username");
+  const loggedin = (username !== "" && username !== undefined)?true:false;
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
  
   // (data => {
   //   console.log("WE ARE HERE");
@@ -49,7 +66,7 @@ const Product = ({query}) => {
       const addedFeature = {
         id: features.length + 1,
         text: newFeature,
-        votes: 1,
+        votes: 0,
         upVoted: true,
         timestamp: Date.now(),
         tags: ['enhancement'],
@@ -77,11 +94,13 @@ const Product = ({query}) => {
         });
   }
   useEffect(() => {
-    console.log(window.location.pathname);
-    setUser(ReactSession.get("username"));
+    //console.log(window.location.pathname);
+    setUser(username);
     Service.get(window.location.pathname).then(data => {
       
+      setProductId(data[0] ? data[0].uid : '');
       setFeatures(data[0] ? data[0].features : []);
+      console.log(features)
       if (data[0] && data[0].users && data[0].users.includes(user)) {
         setEditable(true);
       }
@@ -101,12 +120,13 @@ const Product = ({query}) => {
   },[])
 
   const [flag, setFlag] = useState(0);
+  const [reload, setReload] = useState(0);
   const addUserView = () => {
     const form = new FormData();
     form.append("name", id);
     form.append("useremail",ReactSession.get("username"))
-    // console.log(ReactSession.get("username"))
-    // console.log(form.get("name"))
+    // // console.log(ReactSession.get("username"))
+    // // console.log(form.get("name"))
     Service.post("/addUserView", form)
       .then((data) => 
         {
@@ -114,8 +134,9 @@ const Product = ({query}) => {
           { 
             
             // console.log(data)
+            ////console.log(data)
           }else{
-            console.log(data)
+            ////console.log(data)
           }
           /*if (data.code > 200) {
             console.log("Error");
@@ -124,24 +145,23 @@ const Product = ({query}) => {
           }*/
         });
   };
+ 
 
   useEffect(()=>{
-    // console.log("here")
+    // // console.log("here")
     Service.get(window.location.pathname).then(data=>{
-      // console.log(data.length);
+
+      // //console.log(data.length);
       if(data.length==0){
-
-
-        //console.log("okay okay oky")
         setFlag(1)
 
       }
+      
     })
    
     addUserView();
 
   },[])
-
 
 
 
@@ -151,6 +171,7 @@ const Product = ({query}) => {
     return (<div>PRODUCT NOT FOUND</div>);
   }
   return (
+    
     <div className="container">
       <div className="child">
         <div className="product-title">
@@ -168,9 +189,20 @@ const Product = ({query}) => {
           className="inputBar" 
           data-testid="prod_input"
           value={newFeature} 
-          onChange={handleNewFeatureChange} 
+          onChange={loggedin?handleNewFeatureChange:handleClickOpen} 
           placeholder="Enter a feature that you'd love to see">
           </input>
+          <Dialog  open={open} onClose={handleClose} PaperProps={{ style: { minWidth: '400px' } }}>
+          <DialogTitle >Action Required</DialogTitle>
+          <DialogContent>
+            <DialogContentText >
+              Please login to add a feature!
+            </DialogContentText>
+          </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose}>Ok</Button>
+            </DialogActions>
+          </Dialog>
         </form>
       </div>
         <div className='main-content'>
