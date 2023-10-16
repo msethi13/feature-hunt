@@ -48,6 +48,7 @@ const Product = ({query}) => {
         text: newFeature,
         votes: 1,
         upVoted: true,
+        email: user,
         timestamp: Date.now(),
         tags: ['enhancement'],
       };
