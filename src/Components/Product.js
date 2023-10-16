@@ -83,7 +83,7 @@ const Product = ({query}) => {
   const [features, setFeatures] = useState([]);
   const [user, setUser] = useState('');
   const [editable, setEditable] = useState(false);
-
+  const [productId,setProductId]=useState()
   const [timeline, setTimeline] = useState([]);
   const getTimeline = (product_name) => {
     Service.get('/'+product_name+'/getTimeline')
