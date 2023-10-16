@@ -13,11 +13,20 @@ from flask import request, jsonify, Response
 from flask import json
 from app import app
 
-from bson.json_util import dumps
+from bson.json_util import dumps,loads
 from bson.objectid import ObjectId
 
 # from product_controller import s3
 from db_init import product_records
+from flask_mail import Mail, Message
+
+app.config['MAIL_SERVER']='smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'seproject37@gmail.com'
+app.config['MAIL_PASSWORD'] = 'ffyi cwen stql peyj'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+mail = Mail(app)
 
 '''
 Function: products
@@ -142,9 +151,15 @@ def features(product_name):
                             status=400,
                             mimetype='application/json')
         result = product_records.find_one_and_update({"name": product_name}, {"$push": {"features": data}})
-
+        
+        product_data = product_records.find_one({"name":product_name})
+        
+        email = product_data['users'][0]
+        msg = Message('New feature added', sender = 'seproject37@gmail.com', recipients = [email])
+        mail.send(msg)
     elif request.method == 'GET':
         result = product_records.find({"name": product_name}, {"features": 1})
+    
     return dumps(result)
 
 
