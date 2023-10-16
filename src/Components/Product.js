@@ -4,6 +4,9 @@ import { ReactSession } from 'react-client-session';
 import Feature from './Feature';
 import Service from '../Service';
 import Comments from './Comments';
+import ProductTimeline from './Timeline';
+import Timeline from '@mui/lab/Timeline';
+
 //       Component: Product
 //       Description: This component allows the user to add specific features and
 //       allows the user to upvote or downvote the features
@@ -169,22 +172,28 @@ const Product = ({query}) => {
           </input>
         </form>
       </div>
-      {features.map((f, index) => { f['index'] = index; return f; }).filter(f => query ? f.tags.includes(query.toLowerCase()) || f.text.toLowerCase().includes(query.toLowerCase()) : true).sort((f1, f2) => f2[sortBy] - f1[sortBy]).map(
-        (feature) => <Feature key={feature.id} features={features} index={feature.index} setFeatures={setFeatures} editable={editable} setTimeline={setTimeline}/>
-        , setFeatures)}
-        <h3>{id.toUpperCase()} Timeline</h3>
-        {timeline.map((t)=>{
-          return (
-            <div className="container">
-              <div className="child">
-                <div className="product-timeline">
-                  
-                  <div> {t.text} </div>
-                </div>
-              </div>
-              </div>
-          )
-        })}
+        <div className='main-content'>
+          <div className='features'>
+          {features.map((f, index) => { f['index'] = index; return f; }).filter(f => query ? f.tags.includes(query.toLowerCase()) || f.text.toLowerCase().includes(query.toLowerCase()) : true).sort((f1, f2) => f2[sortBy] - f1[sortBy]).map(
+          (feature) => <Feature key={feature.id} features={features} index={feature.index} setFeatures={setFeatures} editable={editable} setTimeline={setTimeline}/>
+          , setFeatures)}
+          </div>
+          <div className='timeline' >
+          <h3 className='timeline-title'>{id.toUpperCase()} Timeline</h3>
+            <Timeline position='alternate-reverse'>
+            {timeline.map((t,index)=>{
+              return (
+                // {feature_name = t.text}
+                <ProductTimeline feature_name={t.text} index={index}></ProductTimeline>
+                // <div>{t.text}</div>
+              )
+            })}
+            </Timeline>
+          </div>
+       </div>
+      
+        
+        
       <Comments />
     </div>
   );
