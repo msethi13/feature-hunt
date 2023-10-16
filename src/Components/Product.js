@@ -46,7 +46,7 @@ const Product = ({query}) => {
       const addedFeature = {
         id: features.length + 1,
         text: newFeature,
-        votes: 1,
+        votes: 0,
         upVoted: true,
         timestamp: Date.now(),
         tags: ['enhancement'],
@@ -62,13 +62,13 @@ const Product = ({query}) => {
   const [features, setFeatures] = useState([]);
   const [user, setUser] = useState('');
   const [editable, setEditable] = useState(false);
-  
+  const [productId, setProductId] = useState();
+
   useEffect(() => {
-    // console.log(window.location.pathname);
-    
+    //console.log(window.location.pathname);
     setUser(ReactSession.get("username"));
     Service.get(window.location.pathname).then(data => {
-      
+      setProductId(data[0] ? data[0].uid : '');
       setFeatures(data[0] ? data[0].features : []);
       console.log(features)
       if (data[0] && data[0].users && data[0].users.includes(user)) {
@@ -91,9 +91,9 @@ const Product = ({query}) => {
           if(data)
           { 
             
-            //console.log(data)
+            ////console.log(data)
           }else{
-            //console.log(data)
+            ////console.log(data)
           }
           /*if (data.code > 200) {
             console.log("Error");
@@ -110,7 +110,6 @@ const Product = ({query}) => {
 
       //console.log(data.length);
       if(data.length==0){
-        //console.log("okay okay oky")
         setFlag(1)
 
       }
@@ -151,8 +150,10 @@ const Product = ({query}) => {
           </input>
         </form>
       </div>
-      {features.map((f, index) => { f['index'] = index; return f; }).filter(f => query ? f.tags.includes(query.toLowerCase()) || f.text.toLowerCase().includes(query.toLowerCase()) : true).sort((f1, f2) => f2[sortBy] - f1[sortBy]).map(
-        (feature) => <Feature key={feature.id} features={features} index={feature.index} setFeatures={setFeatures} editable={editable}/>
+      {features
+      .map((f, index) => { f['index'] = index; return f; })
+      .filter(f => query ? f.tags.includes(query.toLowerCase()) || f.text.toLowerCase().includes(query.toLowerCase()) : true)
+      .map((feature) => <Feature key={feature.id} features={features} index={feature.index} setFeatures={setFeatures} editable={editable} productId={productId}/>
         , setFeatures)}
       
     </div>

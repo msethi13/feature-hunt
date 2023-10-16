@@ -3,12 +3,13 @@ import os
 from flask import jsonify
 from flask import request
 from app import app
-from db_init import product_records
+from db_init import user_projects, product_records
 import datetime
 from werkzeug.utils import secure_filename
 # import boto3
 # from botocore.client import Config
 import time
+from bson.json_util import dumps, loads
 
 # s3 = boto3.client(
 #     "s3",
@@ -84,3 +85,138 @@ def add_product():
 #     elif request.method == 'GET':
 #         result = mongo.db.products.find({"name": productname}, {"features": 1})
 #     return dumps(result)
+
+#################################################################################
+##       Function: final_feature_votes
+##       Description: This post request is used to add votes to db.
+##                     The feature array inside product db holds the actual total number of vote.
+##       Inputs:
+##           - NA
+##       Outputs:
+##           - returns true/false depending on whether the add/subtraction of vote was successful or not
+#################################################################################
+@app.route("/finalFeatureVote", methods=['Post'])
+def final_feature_votes():
+    """To accumulate votes on any feature."""
+    try:
+        uid = request.form.get("productId")
+        feature_id = int(request.form.get("featureId"))
+        is_add = int(request.form.get("isAdd"))
+        dat = product_records.find({"uid" : uid})
+        results = list(dat)
+        data = loads(dumps(results))
+        if len(data) == 0:
+            return jsonify(success=False, message="Product not found")
+
+        data = data[0]  # Extract the first document (assuming a unique product per UID)
+
+        feature_to_update = None
+        for feature in data["features"]:
+            if int(feature["id"]) == feature_id:
+                feature_to_update = feature
+                break
+
+        if feature_to_update is None:
+            return jsonify(success=False, message="Feature not found")
+
+        # Update the feature's vote count based on the "is_add" flag
+        if is_add == 1:
+            feature_to_update["votes"] += 1
+        if is_add == 0:
+            feature_to_update["votes"] -= 1
+        else:
+            feature_to_update["votes"] = feature_to_update["votes"]
+
+        # Define the filter to identify the product by UID and the feature within the array by its ID
+        filter = {"uid": uid, "features.id": feature_id}
+
+        # Define the update operation using the positional operator ($) to update the specific feature
+        update = {
+            "$set": {"features.$.votes": feature_to_update["votes"]}  # Replace 0 with the updated vote count
+        }
+
+        result = product_records.update_one(filter, update)
+        return jsonify(success=True)
+    except:
+        return jsonify(success=False)
+    
+
+@app.route("/upvoteFeature", methods=['Post'])
+#################################################################################
+#       Function: upvote_feature
+#       Description: This post request is used to upvote a feature. (A user can only upvote once from the current state)
+#       Inputs:
+#           - NA
+#       Outputs:
+#           - True if the upvote was successful else false
+#################################################################################
+def upvote_feature():
+    """To add vote in db"""
+    try:
+        product_id = request.form.get("productId")
+        feature_id = request.form.get("featureId")
+        email_id = request.form.get("emailId")
+        dat = user_projects.find({"email" : email_id})
+        results = list(dat)
+        if len(results)==0:
+            intial_entry = {'email': email_id, 'votes': []}
+            user_projects.insert_one(intial_entry)
+            dat = user_projects.find({"email" : email_id})
+            # No upvote done until now, no need to remove anything
+            return jsonify(success=False)
+
+        data = loads(dumps(results))
+        print(data[0])
+        if (product_id + "up" + feature_id) in data[0]['votes'] and (product_id + "down" + feature_id) not in data[0]['votes']: #not allowed to upvote
+            return jsonify(success=False)
+        
+        if (product_id + "down" + feature_id) in data[0]['votes'] and (product_id + "up" + feature_id) in data[0]['votes']: #allowed to upvote once more
+            user_projects.update_one({'email': email_id}, {'$pull': {'votes': product_id + "down" + feature_id}})
+            return jsonify(success=True)
+
+        user_projects.update_one({'email': email_id}, {'$push': {'votes': product_id + "up" + feature_id}}) #first upvote - success
+        return jsonify(success=True)
+    except:
+        return jsonify(success=False)
+    
+
+    #################################################################################
+##       Function: remove_votes
+##       Description: This post request is used to downvote a feature. (A user can only downvote once from the current state)
+
+##       Inputs:
+##           - NA
+##       Outputs:
+##           - True if the downvote was successful else false
+#################################################################################
+@app.route("/downvoteFeature", methods=['Post'])
+def downvote_features():
+    """To remove vote done by user in user_project db."""
+    try:
+        print("here")
+        product_id = request.form.get("productId")
+        feature_id = request.form.get("featureId")
+        email_id = request.form.get("emailId")
+        dat = user_projects.find({"email" : email_id})
+        results = list(dat)
+        if len(results)==0:
+            intial_entry = {'email': email_id, 'votes': []}
+            user_projects.insert_one(intial_entry)
+            dat = user_projects.find({"email" : email_id})
+            # No downvote done until now, no need to remove anything
+            return jsonify(success=False)
+
+        data = loads(dumps(results))
+        print(data[0])
+        if (product_id + "down" + feature_id) in data[0]['votes'] and (product_id + "up" + feature_id) not in data[0]['votes']: #not allowed to downvote
+            return jsonify(success=False)
+        
+        if (product_id + "down" + feature_id) in data[0]['votes'] and (product_id + "up" + feature_id) in data[0]['votes']: #allowed to downvote once more
+            user_projects.update_one({'email': email_id}, {'$pull': {'votes': product_id + "up" + feature_id}})
+            return jsonify(success=True)
+
+        user_projects.update_one({'email': email_id}, {'$push': {'votes': product_id + "down" + feature_id}}) #first downvote - success
+        return jsonify(success=True)
+        
+    except:
+        return jsonify(success=False)
