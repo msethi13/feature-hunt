@@ -11,7 +11,7 @@ import Service from '../Service';
 //           - NA
 //       Outputs:
 //          - NA
-const Feature = ({ features, index, setFeatures, editable }) => {
+const Feature = ({ features, index, setFeatures, editable, setTimeline }) => {
   const upVote = () => {
     const updatedFeature = { ...features[index] };
     let currentVote = updatedFeature.upVoted ? 1 : (updatedFeature.downVoted ? -1 : 0);
@@ -42,7 +42,12 @@ const Feature = ({ features, index, setFeatures, editable }) => {
   const handleButtonClick = () => {
     const form = new FormData();
     form.append("feature_id", features[index].id);
-    Service.post(window.location.pathname + "/addToTimeline", form).then(data => {});
+    Service.post(window.location.pathname + "/addToTimeline", form).then(data => {
+      if(data){
+        console.log(data);
+        setTimeline(data);
+      }
+    });
   }
 
   /* TODO : save new tag to database */

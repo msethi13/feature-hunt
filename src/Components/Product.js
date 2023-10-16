@@ -69,7 +69,6 @@ const Product = ({query}) => {
     Service.get('/'+product_name+'/getTimeline')
         .then(data => {
           if(data){
-            setTimeline(data[0].timeline)
             console.log(timeline)
           }
         });
@@ -88,7 +87,13 @@ const Product = ({query}) => {
   }, [user]);
 
   useEffect(()=>{
-    getTimeline(id);
+    Service.get('/'+id+'/getTimeline')
+        .then(data => {
+          if(data){
+            console.log(data[0]['timeline'])
+            setTimeline(data[0]['timeline'])
+          }
+        });
   },[])
 
   const [flag, setFlag] = useState(0);
@@ -96,15 +101,15 @@ const Product = ({query}) => {
     const form = new FormData();
     form.append("name", id);
     form.append("useremail",ReactSession.get("username"))
-    console.log(ReactSession.get("username"))
-    console.log(form.get("name"))
+    // console.log(ReactSession.get("username"))
+    // console.log(form.get("name"))
     Service.post("/addUserView", form)
       .then((data) => 
         {
           if(data)
           { 
             
-            console.log(data)
+            // console.log(data)
           }else{
             console.log(data)
           }
@@ -117,9 +122,9 @@ const Product = ({query}) => {
   };
 
   useEffect(()=>{
-    console.log("here")
+    // console.log("here")
     Service.get(window.location.pathname).then(data=>{
-      console.log(data.length);
+      // console.log(data.length);
       if(data.length==0){
 
 
@@ -165,8 +170,21 @@ const Product = ({query}) => {
         </form>
       </div>
       {features.map((f, index) => { f['index'] = index; return f; }).filter(f => query ? f.tags.includes(query.toLowerCase()) || f.text.toLowerCase().includes(query.toLowerCase()) : true).sort((f1, f2) => f2[sortBy] - f1[sortBy]).map(
-        (feature) => <Feature key={feature.id} features={features} index={feature.index} setFeatures={setFeatures} editable={editable}/>
+        (feature) => <Feature key={feature.id} features={features} index={feature.index} setFeatures={setFeatures} editable={editable} setTimeline={setTimeline}/>
         , setFeatures)}
+        <h3>{id.toUpperCase()} Timeline</h3>
+        {timeline.map((t)=>{
+          return (
+            <div className="container">
+              <div className="child">
+                <div className="product-timeline">
+                  
+                  <div> {t.text} </div>
+                </div>
+              </div>
+              </div>
+          )
+        })}
       <Comments />
     </div>
   );
