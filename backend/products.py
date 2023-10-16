@@ -13,7 +13,7 @@ from flask import request, jsonify, Response
 from flask import json
 from app import app
 
-from bson.json_util import dumps
+from bson.json_util import dumps,loads
 from bson.objectid import ObjectId
 
 # from product_controller import s3
@@ -116,10 +116,35 @@ Outputs:
 @app.route('/<product_name>/getFeature', methods=['GET', 'POST'])
 def get_feature(product_name):
     if request.method == 'GET':
-        data = product_records.find({"name": product_name}, {"features": 1, "uid": 1})
+        data = product_records.find({"name": product_name}, {"features": 1,"uid":1,"users":1})
         return dumps(data)
 
+@app.route('/<product_name>/getTimeline', methods=['GET'])
+def get_timeline(product_name):
+    if request.method == 'GET':
+        data = product_records.find({"name": product_name}, {"timeline": 1})
+        return dumps(data)
 
+    
+
+@app.route('/<product_name>/getFeature/addToTimeline', methods=['POST'])
+def add_to_timeline(product_name):
+    if request.method == 'POST':
+        feature_id = request.form.get('feature_id')
+        dat = product_records.find({"name" : product_name})
+        results = list(dat)
+        data = loads(dumps(results))
+        timeline = data[0]['timeline']
+        features=data[0]['features']
+        feature_list = []
+        for x in features:
+            if x['id']==int(feature_id):
+                feature_list.append(x)
+        uid = data[0]['uid']
+        if feature_list[0] not in timeline:
+            timeline.append(feature_list[0])
+        product_records.update_one({'uid': uid}, {'$set': {'timeline': timeline}})        
+        return dumps(timeline)
 '''
 Function: features
 Description: You can add/get features of a product

@@ -11,6 +11,9 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Comments from './Comments';
+import ProductTimeline from './Timeline';
+import Timeline from '@mui/lab/Timeline';
+
 //       Component: Product
 //       Description: This component allows the user to add specific features and
 //       allows the user to upvote or downvote the features
@@ -76,23 +79,45 @@ const Product = ({query}) => {
       setNewFeature('');
     }
   };
+  
   const [features, setFeatures] = useState([]);
   const [user, setUser] = useState('');
   const [editable, setEditable] = useState(false);
-  const [productId, setProductId] = useState();
 
+  const [timeline, setTimeline] = useState([]);
+  const getTimeline = (product_name) => {
+    Service.get('/'+product_name+'/getTimeline')
+        .then(data => {
+          if(data){
+            console.log(timeline)
+          }
+        });
+  }
   useEffect(() => {
     //console.log(window.location.pathname);
     setUser(username);
     Service.get(window.location.pathname).then(data => {
+      
       setProductId(data[0] ? data[0].uid : '');
       setFeatures(data[0] ? data[0].features : []);
       console.log(features)
       if (data[0] && data[0].users && data[0].users.includes(user)) {
         setEditable(true);
       }
+
+      
     });
   }, [user]);
+
+  useEffect(()=>{
+    Service.get('/'+id+'/getTimeline')
+        .then(data => {
+          if(data){
+            //console.log(data[0]['timeline'])
+            setTimeline(data[0]['timeline'])
+          }
+        });
+  },[])
 
   const [flag, setFlag] = useState(0);
   const [reload, setReload] = useState(0);
@@ -100,14 +125,15 @@ const Product = ({query}) => {
     const form = new FormData();
     form.append("name", id);
     form.append("useremail",ReactSession.get("username"))
-    // console.log(ReactSession.get("username"))
-    // console.log(form.get("name"))
+    // // console.log(ReactSession.get("username"))
+    // // console.log(form.get("name"))
     Service.post("/addUserView", form)
       .then((data) => 
         {
           if(data)
           { 
             
+            // console.log(data)
             ////console.log(data)
           }else{
             ////console.log(data)
@@ -122,16 +148,17 @@ const Product = ({query}) => {
  
 
   useEffect(()=>{
-    // console.log("here")
+    // // console.log("here")
     Service.get(window.location.pathname).then(data=>{
 
-      //console.log(data.length);
+      // //console.log(data.length);
       if(data.length==0){
         setFlag(1)
 
       }
       
     })
+   
     addUserView();
 
   },[])
@@ -178,12 +205,29 @@ const Product = ({query}) => {
           </Dialog>
         </form>
       </div>
-      {features
-      .map((f, index) => { f['index'] = index; return f; })
-      .filter(f => query ? f.tags.includes(query.toLowerCase()) || f.text.toLowerCase().includes(query.toLowerCase()) : true)
-      .map((feature) => <Feature key={feature.id} features={features} index={feature.index} setFeatures={setFeatures} editable={editable} productId={productId}/>
-        , setFeatures)}
+        <div className='main-content'>
+          <div className='features'>
+          {features.map((f, index) => { f['index'] = index; return f; }).filter(f => query ? f.tags.includes(query.toLowerCase()) || f.text.toLowerCase().includes(query.toLowerCase()) : true).sort((f1, f2) => f2[sortBy] - f1[sortBy]).map(
+          (feature) => <Feature key={feature.id} features={features} index={feature.index} setFeatures={setFeatures} editable={editable} setTimeline={setTimeline}/>
+          , setFeatures)}
+          </div>
+          <div className='timeline' >
+          <h3 className='timeline-title'>{id.toUpperCase()} Timeline</h3>
+            <Timeline position='alternate-reverse'>
+            {timeline.map((t,index)=>{
+              return (
+                // {feature_name = t.text}
+                <ProductTimeline feature_name={t.text} index={index}></ProductTimeline>
+                // <div>{t.text}</div>
+              )
+            })}
+            </Timeline>
+          </div>
+       </div>
       
+        
+        
+      <Comments />
     </div>
   );
 };

@@ -17,7 +17,7 @@ import Service from '../Service';
 //           - NA
 //       Outputs:
 //          - NA
-const Feature = ({ features, index, setFeatures, editable, productId}) => {
+const Feature = ({ features, index, setFeatures, editable, setTimeline, productId}) => {
 
   const username = ReactSession.get("username");
   const loggedin = (username !== "" && username !== undefined)?true:false;
@@ -147,6 +147,16 @@ const Feature = ({ features, index, setFeatures, editable, productId}) => {
   const handleTextChange = (e) => {
     setNewTag(e.target.value);
   }
+  const handleButtonClick = () => {
+    const form = new FormData();
+    form.append("feature_id", features[index].id);
+    Service.post(window.location.pathname + "/addToTimeline", form).then(data => {
+      if(data){
+        console.log(data);
+        setTimeline(data);
+      }
+    });
+  }
 
   /* TODO : save new tag to database */
   const addNewTag = () => {
@@ -175,20 +185,26 @@ const Feature = ({ features, index, setFeatures, editable, productId}) => {
             )}
             {editable && 
             <div>
-              <TextField
+              {/* <TextField
                 data-testid={"feature_addtag:"+ features[index].id}
                 label="Add New Tag"
                 inputProps={{ "data-testid": "newTag-input:" + features[index].id }}
                 value={newTag}
                 size="small"
                 onChange={handleTextChange}
-              />
-              <Button 
+              /> */}
+              {/* <Button 
               data-testid={"feature_tagbutton:" + features[index].id}
-              onClick={addNewTag}>Add</Button> 
+              onClick={addNewTag}>Add</Button>  */}
             </div> }
           </div>
+          <div className='button-container'>
+          {editable && <Button onClick={handleButtonClick}>
+            Add 
+          </Button>}
         </div>
+        </div>
+        
         <div className="votes-container">
           <span>
             <FontAwesomeIcon icon={faChevronUp} 
