@@ -1,8 +1,15 @@
+import React from "react";
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ReactSession } from 'react-client-session';
 import Feature from './Feature';
 import Service from '../Service';
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 import Comments from './Comments';
 //       Component: Product
 //       Description: This component allows the user to add specific features and
@@ -15,7 +22,17 @@ import Comments from './Comments';
 const Product = ({query}) => {
   const { id } = useParams();
   
- 
+  const username = ReactSession.get("username");
+  const loggedin = (username !== "" && username !== undefined)?true:false;
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
  
   // (data => {
   //   console.log("WE ARE HERE");
@@ -66,7 +83,7 @@ const Product = ({query}) => {
 
   useEffect(() => {
     //console.log(window.location.pathname);
-    setUser(ReactSession.get("username"));
+    setUser(username);
     Service.get(window.location.pathname).then(data => {
       setProductId(data[0] ? data[0].uid : '');
       setFeatures(data[0] ? data[0].features : []);
@@ -145,9 +162,20 @@ const Product = ({query}) => {
           className="inputBar" 
           data-testid="prod_input"
           value={newFeature} 
-          onChange={handleNewFeatureChange} 
+          onChange={loggedin?handleNewFeatureChange:handleClickOpen} 
           placeholder="Enter a feature that you'd love to see">
           </input>
+          <Dialog  open={open} onClose={handleClose} PaperProps={{ style: { minWidth: '400px' } }}>
+          <DialogTitle >Action Required</DialogTitle>
+          <DialogContent>
+            <DialogContentText >
+              Please login to add a feature!
+            </DialogContentText>
+          </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose}>Ok</Button>
+            </DialogActions>
+          </Dialog>
         </form>
       </div>
       {features
