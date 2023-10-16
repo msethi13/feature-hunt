@@ -40,8 +40,7 @@ const Dashboard = ({query}) => {
       <div className="container">
         <div className="child">
           <div className="product-title">
-            <h3 data-testid="dash_proj">YOUR PROJECTS-</h3>
-            <h3 data-testid="dash_user">{user}</h3>
+            <h3 data-testid="dash_proj">{user}'s Projects</h3>
             <div className="sort">
               <p 
               className={sortBy === 'votes' ? 'highlight' : ''} 
