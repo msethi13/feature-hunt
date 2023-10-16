@@ -14,7 +14,7 @@ import Comments from './Comments';
 //          - NA
 const Product = ({query}) => {
   const { id } = useParams();
- 
+  
  
  
   // (data => {
@@ -62,12 +62,15 @@ const Product = ({query}) => {
   const [features, setFeatures] = useState([]);
   const [user, setUser] = useState('');
   const [editable, setEditable] = useState(false);
-
+  
   useEffect(() => {
-    console.log(window.location.pathname);
+    // console.log(window.location.pathname);
+    
     setUser(ReactSession.get("username"));
     Service.get(window.location.pathname).then(data => {
+      
       setFeatures(data[0] ? data[0].features : []);
+      console.log(features)
       if (data[0] && data[0].users && data[0].users.includes(user)) {
         setEditable(true);
       }
@@ -75,21 +78,22 @@ const Product = ({query}) => {
   }, [user]);
 
   const [flag, setFlag] = useState(0);
+  const [reload, setReload] = useState(0);
   const addUserView = () => {
     const form = new FormData();
     form.append("name", id);
     form.append("useremail",ReactSession.get("username"))
-    console.log(ReactSession.get("username"))
-    console.log(form.get("name"))
+    // console.log(ReactSession.get("username"))
+    // console.log(form.get("name"))
     Service.post("/addUserView", form)
       .then((data) => 
         {
           if(data)
           { 
             
-            console.log(data)
+            //console.log(data)
           }else{
-            console.log(data)
+            //console.log(data)
           }
           /*if (data.code > 200) {
             console.log("Error");
@@ -98,20 +102,36 @@ const Product = ({query}) => {
           }*/
         });
   };
+ 
 
   useEffect(()=>{
-    console.log("here")
+    // console.log("here")
     Service.get(window.location.pathname).then(data=>{
-      console.log(data.length);
+
+      //console.log(data.length);
       if(data.length==0){
-        //console.log("okay okay oky")
         setFlag(1)
       }
+      
     })
     addUserView();
 
   },[])
 
+  // useEffect(()=>{
+  //   if(reload==0){
+  //     setReload(1)
+  //     window.location.reload();
+  //   }
+    
+
+    
+  //   console.log("Haan haan");
+  // },[reload])
+
+  // useEffect(()=>{
+  //   window.location.reload();
+  // },[])
 
 
   if(flag==1)
@@ -119,6 +139,7 @@ const Product = ({query}) => {
     return (<div>PRODUCT NOT FOUND</div>);
   }
   return (
+    
     <div className="container">
       <div className="child">
         <div className="product-title">
@@ -144,7 +165,7 @@ const Product = ({query}) => {
       {features.map((f, index) => { f['index'] = index; return f; }).filter(f => query ? f.tags.includes(query.toLowerCase()) || f.text.toLowerCase().includes(query.toLowerCase()) : true).sort((f1, f2) => f2[sortBy] - f1[sortBy]).map(
         (feature) => <Feature key={feature.id} features={features} index={feature.index} setFeatures={setFeatures} editable={editable}/>
         , setFeatures)}
-      <Comments />
+      
     </div>
   );
 };
