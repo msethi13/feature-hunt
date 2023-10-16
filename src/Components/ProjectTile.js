@@ -1,6 +1,6 @@
 import Button from "@mui/material/Button";
 import Service from '../Service';
-
+import { useHistory } from "react-router";
 //
 //       Component: ProductTile
 //       Description: This component wraps the project in its separate box with an upvote and downvote.
@@ -10,7 +10,7 @@ import Service from '../Service';
 //       Outputs:
 //          - NA
 const ProjectTile = ({ products, index, setProducts }) => {
-
+  const history = useHistory();
   const capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
@@ -23,6 +23,9 @@ const ProjectTile = ({ products, index, setProducts }) => {
               el.remove()
     });
   };
+  const goTo = (product) => () => {
+    history.push(`/${product}/getFeature`);
+  };
 
   return (
     <div className="child product" id={products[index].uid}>
@@ -34,7 +37,8 @@ const ProjectTile = ({ products, index, setProducts }) => {
           <div className="product-content">
             <span className="product-title" 
             data-testid={"ptnav:"+index}
-            style={{ marginTop: 'auto', marginBottom: 'auto' }}>
+            style={{ marginTop: 'auto', marginBottom: 'auto' }}
+            onClick={goTo(products[index].name)}>
               {capitalizeFirstLetter(products[index].name)}
             </span>
             <p className="product-description">

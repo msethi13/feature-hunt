@@ -17,6 +17,8 @@
 [![Pylint](https://github.com/CSC510-Group-25/feature-hunt/actions/workflows/pylint.yml/badge.svg)](https://github.com/elric97/feature-hunt/blob/main/.github/workflows/pylint.yml)
 [![Netlify](https://img.shields.io/netlify/dbecc37c-c273-4b45-bfff-3fd33d20cae0)](https://feature-hunt-g29.netlify.app/)
 
+
+
 Have a look at [Phase3-Video](https://youtu.be/watch?v=TEacECgr1qk)
 ## INTRODUCTION ⚡️
 
@@ -165,7 +167,7 @@ Requests made to [http://localhost:3000](http://localhost:3000) that don't exist
 > You can also connect to the database from your shell using [mongosh](https://docs.mongodb.com/mongodb-shell/)
 
 #### Update :
-> Connecting with DB - We have introduced an environment variable DB_PATH, make sure that you set it to your local or deployed environment
+> Connecting with DB - We have introduced an environment variable DB_PATH, to make sure that you set it to your local or deployed environment
 
 ## Other Available Scripts
 
@@ -226,4 +228,5 @@ We believe in the ability to add new features in any project (including our own)
     <td align="center"><a href="https://github.com/anumitgarg"><img src="https://avatars.githubusercontent.com/u/32408402?v=4" width="80px;" alt=""/><br /><sub><b>Anumit Garg</b></sub></a><br /></td>
     <td align="center"><a href="https://github.com/ShreeSub"><img src="https://avatars.githubusercontent.com/u/67685445?v=4" width="80px;" alt=""/><br /><sub><b>Shree Lakshmi Ramasubramanian</b></sub></a><br /></td>
   </tr>
+
 </table>
