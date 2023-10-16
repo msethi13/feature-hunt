@@ -104,30 +104,35 @@ def remove_votes():
 
 #################################################################################
 ##       Function: add_total_votes
-##       Description: This post request is used to add votes to product db.
+##       Description: This post request is used to add or subtract votes to product db.
 ##                     The prodcut db holds the actual total number of vote.
 ##       Inputs:
 ##           - NA
 ##       Outputs:
-##           - Returns true or false if new vote is able to be removed
+##           - Returns true if vote was added/subtracted otherwise false
 #################################################################################
-@app.route("/addTotalVote", methods=['Post'])
-def add_total_votes():
+@app.route("/finalProductVotes", methods=['Post'])
+def final_product_votes():
     """To accumulate votes on any product."""
     try:
         uid = request.form.get("uid")
+        isAdd = int(request.form.get("is_add"))
         print(id)
         dat = product_records.find({"uid" : uid})
         results = list(dat)
         print(results)
         data = loads(dumps(results))
         print("prev_votes", data[0]['votes'])
-        new_votes = data[0]['votes'] + 1
+        if isAdd == 1:
+            new_votes = data[0]['votes'] + 1
+        else:
+            new_votes = data[0]['votes'] - 1
         product_records.update_one({'uid': uid}, {'$set': {'votes': new_votes}})
         return jsonify(success=True)
     except:
         return jsonify(success=False)
 
+### edited the above and commented the below function because the final_product_votes can update as well as remove votes from db. 
 #################################################################################
 ##       Function: sub_total_votes
 ##       Description: This post request is used to subtract votes to product db.
@@ -137,22 +142,22 @@ def add_total_votes():
 ##       Outputs:
 ##           - Returns true or false if new vote is able to be removed
 #################################################################################
-@app.route("/subTotalVote", methods=['Post'])
-def sub_total_votes():
-    """To reduce accumulated votes on any product."""
-    try:
-        uid = request.form.get("uid")
-        # print(name)
-        dat = product_records.find({"uid" : uid})
-        results = list(dat)
-        # print(results)
-        data = loads(dumps(results))
-        print("prev_votes", data[0]['votes'])
-        new_votes = data[0]['votes'] - 1
-        product_records.update_one({'uid': uid}, {'$set': {'votes': new_votes}})
-        return jsonify(success=True)
-    except:
-        return jsonify(success=False)
+# @app.route("/subTotalVote", methods=['Post'])
+# def sub_total_votes():
+#     """To reduce accumulated votes on any product."""
+#     try:
+#         uid = request.form.get("uid")
+#         # print(name)
+#         dat = product_records.find({"uid" : uid})
+#         results = list(dat)
+#         # print(results)
+#         data = loads(dumps(results))
+#         print("prev_votes", data[0]['votes'])
+#         new_votes = data[0]['votes'] - 1
+#         product_records.update_one({'uid': uid}, {'$set': {'votes': new_votes}})
+#         return jsonify(success=True)
+#     except:
+#         return jsonify(success=False)
 
 
 @app.route("/addUserView", methods=['Post'])

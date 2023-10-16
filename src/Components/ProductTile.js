@@ -37,7 +37,8 @@ const ProductTile = ({ products, index, setProducts }) => {
   const increaseUpVote = () => {
     const form = new FormData();
     form.append("uid", products[index].uid);
-    Service.post("addTotalVote", form)
+    form.append("is_add", 1)
+    Service.post("finalProductVotes", form)
       .then((data) => 
         {
           if(data.success)
@@ -75,7 +76,8 @@ const ProductTile = ({ products, index, setProducts }) => {
   const decreaseUpVote = () => {
     const form = new FormData();
     form.append("uid", products[index].uid);
-    Service.post("subTotalVote", form)
+    form.append("is_add", 0)
+    Service.post("finalProductVotes", form)
       .then((data) => 
         {
           if(data.success)
