@@ -208,7 +208,7 @@ const Product = ({query}) => {
         <div className='main-content'>
           <div className='features'>
           {features.map((f, index) => { f['index'] = index; return f; }).filter(f => query ? f.tags.includes(query.toLowerCase()) || f.text.toLowerCase().includes(query.toLowerCase()) : true).sort((f1, f2) => f2[sortBy] - f1[sortBy]).map(
-          (feature) => <Feature key={feature.id} features={features} index={feature.index} setFeatures={setFeatures} editable={editable} setTimeline={setTimeline}/>
+          (feature) => <Feature key={feature.id} features={features} index={feature.index} setFeatures={setFeatures} editable={editable} setTimeline={setTimeline} productId={productId}/>
           , setFeatures)}
           </div>
           <div className='timeline' >

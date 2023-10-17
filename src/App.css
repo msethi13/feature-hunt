@@ -37,16 +37,31 @@
   }
 }
 
+.main-content{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  
+}
+
 .features{
-  width: 60%;
+  min-width:max-content
 }
 
 .timeline{
   text-align: center;
-  width:40%;
+  padding-left: 5%;
+  width: 400px;
 }
 
-.main-content{
-  display: flex;
+
+@media screen and (max-width: 1381px) {
+  /* CSS rules for screens with a maximum width of 768px or less */
+  .timeline{
+    text-align: center;
+    padding-left: 5%;
+    width: 100%;
+  }
 }
+
 
