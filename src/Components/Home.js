@@ -77,15 +77,15 @@ const Home = ({query}) => {
 
     <div className="column" style={{ width: '50%', textAlign: 'right' }}>
     <div class="row">
-        <p>TOP PRODUCTS</p>
+       <h2>TOP PRODUCTS</h2>
     </div>
-    <div class="row">
+    <div class="top_products">
         <p>{topProducts[0]}</p>
     </div>
-    <div class="row">
+    <div class="top_products">
         <p>{topProducts[1]}</p>
     </div>
-    <div class="row">
+    <div class="top_products">
         <p>{topProducts[2]}</p>
     </div>
     </div>

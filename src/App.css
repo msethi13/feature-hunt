@@ -36,7 +36,16 @@
     transform: rotate(360deg);
   }
 }
+/* .container{
+  
+  width: 100%;
+  
+} */
+.child{
+  
+  width: 100%;
 
+}
 .features{
   width: 60%;
 }
@@ -48,5 +57,10 @@
 
 .main-content{
   display: flex;
+  flex-direction: column;
 }
 
+.top_products{
+  display: flex;
+  flex-direction: column;
+}
