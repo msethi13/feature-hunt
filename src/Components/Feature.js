@@ -9,6 +9,8 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Service from '../Service';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+
 //
 //       Component: Feature
 //       Description: This component is the specific feature which has the up and down votes
@@ -166,10 +168,15 @@ const Feature = ({ features, index, setFeatures, editable, setTimeline, productI
     Service.post(window.location.pathname + "/features", form).then(data => {});
     setNewTag('');
   }
+  const history=useHistory();
+  const goTo =(featureID)=>()=>{
+    history.push('/'+featureID+'/forum');
+  };
 
   return (
     <div className="child feature">
-      <div className="feature-container">
+      <div className="feature-container" onClick={goTo(features[index].id)}>
+        
         <div className="content">
           <div className="feature-content" data-testid={"feature_content:"+features[index].id}> 
             <span style={{ marginTop: 'auto', marginBottom: 'auto' }}>
