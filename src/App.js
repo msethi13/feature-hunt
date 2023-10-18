@@ -67,7 +67,7 @@ function App() {
           }
         />
         <Route
-          path="/:id/forum"
+          path="/:id1/:id2/forum"
           children={
             <>
               <Header setQuery={setQuery}/>

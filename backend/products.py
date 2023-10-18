@@ -180,3 +180,27 @@ def delete(uid):
     result = product_records.delete_one({"uid": strId})
     print(result)
     return jsonify({'ok': True, 'message': 'record deleted'}), 200
+
+
+@app.route('/<productId>/<feature_id>/comment', methods=['GET','POST'])
+def add_new_comment(feature_id):
+    if request.method=='POST':
+        comment = request.form.get('comments')
+        comment = json.loads(comment)
+        dat = product_records.find({"uid" : productId})
+        results = list(dat)
+        data = loads(dumps(results))
+        comments = data[0]['comments']
+        comments.append(comment)
+        result = product_records.find_one_and_update({"uid": productId,'features.id':feature_id}, {"$set": {"comments": comments}})
+        return dumps(result)
+    elif request.method == 'GET':
+        result = product_records.find({"uid": productId,"features.id" : feature_id}, {"comments": 1})
+
+
+
+
+
+
+
+
