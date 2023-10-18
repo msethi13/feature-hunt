@@ -86,6 +86,7 @@ const Product = ({query}) => {
         text: featureName,
         votes: 0,
         upVoted: true,
+        email: user,
         timestamp: Date.now(),
         tags: [featureCategory],
         comments:[]

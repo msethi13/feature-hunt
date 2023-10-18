@@ -18,6 +18,15 @@ from bson.objectid import ObjectId
 
 # from product_controller import s3
 from db_init import product_records
+from flask_mail import Mail, Message
+
+app.config['MAIL_SERVER']='smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'seproject37@gmail.com'
+app.config['MAIL_PASSWORD'] = 'ffyi cwen stql peyj'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+mail = Mail(app)
 
 '''
 Function: products
@@ -144,6 +153,10 @@ def add_to_timeline(product_name):
         if feature_list[0] not in timeline:
             timeline.append(feature_list[0])
         product_records.update_one({'uid': uid}, {'$set': {'timeline': timeline}})        
+        print(feature_list[0]['email'])
+        msg = Message('Feature Added to Timeline', sender = 'seproject37@gmail.com', recipients = [feature_list[0]['email']])
+        msg.body= "Congrats! Your suggested feature was added to the timeline for the product - " + product_name
+        mail.send(msg)
         return dumps(timeline)
 '''
 Function: features
