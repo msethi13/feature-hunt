@@ -20,7 +20,7 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 //       Outputs:
 //          - NA
 const Feature = ({ features, index, setFeatures, editable, setTimeline, productId}) => {
-
+  console.log(productId);
   const username = ReactSession.get("username");
   const loggedin = (username !== "" && username !== undefined)?true:false;
 
@@ -169,10 +169,10 @@ const Feature = ({ features, index, setFeatures, editable, setTimeline, productI
     Service.post(window.location.pathname + "/features", form).then(data => {});
     setNewTag('');
   }
-  // const history=useHistory();
-  // const goTo =(featureID)=>()=>{
-  //   history.push('/'+productId+'/'+featureID+'/forum');
-  // };
+  const history=useHistory();
+  const goTo =(featureID)=>()=>{
+    history.push('/'+productId+'/'+featureID+'/forum');
+  };
 
   return (
     <div className="child feature">
@@ -210,8 +210,13 @@ const Feature = ({ features, index, setFeatures, editable, setTimeline, productI
           {editable && <Button onClick={handleButtonClick}>
             Add 
           </Button>}
-          </div>
-          
+        </div>
+        <div className='button-container' onClick={goTo(features[index].id)}>
+          {<Button onClick={handleButtonClick}>
+            View Chat
+          </Button>}
+        </div>
+        
         </div>
         
         <div className="votes-container">

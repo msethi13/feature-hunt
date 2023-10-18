@@ -183,19 +183,37 @@ def delete(uid):
 
 
 @app.route('/<productId>/<feature_id>/comment', methods=['GET','POST'])
-def add_new_comment(feature_id):
+def add_new_comment(productId, feature_id):
     if request.method=='POST':
         comment = request.form.get('comments')
         comment = json.loads(comment)
         dat = product_records.find({"uid" : productId})
         results = list(dat)
         data = loads(dumps(results))
-        comments = data[0]['comments']
+        #print(comment)
+        features = data[0]['features']
+        comments=features[int(feature_id)-1]["comments"]
         comments.append(comment)
-        result = product_records.find_one_and_update({"uid": productId,'features.id':feature_id}, {"$set": {"comments": comments}})
+        features[int(feature_id)-1]["comments"]=comments
+        print(features)
+        result = product_records.find_one_and_update({"uid": productId}, {"$set": {"features": features}})
+        #[int(feature_id)-1]['comments']
+        #comments.append(comment)
+        #result = product_records.find_one_and_update({"uid": productId,'features':{"$elemMatch":{"id":feature_id}}}, {"$set": {"comments": comments}})
+        #result = product_records.find({"uid": productId,'features':{"$elemMatch":{"id":feature_id}}})
+        
+        #print(dumps(result))
         return dumps(result)
+        #return "done"
     elif request.method == 'GET':
-        result = product_records.find({"uid": productId,"features.id" : feature_id}, {"comments": 1})
+        dat = product_records.find({"uid" : productId})
+        results = list(dat)
+        data = loads(dumps(results))
+        #print(comment)
+        features = data[0]['features']
+        comments=features[int(feature_id)-1]["comments"]
+        return dumps(comments)
+    
 
 
 

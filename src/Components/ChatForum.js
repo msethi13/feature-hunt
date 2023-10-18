@@ -1,100 +1,162 @@
 import React, { useState, useEffect } from 'react';
-
-const Comment = ({ name, text, time, likes, onLike }) => (
-  // Comment component remains the same
-  <div className="comment">
-    <div className="comment-header">
-      <span className="commenter-name">{name}</span>
-      <span className="comment-time">{time}</span>
-    </div>
-    <p className="comment-text">{text}</p>
-    <button onClick={onLike} className="like-button">
-      Like ({likes})
-    </button>
-  </div>
-);
+import { ReactSession } from 'react-client-session';
+import { useParams } from 'react-router-dom';
+//import React from "react";
+//import { useEffect, useState } from 'react';
+//import { useParams } from 'react-router-dom';
+//import { ReactSession } from 'react-client-session';
+import Service from '../Service';
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import Comment from './Comment';
 
 
 const ChatForum = () => {
+  const {id1,id2}= useParams();
+  const productId=id1;
+  const featureId=id2;
+  console.log("YO YO YO ")
+  console.log(productId);
+  console.log(featureId);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
-  const [loggedInUser, setLoggedInUser] = useState(null);
-
+  //const [loggedInUser, setLoggedInUser] = useState(null);
+  const [open, setOpen] = React.useState(false);
   
+  const handleNewCommentChange = (event) => {
+    setNewComment(event.target.value);
+  };
   // Function to fetch comments from the API
-  const fetchComments = async () => {
-    try {
-      const response = await fetch('your-comments-api-endpoint');
-      if (response.ok) {
-        const data = await response.json();
-        setComments(data); // Update comments state with data from the API
-      } else {
-        console.error('Failed to fetch comments');
-      }
-    } catch (error) {
-      console.error('Error fetching comments:', error);
-    }
-  };
+  
 
-  // Function to fetch the current logged-in user
-  const fetchLoggedInUser = async () => {
-    try {
-      const response = await fetch('your-logged-in-user-api-endpoint');
-      if (response.ok) {
-        const data = await response.json();
-        setLoggedInUser(data.name); // Update loggedInUser state with the user's name
-      } else {
-        console.error('Failed to fetch the logged-in user');
-      }
-    } catch (error) {
-      console.error('Error fetching the logged-in user:', error);
-    }
-  };
 
-  // Function to add a new comment
-  const addComment = () => {
-    if (newComment) {
-      const newCommentObject = {
-        id: comments.length + 1,
-        name: loggedInUser,
-        text: newComment,
-        time: 'just now',
-        likes: 0,
+  const addComment = (event) => {
+    event.preventDefault();
+    if (newComment=== '')
+      return;
+    else {
+      const addedComment = {
+        productId: productId,
+        comment: newComment,
+        timestamp: Date.now(),
+        email: ReactSession.get("username"),
+        //commentor:,
       };
-
-      // Assuming you have an API endpoint to post a new comment
-      fetch('your-add-comment-api-endpoint', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newCommentObject),
-      })
-        .then((response) => {
-          if (response.ok) {
-            return response.json();
-          } else {
-            console.error('Failed to add a new comment');
-          }
-        })
-        .then((data) => {
-          setComments([data, ...comments]);
-          setNewComment('');
-        })
-        .catch((error) => {
-          console.error('Error adding a new comment:', error);
-        });
+      const form = new FormData();
+      form.append("comments", JSON.stringify(addedComment));
+      Service.post('/'+productId+'/'+featureId + '/comment', form)
+        .then(data => {});
+      setComments(comments.concat(addedComment));
+      setNewComment('');
     }
   };
 
-  // Fetch comments and the logged-in user on component mount
   useEffect(() => {
-    fetchComments();
-    fetchLoggedInUser();
+    //console.log(window.location.pathname);
+    Service.get('/'+productId+'/'+featureId + '/comment').then(data => {
+      //console.log(data)
+      //setProductId(data[0] ? data[0].uid : '');
+      setComments(data);
+      console.log(comments)
+    });
   }, []);
 
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const username = ReactSession.get("username");
+  const loggedin = (username !== "" && username !== undefined)?true:false;
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  // Function to add a new comment
+  // const addComment = () => {
+  //   if (newComment) {
+  //     const newCommentObject = {
+  //       id: comments.length + 1,
+  //       name: loggedInUser,
+  //       text: newComment,
+  //       time: 'just now',
+  //       likes: 0,
+  //     };
+
+  //     // Assuming you have an API endpoint to post a new comment
+  //     fetch('your-add-comment-api-endpoint', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify(newCommentObject),
+  //     })
+  //       .then((response) => {
+  //         if (response.ok) {
+  //           return response.json();
+  //         } else {
+  //           console.error('Failed to add a new comment');
+  //         }
+  //       })
+  //       .then((data) => {
+  //         setComments([data, ...comments]);
+  //         setNewComment('');
+  //       })
+  //       .catch((error) => {
+  //         console.error('Error adding a new comment:', error);
+  //       });
+  //   }
+  // };
+
+  // Fetch comments and the logged-in user on component mount
+  
+
   return (
-    <div>HELLO HI</div>
+    <div className="container">
+    {/* <div className="child">
+      <div className="product-title">
+        <h3>{id.toUpperCase()}</h3>
+        <div className="sort">
+          <p className={sortBy === 'votes' ? 'highlight' : ''} data-testid="prod_sortpop" onClick={() => setSortBy('votes')}>POPULAR</p>
+          <p> | </p>
+          <p className={sortBy === 'timestamp' ? 'highlight' : ''} data-testid="prod_sorttime" onClick={() => setSortBy('timestamp')}>LATEST</p>
+        </div>
+      </div>
+    </div> */}
+    <div className="child inputContainer">
+      <form data-testid="prod_form" onSubmit={addComment}>
+        <input 
+        className="inputBar" 
+        data-testid="prod_input"
+        value={newComment} 
+        onChange={loggedin?handleNewCommentChange:handleClickOpen} 
+        placeholder="Enter Comment">
+        </input>
+        <Dialog  open={open} onClose={handleClose} PaperProps={{ style: { minWidth: '400px' } }}>
+        <DialogTitle >Action Required</DialogTitle>
+        <DialogContent>
+          <DialogContentText >
+            Please login to add a Comment!
+          </DialogContentText>
+        </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose}>Ok</Button>
+          </DialogActions>
+        </Dialog>
+      </form>
+    </div>
+      <div className='main-content'>
+        <div className='features'>
+        {comments.map((comment,index)=>{
+          return (<Comment comment={comment} index={index} />)
+        })}
+        </div>
+     </div>
+    
+      
+  </div>
     // <div className="chat-forum">
     //   <div className="comments-list">
     //     {comments.map((comment) => (
@@ -146,18 +208,13 @@ export default ChatForum;
 // //          - NAF
 // const Chat = ({ features, index, setFeatures, editable, setTimeline, productId}) => {
 
-//   const username = ReactSession.get("username");
-//   const loggedin = (username !== "" && username !== undefined)?true:false;
 
-//   //const [open, setOpen] = React.useState(false);
 
-//   const handleClickOpen = () => {
-//     setOpen(true);
-//   };
+//   
 
-//   const handleClose = () => {
-//     setOpen(false);
-//   };
+
+
+  
 
 // //   const increaseVote = () => {
 // //     const form = new FormData();

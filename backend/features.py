@@ -40,7 +40,7 @@ Outputs:
 '''
 
 
-@app.route('/<feature_id>/forum', methods=['GET'])
+@app.route('/<product_id>/<feature_id>/forum', methods=['GET'])
 def get_feature(product_name):
     if request.method == 'GET':
         print('redirected')
