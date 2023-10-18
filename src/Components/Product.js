@@ -13,6 +13,10 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Comments from './Comments';
 import ProductTimeline from './Timeline';
 import Timeline from '@mui/lab/Timeline';
+import TextField from '@material-ui/core/TextField';  
+import RadioGroup from '@material-ui/core/RadioGroup'; 
+import FormControlLabel from '@material-ui/core/FormControlLabel'; 
+import Radio from '@material-ui/core/Radio'; 
 
 //       Component: Product
 //       Description: This component allows the user to add specific features and
@@ -27,16 +31,27 @@ const Product = ({query}) => {
   
   const username = ReactSession.get("username");
   const loggedin = (username !== "" && username !== undefined)?true:false;
-  const [open, setOpen] = React.useState(false);
+  const [featureName, setFeatureName] = React.useState('');
+  const [featureCategory, setFeatureCategory] = React.useState('');
+  const [loginCheck, setLoginCheck] = React.useState(false);
+  const [featureForm, setFeatureForm] = React.useState(false);
+  const [sortBy, setSortBy] = useState('votes');
 
-  const handleClickOpen = () => {
-    setOpen(true);
+  const loginCheckOpen = () => {
+    setLoginCheck(true);
   };
 
-  const handleClose = () => {
-    setOpen(false);
+  const loginCheckClose = () => {
+    setLoginCheck(false);
   };
  
+  const featureFormOpen = () => {
+    setFeatureForm(true)
+  }
+
+  const featureFormClose = () => {
+    setFeatureForm(false)
+  }
   // (data => {
   //   console.log("WE ARE HERE");
   //   if (!data[0]) {
@@ -52,32 +67,37 @@ const Product = ({query}) => {
   //   return (<div>not found</div>);
   // }
   // console.log("FOUND PRODUCT");
-  const [newFeature, setNewFeature] = useState('');
-  const [sortBy, setSortBy] = useState('votes');
 
-  const handleNewFeatureChange = (event) => {
-    setNewFeature(event.target.value);
+  const handleFeatureNameChange = (event) => {
+    setFeatureName(event.target.value);
   };
+
+  const handleFeatureCategoryChange = (event) => {
+    setFeatureCategory(event.target.value);
+  };
+
   const addFeature = (event) => {
     event.preventDefault();
-    if (newFeature === '')
+    if (featureName === '' || featureCategory === '')
       return;
     else {
       const addedFeature = {
         id: features.length + 1,
-        text: newFeature,
+        text: featureName,
         votes: 0,
         upVoted: true,
         timestamp: Date.now(),
-        tags: ['enhancement'],
-        comments:[],
+        tags: [featureCategory],
+        comments:[]
       };
       const form = new FormData();
       form.append("features", JSON.stringify(addedFeature));
       Service.post('/'+id+'/features', form)
         .then(data => {});
       setFeatures(features.concat(addedFeature));
-      setNewFeature('');
+      setFeatureName('');
+      setFeatureCategory('');
+      featureFormClose();
     }
   };
   
@@ -185,15 +205,39 @@ const Product = ({query}) => {
         </div>
       </div>
       <div className="child inputContainer">
-        <form data-testid="prod_form" onSubmit={addFeature}>
-          <input 
-          className="inputBar" 
-          data-testid="prod_input"
-          value={newFeature} 
-          onChange={loggedin?handleNewFeatureChange:handleClickOpen} 
-          placeholder="Enter a feature that you'd love to see">
-          </input>
-          <Dialog  open={open} onClose={handleClose} PaperProps={{ style: { minWidth: '400px' } }}>
+        <button onClick={loggedin?featureFormOpen:loginCheckOpen}>Add Feature</button>
+
+          <Dialog open={featureForm} onClose={featureFormClose} >
+      <DialogTitle>Add a feature</DialogTitle>
+      <DialogContent>
+        <DialogContentText>Please enter name and category of feature:</DialogContentText>
+        <TextField
+          label="Text Field"
+          value={featureName} 
+          onChange={handleFeatureNameChange}
+          fullWidth
+          variant="outlined"
+          margin="normal"
+        />
+        <RadioGroup
+          aria-label="Feature Options"
+          name="featureOptions"
+          value={featureCategory}
+          onChange={handleFeatureCategoryChange}>
+          <FormControlLabel value="New Feature" control={<Radio />} label="New Feature" />
+          <FormControlLabel value="Enhancement" control={<Radio />} label="Enhancement" />
+          <FormControlLabel value="Performance Improvement" control={<Radio />} label="Performance Improvement" />
+          <FormControlLabel value="Security Enhancement" control={<Radio />} label="Security Enhancement" />
+          <FormControlLabel value="Usability and UX Improvements" control={<Radio />} label="Usability and UX Improvements" />
+        </RadioGroup>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={addFeature}>Ok</Button>
+      </DialogActions>
+    </Dialog>
+
+
+    <Dialog  open={loginCheck} onClose={loginCheckClose} PaperProps={{ style: { minWidth: '400px' } }}>
           <DialogTitle >Action Required</DialogTitle>
           <DialogContent>
             <DialogContentText >
@@ -201,10 +245,9 @@ const Product = ({query}) => {
             </DialogContentText>
           </DialogContent>
             <DialogActions>
-              <Button onClick={handleClose}>Ok</Button>
+              <Button onClick={loginCheckClose}>Ok</Button>
             </DialogActions>
           </Dialog>
-        </form>
       </div>
         <div className='main-content'>
           <div className='features'>
