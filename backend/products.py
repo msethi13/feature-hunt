@@ -181,9 +181,15 @@ def features(product_name):
                             status=400,
                             mimetype='application/json')
         result = product_records.find_one_and_update({"name": product_name}, {"$push": {"features": data}})
-
+        
+        product_data = product_records.find_one({"name":product_name})
+        
+        email = product_data['users'][0]
+        msg = Message('New feature added', sender = 'seproject37@gmail.com', recipients = [email])
+        mail.send(msg)
     elif request.method == 'GET':
         result = product_records.find({"name": product_name}, {"features": 1})
+    
     return dumps(result)
 
 
