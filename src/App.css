@@ -38,15 +38,25 @@
 }
 
 .features{
-  width: 60%;
+  width : 1000px
 }
+
+
 
 .timeline{
   text-align: center;
-  width:40%;
+  width : 400px
+}
+
+@media  screen and (max-width : 1381px){
+  .timeline{
+    text-align: center;
+    width : 100%;
+  }
 }
 
 .main-content{
   display: flex;
+  flex-wrap: wrap;
 }
 

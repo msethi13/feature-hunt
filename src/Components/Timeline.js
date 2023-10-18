@@ -11,10 +11,10 @@ export default function ProductTimeline({feature_name,index}) {
     
       <TimelineItem>
         <TimelineSeparator>
-            {index > 0 && <TimelineConnector /> }
-            {index>0 && <TimelineDot />}
+            {<TimelineConnector /> }
+            {<TimelineDot />}
         </TimelineSeparator>
-        {index>0 && <TimelineContent>{feature_name}</TimelineContent>}
+        <TimelineContent>{feature_name}</TimelineContent>
       </TimelineItem>
   );
 }
