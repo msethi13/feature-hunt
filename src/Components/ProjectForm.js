@@ -152,7 +152,7 @@ function ProjectForm() {
         </div>
       </div>
       <form data-testid="submit_form" onSubmit={handleSubmit}>
-          <h3>PROJECT FORM</h3>
+          <h3>PRODUCT FORM</h3>
           <label>Name</label>
             <TextField
               data-testid="form_name"
