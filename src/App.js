@@ -14,7 +14,7 @@ import Header from './Components/Header';
 import Home from './Components/Home';
 import Dashboard from './Components/Dashboard';
 import Feedback from './Components/Feedback';
-
+import ChatForum from './Components/ChatForum';
 import {useState} from 'react';
 import {ReactSession} from 'react-client-session';
 
@@ -55,7 +55,7 @@ function App() {
           }
         />
         <Route
-          path="/:id"
+          path="/:id/getFeature"
           children={
             <>
               <Header setQuery={setQuery} />
@@ -63,6 +63,15 @@ function App() {
               <br />
               <br />
               
+            </>
+          }
+        />
+        <Route
+          path="/:id1/:id2/forum"
+          children={
+            <>
+              <Header setQuery={setQuery}/>
+              <ChatForum/>
             </>
           }
         />

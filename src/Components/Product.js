@@ -88,6 +88,7 @@ const Product = ({query}) => {
         upVoted: true,
         timestamp: Date.now(),
         tags: [featureCategory],
+        comments:[]
       };
       const form = new FormData();
       form.append("features", JSON.stringify(addedFeature));

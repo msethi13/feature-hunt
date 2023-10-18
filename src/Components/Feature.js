@@ -9,6 +9,8 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Service from '../Service';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+
 //
 //       Component: Feature
 //       Description: This component is the specific feature which has the up and down votes
@@ -18,7 +20,7 @@ import Service from '../Service';
 //       Outputs:
 //          - NA
 const Feature = ({ features, index, setFeatures, editable, setTimeline, productId}) => {
-
+  console.log(productId);
   const username = ReactSession.get("username");
   const loggedin = (username !== "" && username !== undefined)?true:false;
 
@@ -158,6 +160,7 @@ const Feature = ({ features, index, setFeatures, editable, setTimeline, productI
     });
   }
 
+
   /* TODO : save new tag to database */
   const addNewTag = () => {
     features[index]['tags'].push(newTag);
@@ -166,10 +169,15 @@ const Feature = ({ features, index, setFeatures, editable, setTimeline, productI
     Service.post(window.location.pathname + "/features", form).then(data => {});
     setNewTag('');
   }
+  const history=useHistory();
+  const goTo =(featureID)=>()=>{
+    history.push('/'+productId+'/'+featureID+'/forum');
+  };
 
   return (
     <div className="child feature">
       <div className="feature-container">
+        
         <div className="content">
           <div className="feature-content" data-testid={"feature_content:"+features[index].id}> 
             <span style={{ marginTop: 'auto', marginBottom: 'auto' }}>
@@ -203,6 +211,12 @@ const Feature = ({ features, index, setFeatures, editable, setTimeline, productI
             Add 
           </Button>}
         </div>
+        <div className='button-container' onClick={goTo(features[index].id)}>
+          {<Button onClick={handleButtonClick}>
+            View Chat
+          </Button>}
+        </div>
+        
         </div>
         
         <div className="votes-container">
