@@ -197,12 +197,17 @@ const Product = ({query}) => {
       </div>
       <div className="child inputContainer">
         <Button
-        size="small"
-        onClick={loggedin ? featureFormOpen : loginCheckOpen}
-        variant="outlined"
-        style={{ backgroundColor: '#218888', color: '#fff', marginRight: '10px' }}>
-        Add New Feature
-      </Button>
+          size="small"
+          onClick={loggedin ? featureFormOpen : loginCheckOpen}
+          variant="outlined"
+          style={{
+            backgroundColor: '#218888',
+            color: '#fff',
+            marginRight: '10px',
+          }}
+        >
+          Add New Feature
+        </Button>
 
         <Dialog open={featureForm} onClose={featureFormClose}>
           <DialogTitle>Add a feature</DialogTitle>

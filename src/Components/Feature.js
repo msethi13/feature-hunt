@@ -188,20 +188,22 @@ const Feature = ({
             data-testid={'feature_content:' + features[index].id}
           >
             <span style={{marginTop: 'auto', marginBottom: 'auto'}}>
-            {capitalizeFirstLetter(features[index].text)}
+              {capitalizeFirstLetter(features[index].text)}
             </span>
             <div
-            className="tag-container"
-            data-testid={'feature_tag_container:' + features[index].id} style={{marginBottom:'25px'}}
-          >
-            {features[index]['tags'].map((tag) => (
-            <span key={tag} className="tag" >
-            {tag.toUpperCase()}
-            </span>))}
+              className="tag-container"
+              data-testid={'feature_tag_container:' + features[index].id}
+              style={{marginBottom: '25px'}}
+            >
+              {features[index]['tags'].map((tag) => (
+                <span key={tag} className="tag">
+                  {tag.toUpperCase()}
+                </span>
+              ))}
 
-            {editable && (
-              <div>
-                {/* <TextField
+              {editable && (
+                <div>
+                  {/* <TextField
                 data-testid={"feature_addtag:"+ features[index].id}
                 label="Add New Tag"
                 inputProps={{ "data-testid": "newTag-input:" + features[index].id }}
@@ -209,38 +211,46 @@ const Feature = ({
                 size="small"
                 onChange={handleTextChange}
               /> */}
-                {/* <Button 
+                  {/* <Button 
               data-testid={"feature_tagbutton:" + features[index].id}
               onClick={addNewTag}>Add</Button>  */}
-              </div>
-            )}
+                </div>
+              )}
+            </div>
           </div>
-          </div>
-          
-          <div className="button-container">
-  {editable && (
-    <>
-      <Button
-      size="small"
-        onClick={handleButtonClick}
-        variant="outlined"
-        style={{ color: '#218888', borderColor: '#218888', marginRight: '5px' }}>
-        Add to timeline
-      </Button>
-    </>
-  )}
-  <Button
-      size="small"
-        onClick={goTo(features[index].id)}
-        variant="outlined"
-        style={{ color: '#218888', borderColor: '#218888' }}>
-        View Comments
-      </Button>
-</div>
 
+          <div className="button-container">
+            {editable && (
+              <>
+                <Button
+                  size="small"
+                  onClick={handleButtonClick}
+                  variant="outlined"
+                  style={{
+                    color: '#218888',
+                    borderColor: '#218888',
+                    marginRight: '5px',
+                  }}
+                >
+                  Add to timeline
+                </Button>
+              </>
+            )}
+            <Button
+              size="small"
+              onClick={goTo(features[index].id)}
+              variant="outlined"
+              style={{color: '#218888', borderColor: '#218888'}}
+            >
+              View Comments
+            </Button>
+          </div>
         </div>
 
-        <div className="votes-container" style={{ display: 'flex', alignItems: 'center' }}>
+        <div
+          className="votes-container"
+          style={{display: 'flex', alignItems: 'center'}}
+        >
           <span>
             <FontAwesomeIcon
               icon={faChevronUp}
@@ -263,7 +273,9 @@ const Feature = ({
               <Button onClick={handleClose}>Ok</Button>
             </DialogActions>
           </Dialog>
-          <span data-testid={'fvoteval:' + features[index].id}>{features[index].votes}</span>
+          <span data-testid={'fvoteval:' + features[index].id}>
+            {features[index].votes}
+          </span>
           <span>
             <FontAwesomeIcon
               icon={faChevronDown}
