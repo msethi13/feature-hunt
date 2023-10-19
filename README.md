@@ -4,7 +4,7 @@
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/6ce3145d4fd9471594d957b90167c2d5)](https://www.codacy.com/gh/elric97/feature-hunt/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=elric97/feature-hunt&amp;utm_campaign=Badge_Grade)
 [![DOI](https://zenodo.org/badge/426076067.svg)](https://zenodo.org/badge/latestdoi/426076067)
-[![GitHub license](https://img.shields.io/github/license/shahrk/feature-hunt)](https://github.com/shahrk/feature-hunt/blob/main/LICENSE)
+![GitHub](https://img.shields.io/github/license/msethi13/feature-hunt)
 [![made-with-javascript](https://img.shields.io/badge/Made%20with-JavaScript-blue)](https://www.javascript.com)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![Docker](https://img.shields.io/badge/Containerized-Docker-blue)](https://docs.docker.com/compose/)
