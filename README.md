@@ -2,7 +2,7 @@
 <img width="657" alt="Feature Hunt" src="https://user-images.githubusercontent.com/11090612/135201949-a1f1de9d-f80a-4adf-a7ac-886c77c4c226.png">
 </p>
 
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/6ce3145d4fd9471594d957b90167c2d5)](https://www.codacy.com/gh/elric97/feature-hunt/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=elric97/feature-hunt&amp;utm_campaign=Badge_Grade)
+
 [![DOI](https://zenodo.org/badge/426076067.svg)](https://zenodo.org/badge/latestdoi/426076067)
 ![GitHub](https://img.shields.io/github/license/msethi13/feature-hunt)
 [![made-with-javascript](https://img.shields.io/badge/Made%20with-JavaScript-blue)](https://www.javascript.com)
@@ -15,7 +15,6 @@
 [![Coverage Status](https://coveralls.io/repos/github/CSC510-Group-25/feature-hunt/badge.svg?branch=main)](https://coveralls.io/github/elric97/feature-hunt)
 [![CodeQL](https://github.com/CSC510-Group-25/feature-hunt/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/elric97/feature-hunt/blob/main/.github/workflows/codeql-analysis.yml)
 [![Pylint](https://github.com/msethi13/feature-hunt/actions/workflows/pylint.yml/badge.svg)](https://github.com/msethi13/feature-hunt/blob/main/.github/workflows/pylint.yml)
-[![Netlify](https://img.shields.io/netlify/dbecc37c-c273-4b45-bfff-3fd33d20cae0)](https://feature-hunt-g29.netlify.app/)
 
 
 
