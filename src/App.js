@@ -8,7 +8,7 @@ this file. If not, please write to: featurehuntteam@gmail.com
 import './App.css';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Product from './Components/Product';
-import ProjectForm from "./Components/ProjectForm";
+import ProjectForm from './Components/ProjectForm';
 import Comments from './Components/Comments';
 import Header from './Components/Header';
 import Home from './Components/Home';
@@ -20,27 +20,26 @@ import {ReactSession} from 'react-client-session';
 
 function App() {
   const [query, setQuery] = useState('');
-  ReactSession.setStoreType("localStorage");
+  ReactSession.setStoreType('localStorage');
   return (
     <Router>
       <Switch>
-      <Route
+        <Route
           path="/dashboard"
           children={
             <>
-              <Header setQuery={setQuery}/>
-              <Dashboard query={query} setQuery={setQuery}/>
+              <Header setQuery={setQuery} />
+              <Dashboard query={query} setQuery={setQuery} />
             </>
           }
         />
-
 
         <Route
           path="/feedback"
           children={
             <>
-              <Feedback/>
-              <Comments/>
+              <Feedback />
+              <Comments />
             </>
           }
         />
@@ -50,7 +49,7 @@ function App() {
           children={
             <>
               <Header setQuery={setQuery} />
-                <ProjectForm query={query} />
+              <ProjectForm query={query} />
             </>
           }
         />
@@ -62,7 +61,6 @@ function App() {
               <Product query={query} />
               <br />
               <br />
-              
             </>
           }
         />
@@ -70,8 +68,8 @@ function App() {
           path="/:id1/:id2/forum"
           children={
             <>
-              <Header setQuery={setQuery}/>
-              <ChatForum/>
+              <Header setQuery={setQuery} />
+              <ChatForum />
             </>
           }
         />

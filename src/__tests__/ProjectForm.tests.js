@@ -1,13 +1,13 @@
-import React from "react";
-import { render, screen, fireEvent, getByTestId } from "@testing-library/react";
-import { Router as RRouter } from "react-router-dom"; // NOT A TYPO
-import { createMemoryHistory } from "history";
-import { MemoryRouter } from "react-router-dom";
-import "@testing-library/jest-dom/extend-expect";
+import React from 'react';
+import {render, screen, fireEvent, getByTestId} from '@testing-library/react';
+import {Router as RRouter} from 'react-router-dom'; // NOT A TYPO
+import {createMemoryHistory} from 'history';
+import {MemoryRouter} from 'react-router-dom';
+import '@testing-library/jest-dom/extend-expect';
 
-import ProjectForm from "../Components/ProjectForm";
+import ProjectForm from '../Components/ProjectForm';
 
-import "../setupTests";
+import '../setupTests';
 
 /**
  * This file tests ProjectForm.js
@@ -32,18 +32,17 @@ data-testid="TEXT" -- short description
 
 */
 
-describe("ProjectForm tests", () => {
-  it("renders ProjectForm", () => {
+describe('ProjectForm tests', () => {
+  it('renders ProjectForm', () => {
     const history = createMemoryHistory();
-    history.push("/:id");
-    history.push("/dashboard");
-    const {  getByText } =
-      render(
-        <RRouter history={history}>
-          <ProjectForm />
-        </RRouter>
-      );
-    const form = getByText(/Project Form/i);
+    history.push('/:id');
+    history.push('/dashboard');
+    const {getByText} = render(
+      <RRouter history={history}>
+        <ProjectForm />
+      </RRouter>
+    );
+    const form = getByText(/PRODUCT FORM/);
     const name = getByText(/Name/i);
     const desc = getByText(/Description/i);
     const img = getByText(/Image URL/i);
@@ -58,28 +57,27 @@ describe("ProjectForm tests", () => {
     expect(sub).toBeInTheDocument();
   });
 
-  it("ProjectForm: tests input, events", () => {
+  it('ProjectForm: tests input, events', () => {
     const history = createMemoryHistory();
-    history.push("/:id");
-    history.push("/dashboard");
-    const { getByTestId, getByText } =
-      render(
-        <RRouter history={history}>
-          <ProjectForm />
-        </RRouter>
-      );
+    history.push('/:id');
+    history.push('/dashboard');
+    const {getByTestId, getByText} = render(
+      <RRouter history={history}>
+        <ProjectForm />
+      </RRouter>
+    );
 
-    const nuval = getByTestId("form-inputName");
-    const desc = getByTestId("form-Desc");
-    const img = getByTestId("form-Img");
-    const tags = getByTestId("form-Tags");
+    const nuval = getByTestId('form-inputName');
+    const desc = getByTestId('form-Desc');
+    const img = getByTestId('form-Img');
+    const tags = getByTestId('form-Tags');
 
-    fireEvent.change(nuval, { target: { value: "testname" } });
-    fireEvent.change(desc, { target: { value: "testDesc" } });
-    fireEvent.change(img, { target: { value: "testImg" } });
-    fireEvent.change(tags, { target: { value: "testTag" } });
+    fireEvent.change(nuval, {target: {value: 'testname'}});
+    fireEvent.change(desc, {target: {value: 'testDesc'}});
+    fireEvent.change(img, {target: {value: 'testImg'}});
+    fireEvent.change(tags, {target: {value: 'testTag'}});
 
-    const subbutton = getByTestId("submit_button");
+    const subbutton = getByTestId('submit_button');
     fireEvent.submit(subbutton);
 
     const nuname = getByText(/testname/i);
@@ -91,5 +89,4 @@ describe("ProjectForm tests", () => {
     const nuTag = getByText(/testtag/i);
     expect(nuTag).toBeInTheDocument();
   });
-
 });

@@ -160,6 +160,16 @@ def final_product_votes():
 #         return jsonify(success=False)
 
 
+#################################################################################
+##       Function: add_user_view
+##       Description: This post request is used to add a view to the product.
+##                     The prodcut db holds the actual total number of vote.
+##       Inputs:
+##           - NA
+##       Outputs:
+##           - Returns true or false if new vote is able to be removed
+#################################################################################
+
 @app.route("/addUserView", methods=['Post'])
 def add_user_view():
     try:

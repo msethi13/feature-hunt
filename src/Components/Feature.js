@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import { ReactSession } from "react-client-session";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
-import { Button, TextField } from '@mui/material';
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
+import React, {useState} from 'react';
+import {ReactSession} from 'react-client-session';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faChevronDown, faChevronUp} from '@fortawesome/free-solid-svg-icons';
+import {Button, TextField} from '@mui/material';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 import Service from '../Service';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import {useHistory} from 'react-router-dom/cjs/react-router-dom.min';
 
 //
 //       Component: Feature
@@ -19,10 +19,17 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 //           - NA
 //       Outputs:
 //          - NA
-const Feature = ({ features, index, setFeatures, editable, setTimeline, productId}) => {
+const Feature = ({
+  features,
+  index,
+  setFeatures,
+  editable,
+  setTimeline,
+  productId,
+}) => {
   console.log(productId);
-  const username = ReactSession.get("username");
-  const loggedin = (username !== "" && username !== undefined)?true:false;
+  const username = ReactSession.get('username');
+  const loggedin = username !== '' && username !== undefined ? true : false;
 
   const [open, setOpen] = React.useState(false);
 
@@ -36,89 +43,84 @@ const Feature = ({ features, index, setFeatures, editable, setTimeline, productI
 
   const increaseVote = () => {
     const form = new FormData();
-    form.append("featureId", features[index].id);
-    form.append("productId", productId);
-    form.append("isAdd", 1);
-    console.log("in increase vote")
-    Service.post("finalFeatureVote", form)
-      .then((data) => 
-        {
-          if(data.success)
-          {
-            const updatedFeature = { ...features[index] };
-            updatedFeature.votes = updatedFeature.votes + 1;
-            console.log("VOTE:" + updatedFeature.votes);
-            setFeatures(features.map((feature, index) => updatedFeature.id === features[index].id ? updatedFeature : feature));
-          }
-          /*if (data.code > 200) {
+    form.append('featureId', features[index].id);
+    form.append('productId', productId);
+    form.append('isAdd', 1);
+    console.log('in increase vote');
+    Service.post('finalFeatureVote', form).then((data) => {
+      if (data.success) {
+        const updatedFeature = {...features[index]};
+        updatedFeature.votes = updatedFeature.votes + 1;
+        console.log('VOTE:' + updatedFeature.votes);
+        setFeatures(
+          features.map((feature, index) =>
+            updatedFeature.id === features[index].id ? updatedFeature : feature
+          )
+        );
+      }
+      /*if (data.code > 200) {
             console.log("Error");
           } else {
             console.log(data.success);
           }*/
-        });
+    });
   };
   const handleUpvote = () => {
     const form = new FormData();
-    form.append("emailId", username);
-    form.append("productId", productId);
-    form.append("featureId", features[index].id);
-    Service.post("upvoteFeature", form)
-      .then((data) => 
-        {
-          if(data.success)
-          {
-            increaseVote();
-          }
-          /*if (data.code > 200) {
+    form.append('emailId', username);
+    form.append('productId', productId);
+    form.append('featureId', features[index].id);
+    Service.post('upvoteFeature', form).then((data) => {
+      if (data.success) {
+        increaseVote();
+      }
+      /*if (data.code > 200) {
             console.log("Error");
           } else {
             console.log(data.success);
           }*/
-        });
+    });
   };
-
 
   const decreaseVote = () => {
     const form = new FormData();
-    form.append("featureId", features[index].id);
-    form.append("productId", productId);
-    form.append("isAdd", 0);
-    console.log("in decrease vote")
-    Service.post("finalFeatureVote", form)
-      .then((data) => 
-        {
-          if(data.success)
-          {
-            const updatedFeature = { ...features[index] };
-            updatedFeature.votes = updatedFeature.votes - 1;
-            console.log("VOTE:" + updatedFeature.votes);
-            setFeatures(features.map((feature, index) => updatedFeature.id === features[index].id ? updatedFeature : feature));
-          }
-          /*if (data.code > 200) {
+    form.append('featureId', features[index].id);
+    form.append('productId', productId);
+    form.append('isAdd', 0);
+    console.log('in decrease vote');
+    Service.post('finalFeatureVote', form).then((data) => {
+      if (data.success) {
+        const updatedFeature = {...features[index]};
+        updatedFeature.votes = updatedFeature.votes - 1;
+        console.log('VOTE:' + updatedFeature.votes);
+        setFeatures(
+          features.map((feature, index) =>
+            updatedFeature.id === features[index].id ? updatedFeature : feature
+          )
+        );
+      }
+      /*if (data.code > 200) {
             console.log("Error");
           } else {
             console.log(data.success);
           }*/
-        });
+    });
   };
   const handleDownvote = () => {
     const form = new FormData();
-    form.append("emailId", username);
-    form.append("productId", productId);
-    form.append("featureId", features[index].id);
-    Service.post("downvoteFeature", form)
-      .then((data) => 
-        {
-          if(data.success)
-          {
-            decreaseVote();
-          }
-          /*if (data.code > 200) {
+    form.append('emailId', username);
+    form.append('productId', productId);
+    form.append('featureId', features[index].id);
+    Service.post('downvoteFeature', form).then((data) => {
+      if (data.success) {
+        decreaseVote();
+      }
+      /*if (data.code > 200) {
             console.log("Error");
           } else {
             console.log(data.success);
           }*/
-        });
+    });
   };
 
   // const upVote = () => {
@@ -148,52 +150,62 @@ const Feature = ({ features, index, setFeatures, editable, setTimeline, productI
 
   const handleTextChange = (e) => {
     setNewTag(e.target.value);
-  }
+  };
   const handleButtonClick = () => {
     const form = new FormData();
-    form.append("feature_id", features[index].id);
-    Service.post(window.location.pathname + "/addToTimeline", form).then(data => {
-      if(data){
-        console.log(data);
-        setTimeline(data);
+    form.append('feature_id', features[index].id);
+    Service.post(window.location.pathname + '/addToTimeline', form).then(
+      (data) => {
+        if (data) {
+          console.log(data);
+          setTimeline(data);
+        }
       }
-    });
-  }
-
+    );
+  };
 
   /* TODO : save new tag to database */
   const addNewTag = () => {
     features[index]['tags'].push(newTag);
     const form = new FormData();
-    form.append("features", JSON.stringify(features));
-    Service.post(window.location.pathname + "/features", form).then(data => {});
+    form.append('features', JSON.stringify(features));
+    Service.post(window.location.pathname + '/features', form).then(
+      (data) => {}
+    );
     setNewTag('');
-  }
-  const history=useHistory();
-  const goTo =(featureID)=>()=>{
-    history.push('/'+productId+'/'+featureID+'/forum');
+  };
+  const history = useHistory();
+  const goTo = (featureID) => () => {
+    history.push('/' + productId + '/' + featureID + '/forum');
   };
 
   return (
     <div className="child feature">
       <div className="feature-container">
-        
         <div className="content">
-          <div className="feature-content" data-testid={"feature_content:"+features[index].id}> 
-            <span style={{ marginTop: 'auto', marginBottom: 'auto' }}>
+          <div
+            className="feature-content"
+            data-testid={'feature_content:' + features[index].id}
+          >
+            <span style={{marginTop: 'auto', marginBottom: 'auto'}}>
               {capitalizeFirstLetter(features[index].text)}
             </span>
           </div>
-          <div className="tag-container" data-testid={"feature_tag_container:"+features[index].id}>
-            {features[index]['tags'].map(tag =>
+          <div
+            className="tag-container"
+            data-testid={'feature_tag_container:' + features[index].id}
+          >
+            {features[index]['tags'].map((tag) => (
               <div key={tag}>
-                <span className="tag" data-testid="feature_tag">{tag.toUpperCase()}</span>
+                <span className="tag" data-testid="feature_tag">
+                  {tag.toUpperCase()}
+                </span>
                 <div>&nbsp;</div>
               </div>
-            )}
-            {editable && 
-            <div>
-              {/* <TextField
+            ))}
+            {editable && (
+              <div>
+                {/* <TextField
                 data-testid={"feature_addtag:"+ features[index].id}
                 label="Add New Tag"
                 inputProps={{ "data-testid": "newTag-input:" + features[index].id }}
@@ -201,62 +213,65 @@ const Feature = ({ features, index, setFeatures, editable, setTimeline, productI
                 size="small"
                 onChange={handleTextChange}
               /> */}
-              {/* <Button 
+                {/* <Button 
               data-testid={"feature_tagbutton:" + features[index].id}
               onClick={addNewTag}>Add</Button>  */}
-            </div> }
+              </div>
+            )}
           </div>
-          <div className='button-container'>
-          {editable && <Button onClick={handleButtonClick}>
-            Add 
-          </Button>}
+          <div className="button-container">
+            {editable && <Button onClick={handleButtonClick}>Add</Button>}
+          </div>
+          <div className="button-container" onClick={goTo(features[index].id)}>
+            {<Button onClick={handleButtonClick}>View Chat</Button>}
+          </div>
         </div>
-        <div className='button-container' onClick={goTo(features[index].id)}>
-          {<Button onClick={handleButtonClick}>
-            View Chat
-          </Button>}
-        </div>
-        
-        </div>
-        
+
         <div className="votes-container">
           <span>
-            <FontAwesomeIcon icon={faChevronUp} 
-            size="lg" 
-            className={features[index].upVoted ? 'votedUp' : 'voteup'} 
-            data-testid={"feature_upvote:"+features[index].id}
-            onClick={loggedin?handleUpvote:handleClickOpen} />
+            <FontAwesomeIcon
+              icon={faChevronUp}
+              size="lg"
+              className={features[index].upVoted ? 'votedUp' : 'voteup'}
+              data-testid={'feature_upvote:' + features[index].id}
+              onClick={loggedin ? handleUpvote : handleClickOpen}
+            />
           </span>
-          <Dialog  open={open} onClose={handleClose} PaperProps={{ style: { minWidth: '400px' } }}>
-          <DialogTitle >Action Required</DialogTitle>
-          <DialogContent>
-            <DialogContentText >
-            Please login to vote!
-            </DialogContentText>
-          </DialogContent>
+          <Dialog
+            open={open}
+            onClose={handleClose}
+            PaperProps={{style: {minWidth: '400px'}}}
+          >
+            <DialogTitle>Action Required</DialogTitle>
+            <DialogContent>
+              <DialogContentText>Please login to vote!</DialogContentText>
+            </DialogContent>
             <DialogActions>
               <Button onClick={handleClose}>Ok</Button>
             </DialogActions>
           </Dialog>
-          <span>
-          </span>
-          <span data-testid={"fvoteval:" + features[index].id}>
+          <span></span>
+          <span data-testid={'fvoteval:' + features[index].id}>
             {features[index].votes}
           </span>
           <span>
-            <FontAwesomeIcon icon={faChevronDown} 
-            size="lg" 
-            className={features[index].downVoted ? 'votedDown' : 'votedown'} 
-            data-testid={"feature_downvote:" + features[index].id}
-            onClick={loggedin?handleDownvote:handleClickOpen} />
+            <FontAwesomeIcon
+              icon={faChevronDown}
+              size="lg"
+              className={features[index].downVoted ? 'votedDown' : 'votedown'}
+              data-testid={'feature_downvote:' + features[index].id}
+              onClick={loggedin ? handleDownvote : handleClickOpen}
+            />
           </span>
-          <Dialog  open={open} onClose={handleClose} PaperProps={{ style: { minWidth: '400px' } }}>
-          <DialogTitle >Action Required</DialogTitle>
-          <DialogContent>
-            <DialogContentText >
-              Please login to vote!
-            </DialogContentText>
-          </DialogContent>
+          <Dialog
+            open={open}
+            onClose={handleClose}
+            PaperProps={{style: {minWidth: '400px'}}}
+          >
+            <DialogTitle>Action Required</DialogTitle>
+            <DialogContent>
+              <DialogContentText>Please login to vote!</DialogContentText>
+            </DialogContent>
             <DialogActions>
               <Button onClick={handleClose}>Ok</Button>
             </DialogActions>

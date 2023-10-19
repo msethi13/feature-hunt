@@ -1,14 +1,14 @@
-import React from "react";
-import { render, screen, fireEvent, getByTestId } from "@testing-library/react";
-import { Router as RRouter } from "react-router-dom"; // NOT A TYPO
-import { createMemoryHistory } from "history";
-import { MemoryRouter } from "react-router-dom";
-import "@testing-library/jest-dom/extend-expect";
+import React from 'react';
+import {render, screen, fireEvent, getByTestId} from '@testing-library/react';
+import {Router as RRouter} from 'react-router-dom'; // NOT A TYPO
+import {createMemoryHistory} from 'history';
+import {MemoryRouter} from 'react-router-dom';
+import '@testing-library/jest-dom/extend-expect';
 
-import Header from "../Components/Header";
+import Header from '../Components/Header';
 
-import "../setupTests";
-import Login from "../Components/Login";
+import '../setupTests';
+import Login from '../Components/Login';
 
 /**
  * This file tests Header.js
@@ -36,10 +36,9 @@ data-testid="TEXT" -- short description
 
 */
 
-
-describe("Header tests", () => {
-  it("renders header: screen checks 1", () => {
-    render(<Header />, { wrapper: MemoryRouter });
+describe('Header tests', () => {
+  it('renders header: screen checks 1', () => {
+    render(<Header />, {wrapper: MemoryRouter});
     const roadmap = screen.getByText(/Roadmap/i);
     const feedback = screen.getByText(/Feedback/i);
 
@@ -50,11 +49,11 @@ describe("Header tests", () => {
     expect(feedback).toBeInTheDocument();
   });
 
-  test("renders header: screen checks 2", () => {
+  test('renders header: screen checks 2', () => {
     const history = createMemoryHistory();
-    history.push("/:id");
-    history.push("/dashboard");
-    const { getByTestId, getByText, getByPlaceholderText } = render(
+    history.push('/:id');
+    history.push('/dashboard');
+    const {getByTestId, getByText, getByPlaceholderText} = render(
       <RRouter history={history}>
         <Header />
       </RRouter>
@@ -63,20 +62,20 @@ describe("Header tests", () => {
     const search = getByPlaceholderText(/Search Features.../i);
     expect(search).toBeInTheDocument();
     expect(history.length).toBe(3);
-    expect(history.location.pathname).toBe("/dashboard");
+    expect(history.location.pathname).toBe('/dashboard');
   });
 
-  it("header tests: checks navigation, logout", () => {
+  it('header tests: checks navigation, logout', () => {
     const history = createMemoryHistory();
-    history.push("/:id");
-    const { getByTestId, getByText, getByRole, queryByText } = render(
+    history.push('/:id');
+    const {getByTestId, getByText, getByRole, queryByText} = render(
       <RRouter history={history}>
         <Header />
       </RRouter>
     );
 
     // home button
-    const home = getByTestId("header_home");
+    const home = getByTestId('header_home');
 
     // const submittext = getByText(/Submit Project/i);
     // expect(submittext).toBeInTheDocument();
@@ -84,10 +83,10 @@ describe("Header tests", () => {
     // links
     // const submit = getByTestId("header_sub");
     // const dash = getByTestId("header_dash");
-    const feedback = getByTestId("header_fb");
-    const roadmap = getByTestId("header_rm");
+    const feedback = getByTestId('header_fb');
+    const roadmap = getByTestId('header_rm');
 
-    const links = getByTestId("header_links");
+    const links = getByTestId('header_links');
     expect(links.children.length).toBe(2); // check number of links
 
     expect(history.length).toBe(2);
@@ -101,7 +100,7 @@ describe("Header tests", () => {
     expect(history.length).toBe(4);
     fireEvent.click(feedback);
     expect(history.length).toBe(5);
-    expect(history.location.pathname).toBe("/feedback");
+    expect(history.location.pathname).toBe('/feedback');
 
     // const logout = getByRole("button", { name: /LogOut/i }); // id: "logout_header"
     // expect(logout).toBeInTheDocument();
@@ -114,24 +113,23 @@ describe("Header tests", () => {
     expect(nothere).not.toBeInTheDocument();
   });
 
-  it("header tests: tests search", () => {
+  it('header tests: tests search', () => {
     const history = createMemoryHistory();
-    history.push("/:id");
-    const { getByTestId, getByPlaceholderText } = render(
+    history.push('/:id');
+    const {getByTestId, getByPlaceholderText} = render(
       <RRouter history={history}>
         <Header />
       </RRouter>
     );
-    
-    const search = getByTestId("header_input");
-    fireEvent.change(search, { target: { placeholder: "searchword" } });
 
-    fireEvent.keyPress(getByTestId("header_input"), {
-      key: "Enter"
+    const search = getByTestId('header_input');
+    fireEvent.change(search, {target: {placeholder: 'searchword'}});
+
+    fireEvent.keyPress(getByTestId('header_input'), {
+      key: 'Enter',
     });
 
     const searchword = getByPlaceholderText(/searchword/i);
     expect(searchword).toBeInTheDocument();
   });
-
 });

@@ -1,11 +1,11 @@
-import React from "react";
-import { render, screen, fireEvent, getByTestId } from "@testing-library/react";
-import { Router as RRouter } from "react-router-dom"; // NOT A TYPO
-import { createMemoryHistory } from "history";
-import "@testing-library/jest-dom/extend-expect";
+import React from 'react';
+import {render, screen, fireEvent, getByTestId} from '@testing-library/react';
+import {Router as RRouter} from 'react-router-dom'; // NOT A TYPO
+import {createMemoryHistory} from 'history';
+import '@testing-library/jest-dom/extend-expect';
 
-import ProductTile from "../Components/ProductTile";
-import "../setupTests";
+import ProductTile from '../Components/ProductTile';
+import '../setupTests';
 
 /**
  * This file tests ProductTile.js
@@ -24,23 +24,23 @@ data-testid="pt_down:#" -- product tile downvote
 data-testid="pt_up:#" -- product tile upvote
 */
 
-describe("Test ProductTile", () => {
+describe('Test ProductTile', () => {
   // this test doesn't work
-  it("tests upvoting a product (TODO)", () => {
+  it('tests upvoting a product (TODO)', () => {
     const history = createMemoryHistory();
-    history.push("/:id"); // home page
+    history.push('/:id'); // home page
 
     const products = [
       {
         id: 1,
-        name: "feature-hunt",
-        description: "Feature Hunt is...",
+        name: 'feature-hunt',
+        description: 'Feature Hunt is...',
         votes: 999,
-        tags: ["productivity", "web app"],
+        tags: ['productivity', 'web app'],
       },
     ];
 
-    const { getByTestId, getByText } = render(
+    const {getByTestId, getByText} = render(
       <RRouter history={history}>
         <ProductTile
           products={products}
@@ -50,7 +50,7 @@ describe("Test ProductTile", () => {
       </RRouter>
     );
 
-    const upvote = getByTestId("pt_up:0");
+    const upvote = getByTestId('pt_up:0');
     fireEvent.click(upvote);
 
     // the two lines below are the lines that don't work.
@@ -66,7 +66,7 @@ describe("Test ProductTile", () => {
     expect(decscription).toBeInTheDocument();
 
     // coverage click
-    const downvote = getByTestId("pt_down:0");
+    const downvote = getByTestId('pt_down:0');
     fireEvent.click(downvote);
 
     // uncomment the two lines below in VS Code.
@@ -78,21 +78,21 @@ describe("Test ProductTile", () => {
   });
 
   // this test doesn't work
-  it("tests downvoting a product (TODO)", () => {
+  it('tests downvoting a product (TODO)', () => {
     const history = createMemoryHistory();
-    history.push("/:id"); // home page
+    history.push('/:id'); // home page
 
     const products = [
       {
         id: 1,
-        name: "feature-hunt",
-        description: "Feature Hunt is...",
+        name: 'feature-hunt',
+        description: 'Feature Hunt is...',
         votes: 1000,
-        tags: ["productivity", "web app"],
+        tags: ['productivity', 'web app'],
       },
     ];
 
-    const { getByTestId, getByText } = render(
+    const {getByTestId, getByText} = render(
       <RRouter history={history}>
         <ProductTile
           products={products}
@@ -102,7 +102,7 @@ describe("Test ProductTile", () => {
       </RRouter>
     );
 
-    const downvote = getByTestId("pt_down:0");
+    const downvote = getByTestId('pt_down:0');
     fireEvent.click(downvote);
 
     // the two lines below are the lines that don't work.
@@ -118,7 +118,7 @@ describe("Test ProductTile", () => {
     expect(decscription).toBeInTheDocument();
 
     // coverage click
-    const upvote = getByTestId("pt_up:0");
+    const upvote = getByTestId('pt_up:0');
     fireEvent.click(downvote);
     fireEvent.click(upvote);
     fireEvent.click(upvote);
@@ -131,28 +131,28 @@ describe("Test ProductTile", () => {
     // expect(whee).toBeInTheDocument();
   });
 
-  it("tests navigating to a product", () => {
+  it('tests navigating to a product', () => {
     const history = createMemoryHistory();
-    history.push("/:id"); // home page
+    history.push('/:id'); // home page
 
     const products = [
       {
         id: 1,
-        name: "feature-hunt",
-        description: "Feature Hunt is...",
+        name: 'feature-hunt',
+        description: 'Feature Hunt is...',
         votes: 1000,
-        tags: ["productivity", "web app"],
+        tags: ['productivity', 'web app'],
       },
       {
         id: 2,
-        name: "anti-JS",
-        description: "I really, really hate JavaScript.",
+        name: 'anti-JS',
+        description: 'I really, really hate JavaScript.',
         votes: 9001,
-        tags: ["depression"],
+        tags: ['depression'],
       },
     ];
 
-    const { getByTestId, getByText } = render(
+    const {getByTestId, getByText} = render(
       <RRouter history={history}>
         <ProductTile
           products={products}
@@ -167,22 +167,22 @@ describe("Test ProductTile", () => {
       </RRouter>
     );
 
-    const upvote0 = getByTestId("pt_up:0");
-    const downvote0 = getByTestId("pt_down:0");
-    const upvote1 = getByTestId("pt_up:1");
-    const downvote1 = getByTestId("pt_down:1");
+    const upvote0 = getByTestId('pt_up:0');
+    const downvote0 = getByTestId('pt_down:0');
+    const upvote1 = getByTestId('pt_up:1');
+    const downvote1 = getByTestId('pt_down:1');
 
     expect(history.length).toBe(2);
-    const nav = getByTestId("ptnav:0");
-    const nav2 = getByTestId("ptnav:1");
+    const nav = getByTestId('ptnav:0');
+    const nav2 = getByTestId('ptnav:1');
 
     fireEvent.click(nav);
     expect(history.length).toBe(3); // after clicking on something, history.length + 1
-    expect(history.location.pathname).toBe("/feature-hunt/getFeature");
+    expect(history.location.pathname).toBe('/feature-hunt/getFeature');
 
     fireEvent.click(nav2);
     expect(history.length).toBe(4); // after clicking on something, history.length + 1
-    expect(history.location.pathname).toContain("anti-JS");
+    expect(history.location.pathname).toContain('anti-JS');
 
     const productName = getByText(/Feature-hunt/i);
     const tagName = getByText(/PRODUCTIVITY/i);
@@ -201,7 +201,7 @@ describe("Test ProductTile", () => {
     const tagName2 = getByText(/depression/i);
     const decscription2 = getByText(/I really, really hate JavaScript./i);
 
-    const over9k = getByText("9001");
+    const over9k = getByText('9001');
     expect(over9k).toBeInTheDocument();
 
     expect(productName2).toBeInTheDocument();

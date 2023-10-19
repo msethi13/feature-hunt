@@ -1,11 +1,11 @@
-import React from "react";
-import { render } from "@testing-library/react";
-import { Router as RRouter } from "react-router-dom"; // NOT A TYPO
-import { createMemoryHistory } from "history";
-import "@testing-library/jest-dom/extend-expect";
+import React from 'react';
+import {render} from '@testing-library/react';
+import {Router as RRouter} from 'react-router-dom'; // NOT A TYPO
+import {createMemoryHistory} from 'history';
+import '@testing-library/jest-dom/extend-expect';
 
-import Feedback from "../Components/Feedback";
-import "../setupTests";
+import Feedback from '../Components/Feedback';
+import '../setupTests';
 
 /**
  * This file tests Feedback.js
@@ -19,11 +19,11 @@ import "../setupTests";
 Feedback.js test IDs: none
 */
 
-describe("Feedback tests", () => {
-  it("renders Feedback", () => {
+describe('Feedback tests', () => {
+  it('renders Feedback', () => {
     const history = createMemoryHistory();
-    history.push("/:id");
-    const { getByPlaceholderText, getByText } = render(
+    history.push('/:id');
+    const {getByPlaceholderText, getByText} = render(
       <RRouter history={history}>
         <Feedback />
       </RRouter>
@@ -38,6 +38,6 @@ describe("Feedback tests", () => {
     expect(patient).toBeInTheDocument();
 
     expect(history.length).toBe(2);
-    expect(history.location.pathname).toBe("/:id");
+    expect(history.location.pathname).toBe('/:id');
   });
 });

@@ -1,11 +1,11 @@
-import React from "react";
-import { render, screen, fireEvent, getByTestId } from "@testing-library/react";
-import { Router as RRouter } from "react-router-dom"; // NOT A TYPO
-import { createMemoryHistory } from "history";
-import "@testing-library/jest-dom/extend-expect";
+import React from 'react';
+import {render, screen, fireEvent, getByTestId} from '@testing-library/react';
+import {Router as RRouter} from 'react-router-dom'; // NOT A TYPO
+import {createMemoryHistory} from 'history';
+import '@testing-library/jest-dom/extend-expect';
 
-import Login from "../Components/Login";
-import "../setupTests";
+import Login from '../Components/Login';
+import '../setupTests';
 
 /**
  * This file tests Login.js
@@ -34,11 +34,11 @@ data-testid="TEXT" -- short description
 
 */
 
-describe("Login tests", () => {
-  it("renders login", () => {
+describe('Login tests', () => {
+  it('renders login', () => {
     const history = createMemoryHistory();
-    history.push("/:id");
-    const { getByTestId, getByText, queryByText, queryByTestId } = render(
+    history.push('/:id');
+    const {getByTestId, getByText, queryByText, queryByTestId} = render(
       <RRouter history={history}>
         <Login />
       </RRouter>
@@ -47,7 +47,7 @@ describe("Login tests", () => {
     const login = getByText(/Login/i);
     expect(login).toBeInTheDocument();
 
-    const loginb = getByTestId("login_button");
+    const loginb = getByTestId('login_button');
     fireEvent.click(loginb);
 
     const logtext = getByText(
@@ -55,10 +55,10 @@ describe("Login tests", () => {
     );
     expect(logtext).toBeInTheDocument();
 
-    const placeholderemail = getByText("Email Address");
+    const placeholderemail = getByText('Email Address');
     expect(placeholderemail).toBeInTheDocument();
 
-    const placeholderpass = getByText("Password");
+    const placeholderpass = getByText('Password');
     expect(placeholderpass).toBeInTheDocument();
 
     const cancel = getByText(/cancel/i);
@@ -68,23 +68,23 @@ describe("Login tests", () => {
     expect(submit).toBeInTheDocument();
   });
 
-  it("tests logging in", () => {
+  it('tests logging in', () => {
     // async ()
     const history = createMemoryHistory();
-    history.push("/:id");
-    const { getByTestId, getByText, getByRole, queryByText } = render(
+    history.push('/:id');
+    const {getByTestId, getByText, getByRole, queryByText} = render(
       <RRouter history={history}>
         <Login />
       </RRouter>
     );
 
-    const loginb = getByTestId("login_button");
+    const loginb = getByTestId('login_button');
     fireEvent.click(loginb);
 
-    const sub = getByRole("button", { name: /Submit/i });
+    const sub = getByRole('button', {name: /Submit/i});
     expect(sub).toBeInTheDocument();
 
-    const can = getByRole("button", { name: /Cancel/i });
+    const can = getByRole('button', {name: /Cancel/i});
     expect(can).toBeInTheDocument();
 
     fireEvent.click(can);
@@ -95,17 +95,17 @@ describe("Login tests", () => {
     //await screen.findByText(/Error: /i);
     //await waitFor(() => expect(err).toBeInTheDocument());
 
-    const add = getByTestId("login_inputEmail");
-    const ress = "test@test.com";
+    const add = getByTestId('login_inputEmail');
+    const ress = 'test@test.com';
 
-    const pass = getByTestId("login_inputPassword");
-    const word = "abcd";
+    const pass = getByTestId('login_inputPassword');
+    const word = 'abcd';
 
-    expect(pass).toHaveValue("");
-    expect(add).toHaveValue("");
+    expect(pass).toHaveValue('');
+    expect(add).toHaveValue('');
 
-    fireEvent.change(pass, { target: { value: word } });
-    fireEvent.change(add, { target: { value: ress } });
+    fireEvent.change(pass, {target: {value: word}});
+    fireEvent.change(add, {target: {value: ress}});
 
     fireEvent.click(sub);
 

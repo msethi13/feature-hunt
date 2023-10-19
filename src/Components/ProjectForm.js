@@ -1,15 +1,15 @@
 import React from 'react';
-import { ReactSession } from "react-client-session";
-import styled from "styled-components";
-import TextField from "@mui/material/TextField";
-import Service from "../Service";
-import { useHistory } from 'react-router-dom';
+import {ReactSession} from 'react-client-session';
+import styled from 'styled-components';
+import TextField from '@mui/material/TextField';
+import Service from '../Service';
+import {useHistory} from 'react-router-dom';
 import {Button} from '@mui/material';
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 const Styles = styled.div`
  background: #218888;
@@ -79,12 +79,12 @@ const Styles = styled.div`
 //          - NA
 function ProjectForm() {
   const history = useHistory();
-  const [name, setName] = React.useState("");
-  const [description, setDescription] = React.useState("");
-  const [imageURL, setImageURL] = React.useState("");
-  const [message, setMessage] = React.useState("");
-  const [user, setUser] = React.useState([""]);
-  const [tags, setTags] = React.useState("");
+  const [name, setName] = React.useState('');
+  const [description, setDescription] = React.useState('');
+  const [imageURL, setImageURL] = React.useState('');
+  const [message, setMessage] = React.useState('');
+  const [user, setUser] = React.useState(['']);
+  const [tags, setTags] = React.useState('');
   const [open, setOpen] = React.useState(false);
   const [redirectToDashboard, setRedirectToDashboard] = React.useState(false);
 
@@ -95,131 +95,134 @@ function ProjectForm() {
   const handleClose = () => {
     setOpen(false);
     if (redirectToDashboard) {
-      history.push("/dashboard");
+      history.push('/dashboard');
     }
   };
 
   React.useEffect(() => {
-    setUser(ReactSession.get("username"));
+    setUser(ReactSession.get('username'));
   }, []);
 
   const handleNameChange = (e) => {
     setName(e.target.value);
-  }
+  };
 
   const handleDescriptionChange = (e) => {
     setDescription(e.target.value);
-  }
+  };
 
   const handleImageURLChange = (e) => {
     setImageURL(e.target.value);
-  }
+  };
 
   const handleTagsChange = (e) => {
     setTags(e.target.value);
-  }
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("Checking count of hits");
+    console.log('Checking count of hits');
     const form = new FormData();
-    form.append("productName", name);
-    form.append("productDescription", description);
-    form.append("imageUrl", imageURL);
-    form.append("email", user);
-    form.append("tags", tags);
-    Service.post("addProduct", form)
-      .then((data) =>
-        {setMessage(data.message);
-          handleClickOpen();
-          console.log(data)
-          if (data.success == "False") {
-            setRedirectToDashboard(false);
-            console.log(data.message)
-          } else {
-            setRedirectToDashboard(true);
-          }
-        }).catch(function(err){
-          setMessage("There was a problem submitting your product. Please try again later.")
+    form.append('productName', name);
+    form.append('productDescription', description);
+    form.append('imageUrl', imageURL);
+    form.append('email', user);
+    form.append('tags', tags);
+    Service.post('addProduct', form)
+      .then((data) => {
+        setMessage(data.message);
+        handleClickOpen();
+        console.log(data);
+        if (data.success == 'False') {
+          setRedirectToDashboard(false);
+          console.log(data.message);
+        } else {
+          setRedirectToDashboard(true);
+        }
+      })
+      .catch(function (err) {
+        setMessage(
+          'There was a problem submitting your product. Please try again later.'
+        );
       });
-   }
+  };
 
   return (
     <div className="container">
       <div className="child">
-        <div className="product-title">
-
-        </div>
+        <div className="product-title"></div>
       </div>
       <form data-testid="submit_form" onSubmit={handleSubmit}>
-          <h3>PRODUCT FORM</h3>
-          <label>Name</label>
-            <TextField
-              data-testid="form_name"
-              id="name"
-              label=""
-              multiline
-              maxRows={1}
-              inputProps={{ "data-testid": "form-inputName" }}
-              value={name}
-              onChange={handleNameChange}
-              fullWidth
-            />
-          <label>Description</label>
-            <TextField
-              id="description"
-              label=""
-              multiline
-              rows={3}
-              inputProps={{ "data-testid": "form-Desc" }}
-              value={description}
-              onChange={handleDescriptionChange}
-              fullWidth
-            />
-            <label>Image URL</label>
-            <TextField
-              id="imageURL"
-              label=""
-              multiline
-              maxRows={1}
-              inputProps={{ "data-testid": "form-Img" }}
-              value={imageURL}
-              onChange={handleImageURLChange}
-              fullWidth
-            />
-          <label>Tags</label>
-            <TextField
-              id="tags"
-              label=""
-              multiline
-              maxRows={1}
-              inputProps={{ "data-testid": "form-Tags" }}
-              value={tags}
-              onChange={handleTagsChange}
-              fullWidth
-            />
+        <h3>PRODUCT FORM</h3>
+        <label>Name</label>
+        <TextField
+          data-testid="form_name"
+          id="name"
+          label=""
+          multiline
+          maxRows={1}
+          inputProps={{'data-testid': 'form-inputName'}}
+          value={name}
+          onChange={handleNameChange}
+          fullWidth
+        />
+        <label>Description</label>
+        <TextField
+          id="description"
+          label=""
+          multiline
+          rows={3}
+          inputProps={{'data-testid': 'form-Desc'}}
+          value={description}
+          onChange={handleDescriptionChange}
+          fullWidth
+        />
+        <label>Image URL</label>
+        <TextField
+          id="imageURL"
+          label=""
+          multiline
+          maxRows={1}
+          inputProps={{'data-testid': 'form-Img'}}
+          value={imageURL}
+          onChange={handleImageURLChange}
+          fullWidth
+        />
+        <label>Tags</label>
+        <TextField
+          id="tags"
+          label=""
+          multiline
+          maxRows={1}
+          inputProps={{'data-testid': 'form-Tags'}}
+          value={tags}
+          onChange={handleTagsChange}
+          fullWidth
+        />
 
-          <button data-testid="submit_button">Submit</button>
-          <Dialog  open={open} onClose={handleClose} PaperProps={{ style: { minWidth: '400px' } }}>
+        <button data-testid="submit_button">Submit</button>
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          PaperProps={{style: {minWidth: '400px'}}}
+        >
           <DialogTitle>Form Submission Message</DialogTitle>
           <DialogContent>
-            <DialogContentText>
-            {message}
-            </DialogContentText>
+            <DialogContentText>{message}</DialogContentText>
           </DialogContent>
-            <DialogActions>
-              <Button onClick={handleClose}>Ok</Button>
-            </DialogActions>
-          </Dialog>
+          <DialogActions>
+            <Button onClick={handleClose}>Ok</Button>
+          </DialogActions>
+        </Dialog>
       </form>
     </div>
   );
 }
 
 export default function ProjectSubmittal() {
-    return (
-        <Styles>
-            <ProjectForm/>
-        </Styles>
-    );
+  return (
+    <Styles>
+      <ProjectForm />
+    </Styles>
+  );
 }

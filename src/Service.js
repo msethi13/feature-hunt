@@ -1,15 +1,15 @@
 // const baseUrl = "https://feature-hunt-final.herokuapp.com/";
- //const baseUrl = "https://damp-citadel-25681.herokuapp.com/"
+//const baseUrl = "https://damp-citadel-25681.herokuapp.com/"
 
- const baseUrl = "http://127.0.0.1:5000/"
- const requestOptionsBuilder = (method, body, headers) => {
-   let options = {
-       method: method,
-       headers: {}
-   };
-   if (body) options['body'] = JSON.stringify(body);
-   if (headers) options.headers = headers;
-   return options;
+const baseUrl = 'http://127.0.0.1:5000/';
+const requestOptionsBuilder = (method, body, headers) => {
+  let options = {
+    method: method,
+    headers: {},
+  };
+  if (body) options['body'] = JSON.stringify(body);
+  if (headers) options.headers = headers;
+  return options;
 };
 
 const postRequestOptionsBuilder = (method, body, headers) => {
@@ -24,8 +24,8 @@ const postRequestOptionsBuilder = (method, body, headers) => {
 
 const get = async (path, params) => {
   path = sanitizePath(path);
-  
-  if (params) path += "?" + new URLSearchParams(params);
+
+  if (params) path += '?' + new URLSearchParams(params);
   const response = await fetch(baseUrl + path);
   const data = await response.json();
   if (response.status >= 400 && response.status < 600) {
@@ -34,17 +34,17 @@ const get = async (path, params) => {
   return data;
 };
 const post = async (path, body) => {
-   path = sanitizePath(path);
-   const response = await fetch(
-          baseUrl + path,
-     postRequestOptionsBuilder('POST', body)
-      );
-      const data = await response.json();
-      if (response.status >= 400 && response.status < 600) {
-        return Promise.reject(response);
-      }
-      return data;
-   };
+  path = sanitizePath(path);
+  const response = await fetch(
+    baseUrl + path,
+    postRequestOptionsBuilder('POST', body)
+  );
+  const data = await response.json();
+  if (response.status >= 400 && response.status < 600) {
+    return Promise.reject(response);
+  }
+  return data;
+};
 //   const data = await response.json();
 //   if (response.status >= 400 && response.status < 600) {
 //     return Promise.reject(response);

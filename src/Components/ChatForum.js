@@ -1,55 +1,52 @@
-import React, { useState, useEffect } from 'react';
-import { ReactSession } from 'react-client-session';
-import { useParams } from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
+import {ReactSession} from 'react-client-session';
+import {useParams} from 'react-router-dom';
 //import React from "react";
 //import { useEffect, useState } from 'react';
 //import { useParams } from 'react-router-dom';
 //import { ReactSession } from 'react-client-session';
 import Service from '../Service';
-import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 import Comment from './Comment';
 
-
 const ChatForum = () => {
-  const {id1,id2}= useParams();
-  const productId=id1;
-  const featureId=id2;
-  console.log("YO YO YO ")
+  const {id1, id2} = useParams();
+  const productId = id1;
+  const featureId = id2;
+  console.log('YO YO YO ');
   console.log(productId);
   console.log(featureId);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
   //const [loggedInUser, setLoggedInUser] = useState(null);
   const [open, setOpen] = React.useState(false);
-  
+
   const handleNewCommentChange = (event) => {
     setNewComment(event.target.value);
   };
   // Function to fetch comments from the API
-  
-
 
   const addComment = (event) => {
     event.preventDefault();
-    if (newComment=== '')
-      return;
+    if (newComment === '') return;
     else {
       const addedComment = {
         productId: productId,
         comment: newComment,
         timestamp: Date.now(),
-        email: ReactSession.get("username"),
+        email: ReactSession.get('username'),
         //commentor:,
       };
       const form = new FormData();
-      form.append("comments", JSON.stringify(addedComment));
-      Service.post('/'+productId+'/'+featureId + '/comment', form)
-        .then(data => {});
+      form.append('comments', JSON.stringify(addedComment));
+      Service.post('/' + productId + '/' + featureId + '/comment', form).then(
+        (data) => {}
+      );
       setComments(comments.concat(addedComment));
       setNewComment('');
     }
@@ -57,11 +54,11 @@ const ChatForum = () => {
 
   useEffect(() => {
     //console.log(window.location.pathname);
-    Service.get('/'+productId+'/'+featureId + '/comment').then(data => {
+    Service.get('/' + productId + '/' + featureId + '/comment').then((data) => {
       //console.log(data)
       //setProductId(data[0] ? data[0].uid : '');
       setComments(data);
-      console.log(comments)
+      console.log(comments);
     });
   }, []);
 
@@ -69,8 +66,8 @@ const ChatForum = () => {
     setOpen(false);
   };
 
-  const username = ReactSession.get("username");
-  const loggedin = (username !== "" && username !== undefined)?true:false;
+  const username = ReactSession.get('username');
+  const loggedin = username !== '' && username !== undefined ? true : false;
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -111,11 +108,10 @@ const ChatForum = () => {
   // };
 
   // Fetch comments and the logged-in user on component mount
-  
 
   return (
     <div className="container">
-    {/* <div className="child">
+      {/* <div className="child">
       <div className="product-title">
         <h3>{id.toUpperCase()}</h3>
         <div className="sort">
@@ -125,38 +121,40 @@ const ChatForum = () => {
         </div>
       </div>
     </div> */}
-    <div className="child inputContainer">
-      <form data-testid="prod_form" onSubmit={addComment}>
-        <input 
-        className="inputBar" 
-        data-testid="prod_input"
-        value={newComment} 
-        onChange={loggedin?handleNewCommentChange:handleClickOpen} 
-        placeholder="Enter Comment">
-        </input>
-        <Dialog  open={open} onClose={handleClose} PaperProps={{ style: { minWidth: '400px' } }}>
-        <DialogTitle >Action Required</DialogTitle>
-        <DialogContent>
-          <DialogContentText >
-            Please login to add a Comment!
-          </DialogContentText>
-        </DialogContent>
-          <DialogActions>
-            <Button onClick={handleClose}>Ok</Button>
-          </DialogActions>
-        </Dialog>
-      </form>
-    </div>
-      <div className='main-content'>
-        <div className='features'>
-        {comments.map((comment,index)=>{
-          return (<Comment comment={comment} index={index} />)
-        })}
+      <div className="child inputContainer">
+        <form data-testid="prod_form" onSubmit={addComment}>
+          <input
+            className="inputBar"
+            data-testid="prod_input"
+            value={newComment}
+            onChange={loggedin ? handleNewCommentChange : handleClickOpen}
+            placeholder="Enter Comment"
+          ></input>
+          <Dialog
+            open={open}
+            onClose={handleClose}
+            PaperProps={{style: {minWidth: '400px'}}}
+          >
+            <DialogTitle>Action Required</DialogTitle>
+            <DialogContent>
+              <DialogContentText>
+                Please login to add a Comment!
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose}>Ok</Button>
+            </DialogActions>
+          </Dialog>
+        </form>
+      </div>
+      <div className="main-content">
+        <div className="features">
+          {comments.map((comment, index) => {
+            return <Comment comment={comment} index={index} />;
+          })}
         </div>
-     </div>
-    
-      
-  </div>
+      </div>
+    </div>
     // <div className="chat-forum">
     //   <div className="comments-list">
     //     {comments.map((comment) => (
@@ -185,8 +183,6 @@ const ChatForum = () => {
 
 export default ChatForum;
 
-
-
 // import React, { useState } from 'react';
 // import { ReactSession } from "react-client-session";
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -208,13 +204,7 @@ export default ChatForum;
 // //          - NAF
 // const Chat = ({ features, index, setFeatures, editable, setTimeline, productId}) => {
 
-
-
-//   
-
-
-
-  
+//
 
 // //   const increaseVote = () => {
 // //     const form = new FormData();
@@ -223,7 +213,7 @@ export default ChatForum;
 // //     form.append("isAdd", 1);
 // //     console.log("in increase vote")
 // //     Service.post("finalFeatureVote", form)
-// //       .then((data) => 
+// //       .then((data) =>
 // //         {
 // //           if(data.success)
 // //           {
@@ -245,7 +235,7 @@ export default ChatForum;
 // //     form.append("productId", productId);
 // //     form.append("featureId", features[index].id);
 // //     Service.post("upvoteFeature", form)
-// //       .then((data) => 
+// //       .then((data) =>
 // //         {
 // //           if(data.success)
 // //           {
@@ -259,7 +249,6 @@ export default ChatForum;
 // //         });
 // //   };
 
-
 // //   const decreaseVote = () => {
 // //     const form = new FormData();
 // //     form.append("featureId", features[index].id);
@@ -267,7 +256,7 @@ export default ChatForum;
 // //     form.append("isAdd", 0);
 // //     console.log("in decrease vote")
 // //     Service.post("finalFeatureVote", form)
-// //       .then((data) => 
+// //       .then((data) =>
 // //         {
 // //           if(data.success)
 // //           {
@@ -289,7 +278,7 @@ export default ChatForum;
 // //     form.append("productId", productId);
 // //     form.append("featureId", features[index].id);
 // //     Service.post("downvoteFeature", form)
-// //       .then((data) => 
+// //       .then((data) =>
 // //         {
 // //           if(data.success)
 // //           {
@@ -355,7 +344,7 @@ export default ChatForum;
 //     <div className="child feature">
 //       <div className="feature-container">
 //         <div className="content">
-//           <div className="feature-content" data-testid={"feature_content:"+features[index].id}> 
+//           <div className="feature-content" data-testid={"feature_content:"+features[index].id}>
 //             <span style={{ marginTop: 'auto', marginBottom: 'auto' }}>
 //               {capitalizeFirstLetter(features[index].text)}
 //             </span>
@@ -367,7 +356,7 @@ export default ChatForum;
 //                 <div>&nbsp;</div>
 //               </div>
 //             )}
-//             {editable && 
+//             {editable &&
 //             <div>
 //               {/* <TextField
 //                 data-testid={"feature_addtag:"+ features[index].id}
@@ -377,23 +366,23 @@ export default ChatForum;
 //                 size="small"
 //                 onChange={handleTextChange}
 //               /> */}
-//               {/* <Button 
+//               {/* <Button
 //               data-testid={"feature_tagbutton:" + features[index].id}
 //               onClick={addNewTag}>Add</Button>  */}
 //             </div> }
 //           </div>
 //           <div className='button-container'>
 //           {editable && <Button onClick={handleButtonClick}>
-//             Add 
+//             Add
 //           </Button>}
 //         </div>
 //         </div>
-        
+
 //         <div className="votes-container">
 //           <span>
-//             <FontAwesomeIcon icon={faChevronUp} 
-//             size="lg" 
-//             className={features[index].upVoted ? 'votedUp' : 'voteup'} 
+//             <FontAwesomeIcon icon={faChevronUp}
+//             size="lg"
+//             className={features[index].upVoted ? 'votedUp' : 'voteup'}
 //             data-testid={"feature_upvote:"+features[index].id}
 //             onClick={loggedin?handleUpvote:handleClickOpen} />
 //           </span>
@@ -414,9 +403,9 @@ export default ChatForum;
 //             {features[index].votes}
 //           </span>
 //           <span>
-//             <FontAwesomeIcon icon={faChevronDown} 
-//             size="lg" 
-//             className={features[index].downVoted ? 'votedDown' : 'votedown'} 
+//             <FontAwesomeIcon icon={faChevronDown}
+//             size="lg"
+//             className={features[index].downVoted ? 'votedDown' : 'votedown'}
 //             data-testid={"feature_downvote:" + features[index].id}
 //             onClick={loggedin?handleDownvote:handleClickOpen} />
 //           </span>

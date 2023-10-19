@@ -1,13 +1,13 @@
-import React from "react";
-import { render, screen, fireEvent, getByTestId } from "@testing-library/react";
-import { Router as RRouter } from "react-router-dom"; // NOT A TYPO
-import { createMemoryHistory } from "history";
-import "@testing-library/jest-dom/extend-expect";
+import React from 'react';
+import {render, screen, fireEvent, getByTestId} from '@testing-library/react';
+import {Router as RRouter} from 'react-router-dom'; // NOT A TYPO
+import {createMemoryHistory} from 'history';
+import '@testing-library/jest-dom/extend-expect';
 
-import Dashboard from "../Components/Dashboard";
-import Header from "../Components/Header";
-import "../setupTests";
-import Login from "../Components/Login";
+import Dashboard from '../Components/Dashboard';
+import Header from '../Components/Header';
+import '../setupTests';
+import Login from '../Components/Login';
 
 /**
  * This file tests Dashboard.js
@@ -29,47 +29,47 @@ data-testid="dash_sorttime" -- sort by latest
 data-testid="TEXT" -- short description
 */
 
-describe("Dashboard tests", () => {
-  it("renders dashboard", () => {
+describe('Dashboard tests', () => {
+  it('renders dashboard', () => {
     const history = createMemoryHistory();
-    history.push("/:id");
+    history.push('/:id');
 
-    const { getByTestId, getByText, getByRole, getByPlaceholderText } = render(
-        <div>
-          <RRouter history={history}>
-            <Login />
-          </RRouter>
-        </div>
+    const {getByTestId, getByText, getByRole, getByPlaceholderText} = render(
+      <div>
+        <RRouter history={history}>
+          <Login />
+        </RRouter>
+      </div>
     );
 
-    const loginb = getByTestId("login_button");
+    const loginb = getByTestId('login_button');
     fireEvent.click(loginb);
 
-    const sub = getByRole("button", { name: /Submit/i });
+    const sub = getByRole('button', {name: /Submit/i});
     expect(sub).toBeInTheDocument();
 
-    const can = getByRole("button", { name: /Cancel/i });
+    const can = getByRole('button', {name: /Cancel/i});
     expect(can).toBeInTheDocument();
 
     fireEvent.click(can);
     fireEvent.click(loginb);
 
-    const add = getByTestId("login_inputEmail");
-    const ress = "test@test.com";
+    const add = getByTestId('login_inputEmail');
+    const ress = 'test@test.com';
 
-    const pass = getByTestId("login_inputPassword");
-    const word = "abcd";
+    const pass = getByTestId('login_inputPassword');
+    const word = 'abcd';
 
-    fireEvent.change(pass, { target: { value: word } });
-    fireEvent.change(add, { target: { value: ress } });
+    fireEvent.change(pass, {target: {value: word}});
+    fireEvent.change(add, {target: {value: ress}});
 
     fireEvent.click(sub);
 
-    render (
-        <RRouter history={history}>
-            <Header setQuery={""}/>
-            <Dashboard />
-        </RRouter>
+    render(
+      <RRouter history={history}>
+        <Header setQuery={''} />
+        <Dashboard />
+      </RRouter>
     );
     // check presence of sort by
     const popular = getByText(/POPULAR/i);
@@ -97,17 +97,17 @@ describe("Dashboard tests", () => {
     // expect(whee).toBeInTheDocument();
   });
 
-  it("tests Dashboard sort by", () => {
+  it('tests Dashboard sort by', () => {
     const history = createMemoryHistory();
-    history.push("/:id");
-    const { getByTestId, getByText, getByPlaceholderText } = render(
+    history.push('/:id');
+    const {getByTestId, getByText, getByPlaceholderText} = render(
       <RRouter history={history}>
         <Dashboard />
       </RRouter>
     );
 
-    const popsort = getByTestId("dash_sortpop");
-    const timesort = getByTestId("dash_sorttime");
+    const popsort = getByTestId('dash_sortpop');
+    const timesort = getByTestId('dash_sorttime');
     fireEvent.click(timesort);
     fireEvent.click(popsort);
     fireEvent.click(timesort);
