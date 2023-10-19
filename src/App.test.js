@@ -1,16 +1,16 @@
-import React from "react";
-import {fireEvent, render, screen} from "@testing-library/react";
-import { Router as RRouter } from "react-router-dom"; // NOT A TYPO
-import Router from "react-router-dom";
-import { createMemoryHistory } from "history";
+import React from 'react';
+import {fireEvent, render, screen} from '@testing-library/react';
+import {Router as RRouter} from 'react-router-dom'; // NOT A TYPO
+import Router from 'react-router-dom';
+import {createMemoryHistory} from 'history';
 
-import App from "./App";
-import Product from "./Components/Product";
-import Feature from "./Components/Feature";
-import ProductTile from "./Components/ProductTile";
+import App from './App';
+import Product from './Components/Product';
+import Feature from './Components/Feature';
+import ProductTile from './Components/ProductTile';
 
-import "./setupTests";
-import Login from "./Components/Login";
+import './setupTests';
+import Login from './Components/Login';
 
 // import Service from './Service';
 
@@ -25,106 +25,111 @@ import Login from "./Components/Login";
  })
  */
 
-jest.mock("react-router-dom", () => ({
-  ...jest.requireActual("react-router-dom"),
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
   useParams: jest.fn(),
 }));
 
 ///// ORIGINAL TESTS /////
 
-test("renders home page", () => {
+test('renders home page', () => {
   render(<App />);
   const linkElement = screen.getByText(/PRODUCTS/i);
   expect(linkElement).toBeInTheDocument();
 });
 
-test("renders navbar", () => {
-    const history = createMemoryHistory();
-    history.push("/:id");
-    const { getByTestId, getByText, getByRole, queryByText,getAllByText } = render(
-      <RRouter history={history}>
-        <Login />
-      </RRouter>
-    );
+test('renders navbar', () => {
+  const history = createMemoryHistory();
+  history.push('/:id');
+  const {getByTestId, getByText, getByRole, queryByText, getAllByText} = render(
+    <RRouter history={history}>
+      <Login />
+    </RRouter>
+  );
 
-    const loginb = getByTestId("login_button");
-    fireEvent.click(loginb);
+  const loginb = getByTestId('login_button');
+  fireEvent.click(loginb);
 
-    const sub = getByRole("button", { name: /Submit/i });
-    expect(sub).toBeInTheDocument();
+  const sub = getByRole('button', {name: /Submit/i});
+  expect(sub).toBeInTheDocument();
 
-    const can = getByRole("button", { name: /Cancel/i });
-    expect(can).toBeInTheDocument();
+  const can = getByRole('button', {name: /Cancel/i});
+  expect(can).toBeInTheDocument();
 
-    fireEvent.click(can);
-    fireEvent.click(loginb);
+  fireEvent.click(can);
+  fireEvent.click(loginb);
 
-    const add = getByTestId("login_inputEmail");
-    const ress = "test@test.com";
+  const add = getByTestId('login_inputEmail');
+  const ress = 'test@test.com';
 
-    const pass = getByTestId("login_inputPassword");
-    const word = "abcd";
+  const pass = getByTestId('login_inputPassword');
+  const word = 'abcd';
 
-    fireEvent.change(pass, { target: { value: word } });
-    fireEvent.change(add, { target: { value: ress } });
+  fireEvent.change(pass, {target: {value: word}});
+  fireEvent.change(add, {target: {value: ress}});
 
-    fireEvent.click(sub);
-    render(<App />);
-    // const roadmap = screen.getByText(/Roadmap/i);
-    const feedback = screen.getByText(/Feedback/i);
-    // expect(roadmap).toBeInTheDocument();
-    expect(feedback).toBeInTheDocument();
+  fireEvent.click(sub);
+  render(<App />);
+  // const roadmap = screen.getByText(/Roadmap/i);
+  const feedback = screen.getByText(/Feedback/i);
+  // expect(roadmap).toBeInTheDocument();
+  expect(feedback).toBeInTheDocument();
 });
 
-test("renders products", () => {
-  jest.spyOn(Router, "useParams").mockReturnValue({ id: "Demo" });
+test('renders products', () => {
+  jest.spyOn(Router, 'useParams').mockReturnValue({id: 'Demo'});
   render(<Product />);
   const projectName = screen.getAllByText(/Demo/i);
   expect(projectName[0]).toBeInTheDocument();
 });
 
-test("renders features", () => {
+test('renders features', () => {
   const features = [
     {
       id: 1,
-      text: "Create dashboard for product owners",
+      text: 'Create dashboard for product owners',
       votes: 1,
       timestamp: 1530815581293,
-      tags: ["enhancement"],
+      tags: ['enhancement'],
     },
     {
       id: 2,
-      text: "Create product page",
+      text: 'Create product page',
       votes: 1,
       timestamp: 1530814681293,
-      tags: ["enhancement"],
+      tags: ['enhancement'],
     },
     {
       id: 3,
-      text: "Make likes consistent",
+      text: 'Make likes consistent',
       votes: 3,
       timestamp: 1530814981293,
-      tags: ["bug fix"],
+      tags: ['bug fix'],
     },
   ];
   const editable = true;
-  jest.spyOn(Router, "useParams").mockReturnValue({ id: "Demo" });
+  jest.spyOn(Router, 'useParams').mockReturnValue({id: 'Demo'});
   render(
-    <Feature features={features} index={0} setFeatures={() => console.log()} editable={editable}/>
+    <Feature
+      features={features}
+      index={0}
+      setFeatures={() => console.log()}
+      editable={editable}
+    />
   );
   const featureText = screen.getByText(/Create dashboard for product owners/i);
   expect(featureText).toBeInTheDocument();
 });
 
-test("renders product tile", () => {
+test('renders product tile', () => {
   const products = [
     {
       id: 1,
-      name: "feature-hunt",
+      name: 'feature-hunt',
       description:
         "Feature Hunt is a platform where users can share, vote, and discuss feature requests and product owners can organize (categorize/prioritize) these requests. Instead of each product having it's own feature request page/portal we create a central hub where any product can interact with its users.",
       votes: 2,
-      tags: ["productivity", "web app"],
+      tags: ['productivity', 'web app'],
     },
   ];
   render(
@@ -144,7 +149,7 @@ test("renders product tile", () => {
 
 // ///////// TESTS ADDED BY GROUP 25 /////////
 
-test("renders home page: additional screen checks", () => {
+test('renders home page: additional screen checks', () => {
   render(<App />);
   const popular = screen.getByText(/POPULAR/i);
   const latest = screen.getByText(/LATEST/i);
@@ -153,8 +158,6 @@ test("renders home page: additional screen checks", () => {
   expect(latest).toBeInTheDocument();
   expect(discover).toBeInTheDocument();
 });
-
-
 
 // test("renders Product, Feature, ProductTile: additional screen checks", () => {
 //   const history = createMemoryHistory();
@@ -220,42 +223,40 @@ test("renders home page: additional screen checks", () => {
 //   expect(history.location.pathname).toBe("/:id");
 // });
 
+test('display Your Projects in header with logged in user', () => {
+  const history = createMemoryHistory();
+  history.push('/:id/getFeature');
+  const {getByTestId, getByText, getByRole, queryByText} = render(
+    <RRouter history={history}>
+      <Login />
+    </RRouter>
+  );
 
+  const loginb = getByTestId('login_button');
+  fireEvent.click(loginb);
 
-test("display Your Projects in header with logged in user", () => {
-    const history = createMemoryHistory();
-    history.push("/:id/getFeature");
-    const { getByTestId, getByText, getByRole, queryByText } = render(
-      <RRouter history={history}>
-        <Login />
-      </RRouter>
-    );
+  const sub = getByRole('button', {name: /Submit/i});
+  expect(sub).toBeInTheDocument();
 
-    const loginb = getByTestId("login_button");
-    fireEvent.click(loginb);
+  const can = getByRole('button', {name: /Cancel/i});
+  expect(can).toBeInTheDocument();
 
-    const sub = getByRole("button", { name: /Submit/i });
-    expect(sub).toBeInTheDocument();
+  fireEvent.click(can);
+  fireEvent.click(loginb);
 
-    const can = getByRole("button", { name: /Cancel/i });
-    expect(can).toBeInTheDocument();
+  const add = getByTestId('login_inputEmail');
+  const ress = 'test@test.com';
 
-    fireEvent.click(can);
-    fireEvent.click(loginb);
+  const pass = getByTestId('login_inputPassword');
+  const word = 'abcd';
 
-    const add = getByTestId("login_inputEmail");
-    const ress = "test@test.com";
+  fireEvent.change(pass, {target: {value: word}});
+  fireEvent.change(add, {target: {value: ress}});
 
-    const pass = getByTestId("login_inputPassword");
-    const word = "abcd";
+  fireEvent.click(sub);
 
-    fireEvent.change(pass, { target: { value: word } });
-    fireEvent.change(add, { target: { value: ress } });
+  render(<App />);
 
-    fireEvent.click(sub);
-
-    render(<App />);
-
-    const yourproj = screen.getByText(/Your Projects/i);
-    expect(yourproj).toBeInTheDocument();
+  const yourproj = screen.getByText(/Your Projects/i);
+  expect(yourproj).toBeInTheDocument();
 });

@@ -7,7 +7,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Service from '../Service';
-import { Alert } from '@mui/material';
+import {Alert} from '@mui/material';
 
 //
 //       Component: SignUp
@@ -19,10 +19,10 @@ import { Alert } from '@mui/material';
 //          - NA
 export default function SignUp() {
   const [open, setOpen] = React.useState(false);
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [fullname, setFullname] = React.useState("");
-  const [message, setMessage] = React.useState("");
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const [fullname, setFullname] = React.useState('');
+  const [message, setMessage] = React.useState('');
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -34,49 +34,51 @@ export default function SignUp() {
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
-  }
+  };
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
-  }
+  };
 
   const handleNameChange = (e) => {
     setFullname(e.target.value);
-  }
+  };
 
   const handleSubmit = () => {
     const form = new FormData();
-    form.append("email", email);
-    form.append("fullname", fullname);
-    form.append("password", password);
+    form.append('email', email);
+    form.append('fullname', fullname);
+    form.append('password', password);
     Service.post('signup', form)
-      .then(data => 
-        {setMessage(data.message);
-          console.log(data.code);
-          if (data.code > 200) {
-            console.log(message)
-          } else {
-            handleClose();
-          }
-        }).catch(function(err){
-          setMessage("There was a problem with your registration. Please try again later.")
+      .then((data) => {
+        setMessage(data.message);
+        console.log(data.code);
+        if (data.code > 200) {
+          console.log(message);
+        } else {
+          handleClose();
+        }
+      })
+      .catch(function (err) {
+        setMessage(
+          'There was a problem with your registration. Please try again later.'
+        );
       });
-  }
+  };
 
-  React.useEffect(()=> {}, [message]);
+  React.useEffect(() => {}, [message]);
 
   return (
     <div>
-      <Button 
-      data-testid="signup_button"
-      onClick={handleClickOpen}>
+      <Button data-testid="signup_button" onClick={handleClickOpen}>
         SignUp
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle data-testid="signup_dialog_title">Sign Up</DialogTitle>
         <DialogContent>
           <DialogContentText data-testid="signup_dialog_text">
-            Enter your name, email and password to get started with Feature Hunt!
+            Enter your name, email and password to get started with Feature
+            Hunt!
           </DialogContentText>
           <TextField
             autoFocus
@@ -85,7 +87,7 @@ export default function SignUp() {
             margin="dense"
             id="name"
             label="Name"
-            inputProps={{ "data-testid": "signup_inputName" }}
+            inputProps={{'data-testid': 'signup_inputName'}}
             value={fullname}
             fullWidth
             variant="standard"
@@ -99,7 +101,7 @@ export default function SignUp() {
             type="email"
             fullWidth
             variant="standard"
-            inputProps={{ "data-testid": "signup_inputEmail" }}
+            inputProps={{'data-testid': 'signup_inputEmail'}}
             value={email}
           />
           <TextField
@@ -110,15 +112,23 @@ export default function SignUp() {
             label="Password"
             type="password"
             value={password}
-            inputProps={{ "data-testid": "signup_inputPassword" }}
+            inputProps={{'data-testid': 'signup_inputPassword'}}
             fullWidth
             variant="standard"
           />
         </DialogContent>
-        {message !== "" && <Alert severity='error' data-testid="signup_error">{message}</Alert>}
+        {message !== '' && (
+          <Alert severity="error" data-testid="signup_error">
+            {message}
+          </Alert>
+        )}
         <DialogActions>
-          <Button data-testid="signup_cancel" onClick={handleClose}>Cancel</Button>
-          <Button data-testid="signup_submit" onClick={handleSubmit}>Submit</Button>
+          <Button data-testid="signup_cancel" onClick={handleClose}>
+            Cancel
+          </Button>
+          <Button data-testid="signup_submit" onClick={handleSubmit}>
+            Submit
+          </Button>
         </DialogActions>
       </Dialog>
     </div>

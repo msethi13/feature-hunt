@@ -6,17 +6,14 @@ import TimelineConnector from '@mui/lab/TimelineConnector';
 import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineDot from '@mui/lab/TimelineDot';
 
-export default function ProductTimeline({feature_name,index}) {
+export default function ProductTimeline({feature_name, index}) {
   return (
-    
-      <TimelineItem>
-        <TimelineSeparator>
-            <TimelineConnector data-testid="timeline-connector"/> 
-            <TimelineDot data-testid="timeline-dot" />
-        </TimelineSeparator>
-        <TimelineContent>{feature_name}</TimelineContent>
-      </TimelineItem>
+    <TimelineItem>
+      <TimelineSeparator>
+        <TimelineConnector data-testid="timeline-connector" />
+        <TimelineDot data-testid="timeline-dot" />
+      </TimelineSeparator>
+      <TimelineContent>{feature_name}</TimelineContent>
+    </TimelineItem>
   );
 }
-
-

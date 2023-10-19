@@ -1,13 +1,13 @@
-import React from "react";
-import { render, screen, fireEvent, getByTestId } from "@testing-library/react";
-import { Router as RRouter } from "react-router-dom"; // NOT A TYPO
-import Router from "react-router-dom";
-import { createMemoryHistory } from "history";
-import "@testing-library/jest-dom/extend-expect";
-import Product from "../Components/Product";
-import Feature from "../Components/Feature";
+import React from 'react';
+import {render, screen, fireEvent, getByTestId} from '@testing-library/react';
+import {Router as RRouter} from 'react-router-dom'; // NOT A TYPO
+import Router from 'react-router-dom';
+import {createMemoryHistory} from 'history';
+import '@testing-library/jest-dom/extend-expect';
+import Product from '../Components/Product';
+import Feature from '../Components/Feature';
 
-import "../setupTests";
+import '../setupTests';
 
 /**
  * This file tests Product.js
@@ -59,27 +59,27 @@ data-testid="feature_downvote:#"  -- downvote a feature
 data-testid="fvoteval:#"          -- the number of votes shown
 */
 
-jest.mock("react-router-dom", () => ({
-  ...jest.requireActual("react-router-dom"),
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
   useParams: jest.fn(),
 }));
 
-describe("Test Product", () => {
+describe('Test Product', () => {
   //TODO: FIGURE OUT HOW TO CHECK IF THE CLASS IS HIGHLIGHTED OR NOT.
-  it("tests sort by", () => {
+  it('tests sort by', () => {
     const history = createMemoryHistory();
-    history.push("/:id"); // home page
+    history.push('/:id'); // home page
 
-    jest.spyOn(Router, "useParams").mockReturnValue({ id: "Demo" });
-    const { getByTestId } = render(
+    jest.spyOn(Router, 'useParams').mockReturnValue({id: 'Demo'});
+    const {getByTestId} = render(
       <RRouter history={history}>
         <Product />
       </RRouter>
     );
 
     //TODO: FIGURE OUT HOW TO CHECK IF THE CLASS IS HIGHLIGHTED OR NOT.
-    const popsort = getByTestId("prod_sortpop");
-    const timesort = getByTestId("prod_sorttime");
+    const popsort = getByTestId('prod_sortpop');
+    const timesort = getByTestId('prod_sorttime');
     fireEvent.click(timesort);
     fireEvent.click(popsort);
 
@@ -91,20 +91,20 @@ describe("Test Product", () => {
     // expect(whee).toBeInTheDocument();
   });
 
-  it("tests adding a feature to an empty list", () => {
+  it('tests adding a feature to an empty list', () => {
     const history = createMemoryHistory();
-    history.push("/:id"); // home page
+    history.push('/:id'); // home page
 
-    jest.spyOn(Router, "useParams").mockReturnValue({ id: "Demo" });
-    const { getByTestId, getByText ,getAllByText} = render(
+    jest.spyOn(Router, 'useParams').mockReturnValue({id: 'Demo'});
+    const {getByTestId, getByText, getAllByText} = render(
       <RRouter history={history}>
         <Product />
       </RRouter>
     );
 
     // coverage clicks
-    const popsort = getByTestId("prod_sortpop");
-    const timesort = getByTestId("prod_sorttime");
+    const popsort = getByTestId('prod_sortpop');
+    const timesort = getByTestId('prod_sorttime');
     fireEvent.click(timesort);
     fireEvent.click(popsort);
 

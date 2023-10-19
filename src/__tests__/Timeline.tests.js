@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import {render, screen} from '@testing-library/react';
 import ProductTimeline from '../Components/Timeline';
 
 describe('ProductTimeline', () => {
@@ -19,6 +19,4 @@ describe('ProductTimeline', () => {
     const dotElement = screen.getByTestId('timeline-dot');
     expect(dotElement).toBeInTheDocument();
   });
-
-  
 });

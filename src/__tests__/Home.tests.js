@@ -1,12 +1,12 @@
-import React from "react";
-import { render, screen, fireEvent, getByTestId } from "@testing-library/react";
-import { Router as RRouter } from "react-router-dom"; // NOT A TYPO
-import { createMemoryHistory } from "history";
-import "@testing-library/jest-dom/extend-expect";
+import React from 'react';
+import {render, screen, fireEvent, getByTestId} from '@testing-library/react';
+import {Router as RRouter} from 'react-router-dom'; // NOT A TYPO
+import {createMemoryHistory} from 'history';
+import '@testing-library/jest-dom/extend-expect';
 
-import Home from "../Components/Home";
-import ProductTile from "../Components/ProductTile";
-import "../setupTests";
+import Home from '../Components/Home';
+import ProductTile from '../Components/ProductTile';
+import '../setupTests';
 
 /**
  * This file tests Home.js
@@ -25,9 +25,9 @@ data-testid="home_sortpop"  -- sort by popularity
 data-testid="home_sorttime" -- sort by latest
 */
 
-describe("Home tests", () => {
-  it("renders Home.js", () => {
-    const { getByTestId, getByText } = render(<Home />);
+describe('Home tests', () => {
+  it('renders Home.js', () => {
+    const {getByTestId, getByText} = render(<Home />);
     const head = getByText(/products/i);
     expect(head).toBeInTheDocument();
     const pop = getByText(/popular/i);
@@ -43,8 +43,8 @@ describe("Home tests", () => {
     //expect(whee).toBeInTheDocument();
   });
 
-  it("tests Home.js sort by", () => {
-    const { getByTestId, getByText } = render(<Home />);
+  it('tests Home.js sort by', () => {
+    const {getByTestId, getByText} = render(<Home />);
 
     const head = getByText(/products/i);
     expect(head).toBeInTheDocument();
@@ -53,8 +53,8 @@ describe("Home tests", () => {
     const late = getByText(/latest/i);
     expect(late).toBeInTheDocument();
 
-    const popsort = getByTestId("home_sortpop");
-    const timesort = getByTestId("home_sorttime");
+    const popsort = getByTestId('home_sortpop');
+    const timesort = getByTestId('home_sorttime');
     fireEvent.click(timesort);
     fireEvent.click(popsort);
     fireEvent.click(timesort);
@@ -68,21 +68,21 @@ describe("Home tests", () => {
     //expect(whee).toBeInTheDocument();
   });
 
-  it("renders Home and ProductTile", () => {
+  it('renders Home and ProductTile', () => {
     const history = createMemoryHistory();
-    history.push("/");
+    history.push('/');
 
     const products = [
       {
         id: 1,
-        name: "feature-hunt",
-        description: "Feature Hunt is a...",
+        name: 'feature-hunt',
+        description: 'Feature Hunt is a...',
         votes: 2,
-        tags: ["productivity", "web app"],
+        tags: ['productivity', 'web app'],
       },
     ];
 
-    const { getByTestId, getByText } = render(
+    const {getByTestId, getByText} = render(
       <RRouter history={history}>
         <Home />
         <ProductTile
@@ -107,8 +107,8 @@ describe("Home tests", () => {
     const tag = getByText(/productivity/i);
     expect(tag).toBeInTheDocument();
 
-    const popsort = getByTestId("home_sortpop");
-    const timesort = getByTestId("home_sorttime");
+    const popsort = getByTestId('home_sortpop');
+    const timesort = getByTestId('home_sorttime');
     fireEvent.click(timesort);
     fireEvent.click(popsort);
     fireEvent.click(timesort);

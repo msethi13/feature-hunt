@@ -7,9 +7,9 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import {ReactSession} from 'react-client-session';
-import { useHistory } from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import Service from '../Service';
-import { Alert } from '@mui/material';
+import {Alert} from '@mui/material';
 
 //
 //       Component: Login
@@ -19,11 +19,11 @@ import { Alert } from '@mui/material';
 //           - NA
 //       Outputs:
 //          - NA
-export default function Login({ setLoggedin }) {
+export default function Login({setLoggedin}) {
   const [open, setOpen] = React.useState(false);
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [message, setMessage] = React.useState("");
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const [message, setMessage] = React.useState('');
   const history = useHistory();
 
   const handleClickOpen = () => {
@@ -36,32 +36,31 @@ export default function Login({ setLoggedin }) {
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
-  }
+  };
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
-  }
+  };
 
   const handleSubmit = () => {
     const form = new FormData();
-    form.append("email", email);
-    form.append("password", password);
-    Service.post('login', form)
-      .then(data => 
-        {setMessage(data.message);
-          console.log(data.code);
-          if (data.code > 200) {
-            console.log(message)
-          } else {
-            setLoggedin(true);
-            ReactSession.set("username", email);
-            history.push("/dashboard");
-            handleClose();
-          }
-        });
-  }
+    form.append('email', email);
+    form.append('password', password);
+    Service.post('login', form).then((data) => {
+      setMessage(data.message);
+      console.log(data.code);
+      if (data.code > 200) {
+        console.log(message);
+      } else {
+        setLoggedin(true);
+        ReactSession.set('username', email);
+        history.push('/dashboard');
+        handleClose();
+      }
+    });
+  };
 
-  React.useEffect(()=> {}, [message]);
+  React.useEffect(() => {}, [message]);
 
   return (
     <div>
@@ -84,26 +83,34 @@ export default function Login({ setLoggedin }) {
             type="email"
             fullWidth
             variant="standard"
-            inputProps={{ "data-testid": "login_inputEmail" }}
+            inputProps={{'data-testid': 'login_inputEmail'}}
             value={email}
           />
           <TextField
-            data-testid="login_password"  
+            data-testid="login_password"
             onChange={handlePasswordChange}
             margin="dense"
             id="password"
             label="Password"
             type="password"
-            inputProps={{ "data-testid": "login_inputPassword" }}
+            inputProps={{'data-testid': 'login_inputPassword'}}
             value={password}
             fullWidth
             variant="standard"
           />
         </DialogContent>
-        {message !== "" && <Alert severity="error" data-testid="login_error">Error: {message}</Alert>}
+        {message !== '' && (
+          <Alert severity="error" data-testid="login_error">
+            Error: {message}
+          </Alert>
+        )}
         <DialogActions>
-          <Button data-testid="login_cancel" onClick={handleClose}>Cancel</Button>
-          <Button data-testid="login_submit" onClick={handleSubmit}>Submit</Button>
+          <Button data-testid="login_cancel" onClick={handleClose}>
+            Cancel
+          </Button>
+          <Button data-testid="login_submit" onClick={handleSubmit}>
+            Submit
+          </Button>
         </DialogActions>
       </Dialog>
     </div>

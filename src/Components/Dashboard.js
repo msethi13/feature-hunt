@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
-import { ReactSession } from 'react-client-session';
+import {useEffect, useState} from 'react';
+import {ReactSession} from 'react-client-session';
 import ProjectTile from './ProjectTile';
 import Service from '../Service';
 import Feature from './Feature';
-import { Alert } from '@mui/material';
+import {Alert} from '@mui/material';
 
 //
 //       Component: Dashboard
@@ -21,8 +21,10 @@ const Dashboard = ({query}) => {
   const [user, setUser] = useState(['']);
 
   useEffect(() => {
-    Service.get('products', "query="+ query).then(products => setProducts(products));
-    setUser(ReactSession.get("username"));
+    Service.get('products', 'query=' + query).then((products) =>
+      setProducts(products)
+    );
+    setUser(ReactSession.get('username'));
   }, [query]);
 
   /**
@@ -32,40 +34,88 @@ const Dashboard = ({query}) => {
    */
   const isProductOwner = (product) => {
     return product.users && product.users.includes(user);
-  }
+  };
 
   return (
     <div>
-      <Alert data-testid="dash_alert" severity="success">You are logged in as {user}</Alert>
+      <Alert data-testid="dash_alert" severity="success">
+        You are logged in as {user}
+      </Alert>
       <div className="container">
         <div className="child">
           <div className="product-title">
             <h3 data-testid="dash_proj">{user}'s Projects</h3>
             <div className="sort">
-              <p 
-              className={sortBy === 'votes' ? 'highlight' : ''} 
-              data-testid="dash_sortpop"
-              onClick={() => setSortBy('votes')}>POPULAR</p>
+              <p
+                className={sortBy === 'votes' ? 'highlight' : ''}
+                data-testid="dash_sortpop"
+                onClick={() => setSortBy('votes')}
+              >
+                POPULAR
+              </p>
               <p> | </p>
-              <p 
-              className={sortBy === 'timestamp' ? 'highlight' : ''}
-              data-testid="dash_sorttime" 
-              onClick={() => setSortBy('timestamp')}>LATEST</p>
-
+              <p
+                className={sortBy === 'timestamp' ? 'highlight' : ''}
+                data-testid="dash_sorttime"
+                onClick={() => setSortBy('timestamp')}
+              >
+                LATEST
+              </p>
             </div>
           </div>
         </div>
-        {products.map((p, index) => { p['index'] = index; return p; }).filter(p => query ? p.tags.includes(query.toLowerCase()) || p.name.toLowerCase().includes(query.toLowerCase()) : true).sort((p1, p2) => p2[sortBy] - p1[sortBy]).map(
-          (product) => 
-          <div>
-            
-              {isProductOwner(product) && <ProjectTile key={product.id} products={products} index={product.index} setProducts={setProducts} />}
-              {features.map((f, index) => { f['index'] = index; return f; }).filter(f => query ? f.tags.includes(query.toLowerCase()) || f.text.toLowerCase().includes(query.toLowerCase()) : true).sort((f1, f2) => f2[sortBy] - f1[sortBy]).map(
-          (feature) => <Feature key={feature.id} features={features} index={feature.index} setFeatures={setFeatures} editable={isProductOwner(product)} />
-          , setFeatures)}
-          </div>
-          , setProducts)}
-        </div>
+        {products
+          .map((p, index) => {
+            p['index'] = index;
+            return p;
+          })
+          .filter((p) =>
+            query
+              ? p.tags.includes(query.toLowerCase()) ||
+                p.name.toLowerCase().includes(query.toLowerCase())
+              : true
+          )
+          .sort((p1, p2) => p2[sortBy] - p1[sortBy])
+          .map(
+            (product) => (
+              <div>
+                {isProductOwner(product) && (
+                  <ProjectTile
+                    key={product.id}
+                    products={products}
+                    index={product.index}
+                    setProducts={setProducts}
+                  />
+                )}
+                {features
+                  .map((f, index) => {
+                    f['index'] = index;
+                    return f;
+                  })
+                  .filter((f) =>
+                    query
+                      ? f.tags.includes(query.toLowerCase()) ||
+                        f.text.toLowerCase().includes(query.toLowerCase())
+                      : true
+                  )
+                  .sort((f1, f2) => f2[sortBy] - f1[sortBy])
+                  .map(
+                    (feature) => (
+                      <Feature
+                        key={feature.id}
+                        features={features}
+                        index={feature.index}
+                        setFeatures={setFeatures}
+                        editable={isProductOwner(product)}
+                      />
+                    ),
+                    setFeatures
+                  )}
+              </div>
+            ),
+            setProducts
+          )}
+      </div>
     </div>
   );
 };
