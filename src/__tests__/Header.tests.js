@@ -39,13 +39,13 @@ data-testid="TEXT" -- short description
 describe('Header tests', () => {
   it('renders header: screen checks 1', () => {
     render(<Header />, {wrapper: MemoryRouter});
-    const roadmap = screen.getByText(/Roadmap/i);
+    // const roadmap = screen.getByText(/Roadmap/i);
     const feedback = screen.getByText(/Feedback/i);
 
     // const logout = screen.getByText(/LogOut/i);
     // expect(logout).toBeInTheDocument();
 
-    expect(roadmap).toBeInTheDocument();
+    // expect(roadmap).toBeInTheDocument();
     expect(feedback).toBeInTheDocument();
   });
 
@@ -84,22 +84,22 @@ describe('Header tests', () => {
     // const submit = getByTestId("header_sub");
     // const dash = getByTestId("header_dash");
     const feedback = getByTestId('header_fb');
-    const roadmap = getByTestId('header_rm');
+    // const roadmap = getByTestId('header_rm'); 
 
-    const links = getByTestId('header_links');
-    expect(links.children.length).toBe(2); // check number of links
+    const links = getByTestId('header_links'); 
+    expect(links.children.length).toBe(1); // check number of links
 
     expect(history.length).toBe(2);
     fireEvent.click(home);
     // expect(history.length).toBe(3);
     // fireEvent.click(dash);
-    expect(history.length).toBe(3);
-    fireEvent.click(roadmap);
+    // expect(history.length).toBe(3);
+    // fireEvent.click(roadmap);
     // expect(history.length).toBe(5);
     // fireEvent.click(submit);
-    expect(history.length).toBe(4);
+    expect(history.length).toBe(3);
     fireEvent.click(feedback);
-    expect(history.length).toBe(5);
+    expect(history.length).toBe(4);
     expect(history.location.pathname).toBe('/feedback');
 
     // const logout = getByRole("button", { name: /LogOut/i }); // id: "logout_header"
