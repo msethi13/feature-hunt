@@ -26,6 +26,7 @@
   },
   "scripts": {
     "start": "react-scripts --openssl-legacy-provider start",
+    "start-dock": "react-scripts start",
     "start-api": "cd backend && flask run --no-debugger",
     "start-db": "cd backend && flask run",
     "lint": "./node_modules/.bin/prettier --single-quote --trailing-comma es5 --print-width 80 --write --no-bracket-spacing '**/*.js' '**/**/*.js'",

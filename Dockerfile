@@ -10,4 +10,4 @@ EXPOSE 3000
 COPY . ./
 # start app
 ENTRYPOINT ["yarn"]
-CMD ["start"]
+CMD ["start-dock"]
