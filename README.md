@@ -9,7 +9,7 @@
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![Docker](https://img.shields.io/badge/Containerized-Docker-blue)](https://docs.docker.com/compose/)
 ![GitHub issues](https://img.shields.io/github/issues/msethi13/feature-hunt)
-[![GitHub closed issues](https://img.shields.io/badge/issues-12%20closed-red)](https://github.com/elric97/feature-hunt/issues?q=is%3Aissue+is%3Aclosed)
+[[![GitHub closed issues](https://img.shields.io/github/issues-closed/msethi13/feature-hunt)
 [![Build](https://github.com/CSC510-Group-25/feature-hunt/actions/workflows/nodejs.yml/badge.svg)](https://github.com/msethi13/feature-hunt/blob/main/.github/workflows/nodejs.yml)
 [![Tests](https://github.com/CSC510-Group-25/feature-hunt/actions/workflows/nodejs_tests.yml/badge.svg)](https://github.com/elric97/feature-hunt/blob/main/.github/workflows/nodejs_tests.yml)
 [![Coverage Status](https://coveralls.io/repos/github/CSC510-Group-25/feature-hunt/badge.svg?branch=main)](https://coveralls.io/github/elric97/feature-hunt)
