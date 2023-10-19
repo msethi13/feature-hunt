@@ -11,8 +11,8 @@ export default function ProductTimeline({feature_name,index}) {
     
       <TimelineItem>
         <TimelineSeparator>
-            {<TimelineConnector /> }
-            {<TimelineDot />}
+            <TimelineConnector data-testid="timeline-connector"/> 
+            <TimelineDot data-testid="timeline-dot" />
         </TimelineSeparator>
         <TimelineContent>{feature_name}</TimelineContent>
       </TimelineItem>

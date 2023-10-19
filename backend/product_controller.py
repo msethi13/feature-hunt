@@ -187,7 +187,7 @@ def upvote_feature():
     
 
     #################################################################################
-##       Function: remove_votes
+##       Function: downvote_feature
 ##       Description: This post request is used to downvote a feature. (A user can only downvote once from the current state)
 
 ##       Inputs:

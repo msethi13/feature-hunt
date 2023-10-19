@@ -128,6 +128,18 @@ def get_feature(product_name):
         data = product_records.find({"name": product_name}, {"features": 1,"uid":1,"users":1})
         return dumps(data)
 
+'''
+Function: get_timeline
+Description: You can get the suggested feature added to the product feature timeline
+Inputs:
+  - productNmae: name of the product
+  
+
+Outputs:
+  - results: List of the features added to the feature timeline of the product
+'''
+
+
 @app.route('/<product_name>/getTimeline', methods=['GET'])
 def get_timeline(product_name):
     if request.method == 'GET':
@@ -135,6 +147,17 @@ def get_timeline(product_name):
         return dumps(data)
 
     
+'''
+Function: add_to_timeline
+Description: You can add a suggested feature to the product feature timeline
+Inputs:
+  - productNmae: name of the product
+  
+
+Outputs:
+  - results: Add a suggested feature to the feature timeline of a product
+'''
+
 
 @app.route('/<product_name>/getFeature/addToTimeline', methods=['POST'])
 def add_to_timeline(product_name):
@@ -192,6 +215,14 @@ def features(product_name):
     
     return dumps(result)
 
+'''
+Function: delete
+Description: You can delete a product
+Inputs:
+  - uid: UID of the product
+Outputs:
+  - results: Remove product from the products list
+'''
 
 @app.route('/<uid>/delete', methods=['DELETE'])
 def delete(uid):
@@ -199,6 +230,18 @@ def delete(uid):
     result = product_records.delete_one({"uid": strId})
     print(result)
     return jsonify({'ok': True, 'message': 'record deleted'}), 200
+
+
+'''
+Function: add_new_comment
+Description: You can add a comment/get comments for a suggested feature
+Inputs:
+  - productIdd: UID of the product
+  - feature_id: ID of the feature
+
+Outputs:
+  - results: Add a new comment to the feature/Displays all the comments for the features
+'''
 
 
 @app.route('/<productId>/<feature_id>/comment', methods=['GET','POST'])
@@ -209,26 +252,20 @@ def add_new_comment(productId, feature_id):
         dat = product_records.find({"uid" : productId})
         results = list(dat)
         data = loads(dumps(results))
-        #print(comment)
+        
         features = data[0]['features']
         comments=features[int(feature_id)-1]["comments"]
         comments.append(comment)
         features[int(feature_id)-1]["comments"]=comments
         print(features)
         result = product_records.find_one_and_update({"uid": productId}, {"$set": {"features": features}})
-        #[int(feature_id)-1]['comments']
-        #comments.append(comment)
-        #result = product_records.find_one_and_update({"uid": productId,'features':{"$elemMatch":{"id":feature_id}}}, {"$set": {"comments": comments}})
-        #result = product_records.find({"uid": productId,'features':{"$elemMatch":{"id":feature_id}}})
         
-        #print(dumps(result))
         return dumps(result)
-        #return "done"
+        
     elif request.method == 'GET':
         dat = product_records.find({"uid" : productId})
         results = list(dat)
         data = loads(dumps(results))
-        #print(comment)
         features = data[0]['features']
         comments=features[int(feature_id)-1]["comments"]
         return dumps(comments)

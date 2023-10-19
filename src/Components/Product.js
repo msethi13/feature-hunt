@@ -210,7 +210,7 @@ const Product = ({query}) => {
 
           <Dialog open={featureForm} onClose={featureFormClose} >
       <DialogTitle>Add a feature</DialogTitle>
-      <DialogContent>
+      <DialogContent data-testid="prod_input">
         <DialogContentText>Please enter name and category of feature:</DialogContentText>
         <TextField
           label="Text Field"

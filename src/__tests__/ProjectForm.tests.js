@@ -43,7 +43,7 @@ describe("ProjectForm tests", () => {
           <ProjectForm />
         </RRouter>
       );
-    const form = getByText(/Project Form/i);
+    const form = getByText(/PRODUCT FORM/);
     const name = getByText(/Name/i);
     const desc = getByText(/Description/i);
     const img = getByText(/Image URL/i);
