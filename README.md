@@ -10,11 +10,11 @@
 [![Docker](https://img.shields.io/badge/Containerized-Docker-blue)](https://docs.docker.com/compose/)
 [![GitHub issues](https://img.shields.io/badge/issues-6%20open-green)](https://github.com/elric97/feature-hunt/issues)
 [![GitHub closed issues](https://img.shields.io/badge/issues-12%20closed-red)](https://github.com/elric97/feature-hunt/issues?q=is%3Aissue+is%3Aclosed)
-[![Build](https://github.com/CSC510-Group-25/feature-hunt/actions/workflows/nodejs.yml/badge.svg)](https://github.com/elric97/feature-hunt/blob/main/.github/workflows/nodejs.yml)
+[![Build](https://github.com/CSC510-Group-25/feature-hunt/actions/workflows/nodejs.yml/badge.svg)](https://github.com/msethi13/feature-hunt/blob/main/.github/workflows/nodejs.yml)
 [![Tests](https://github.com/CSC510-Group-25/feature-hunt/actions/workflows/nodejs_tests.yml/badge.svg)](https://github.com/elric97/feature-hunt/blob/main/.github/workflows/nodejs_tests.yml)
 [![Coverage Status](https://coveralls.io/repos/github/CSC510-Group-25/feature-hunt/badge.svg?branch=main)](https://coveralls.io/github/elric97/feature-hunt)
 [![CodeQL](https://github.com/CSC510-Group-25/feature-hunt/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/elric97/feature-hunt/blob/main/.github/workflows/codeql-analysis.yml)
-[![Pylint](https://github.com/CSC510-Group-25/feature-hunt/actions/workflows/pylint.yml/badge.svg)](https://github.com/elric97/feature-hunt/blob/main/.github/workflows/pylint.yml)
+[![Pylint](https://github.com/CSC510-Group-25/feature-hunt/actions/workflows/pylint.yml/badge.svg)](https://github.com/msethi13/feature-hunt/blob/main/.github/workflows/pylint.yml)
 [![Netlify](https://img.shields.io/netlify/dbecc37c-c273-4b45-bfff-3fd33d20cae0)](https://feature-hunt-g29.netlify.app/)
 
 
