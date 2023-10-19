@@ -1,8 +1,8 @@
 """
-Copyright (C) 2021 Feature Hunt - All Rights Reserved
+Copyright (C) 2023 Feature Hunt - All Rights Reserved
 You may use, distribute and modify this code under the terms of the MIT license.
 You should have received a copy of the XYZ license with
-this file. If not, please write to: featurehuntteam@gmail.com
+this file. If not, please write to: seproject37@gmail.com
 """
 
 # pylint: disable=wrong-import-position,poiackend-lontless-string-statement,undefined-variable,line-too-long

@@ -16,20 +16,54 @@
 [![CodeQL](https://github.com/msethi13/feature-hunt/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/msethi13/feature-hunt/actions/workflows/codeql-analysis.yml)
 [![Pylint](https://github.com/msethi13/feature-hunt/actions/workflows/pylint.yml/badge.svg)](https://github.com/msethi13/feature-hunt/actions/workflows/pylint.yml)
 
+Feature Hunt is a platform designed to empower you to make better product decisions. It achieves this by providing the means for product owners to seamlessly collect, analyze, and organize feedback and feature requests within their product's dedicated feedback board and presenting the upcoming features to other users in the form of a timeline of release date.
 
-Have a look at [Phase3-Video](https://youtu.be/watch?v=TEacECgr1qk)
-## INTRODUCTION ⚡️
+## What it Does
 
-Stop letting ideas slip through the cracks. Collect, analyze, and organize feedback and feature requests in your product's feedback board to make better product decisions.  
-  
-Feature Hunt is a platform that allows you to do just that. Users can share/vote/discuss feature requests and product owners can organize them to make better product decisions 🎯.
+- 🚀 Allows users to easily share their feedback and feature requests on a dedicated platform.
+- 📊 Enables product owners to efficiently analyze and organize user-generated feedback.
+- 📈 Employs algorithms to calculate product views, helping identify trending products.
+- 📆 Allows product owners to add a timeline of feature releases to keep users informed.
+- 👀 Enables users to view the feature release timeline.
+- 📬 Notifies users when a feature they suggested is added to the timeline.
+- 📬 Notifies users when new feature suggestions by other users are added to products they created.
+- 📧 Ensures email notifications are up to date and correctly merged for user convenience.
+- 💬 Facilitates collaborative conversations using the discussion forum for each product.
 
-### Watch this short video to know more:
+## Phase 4 Features implemented
 
-[<img src="https://github.com/elric97/feature-hunt/blob/main/docs/phase_3_images/video_thumbnail.png">](https://youtu.be/watch?v=TEacECgr1qk)
+- 📊 Calculated the views of products and listed trending products based on it.
+- 🕒 Added the Feature Timeline functionality.
+- 📩 Added functionality to notify the user if any feature they suggested was added to the timeline of that product.
+- 📩 Added functionality to notify the user if a new feature suggestion was added to any product they created.
+- 💬 Added new functionality of a discussion forum for features.
+- 📋 Added new functionality to add features with the help of a form.
 
-The following technologies were used for the development of this project:  
+## Bugs fixed
 
+- 🐞 Fixed the upvote/downvote for Products.
+- 🐞 Fixed the upvote/downvote for Features.
+- 🐞 Fixed URL manipulation bug which used to display non-existent products.
+- 🐞 Fixed a bug that was letting us add projects with duplicate names.
+- 🐞 Restricted the add feature functionality to logged-in users.
+- 🐞 Refactored product upvote/downvote code.
+- 🐞 The projects listed after clicking on "Your Projects" are now clickable.
+- 🐞 Fixed the issue of non-clickable projects under "Your Projects."
+
+[Additional details can be viewed here](/Phase_3_Docs/deltaDocument.md)
+## Preview
+ - Homepage
+  <img src = "docs/Bug_fix_new/Home-page.png"/>
+ - Products Page
+  <img src = "docs/Bug_fix_new/product-page.png"/>
+ - Features and Timeline Displayed Page
+   <img src = "docs/Bug_fix_new/feature-displayed.png"/>
+ - Your projects Page
+  <img src = "docs/Bug_fix_new/clickable-project-dashboard.png"/>
+
+## Link to Phase 4 Video: 
+
+We have used the following technologies were used for the development of this project:  
 <p align="left">
   <a href="https://www.reactjs.org" target="_blank">
     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" alt="react" width="30" height="30"/>
@@ -51,42 +85,7 @@ The following technologies were used for the development of this project:
   </a>
 </p>  
 
-React (P.S. we use hooks)  
-JavaScript  
-Python3  
-Flask  
-MongoDB  
-HTML  
-CSS  
-
-We have started using [MaterialUI] for styled components. 
-
-For more information, visit our [wiki page on tools, hooks, and services](https://github.com/CSC510-Group-25/feature-hunt/wiki/Tools,-Hooks,-Services).
-
-## Preview
-
-The **Home** Page - It has a list of different products for which you can provide feature requests
-<img width="1200" alt="Screen Shot 2021-09-19 at 5 24 43 PM" src="https://user-images.githubusercontent.com/11090612/133943516-d55244b5-9f5e-4166-a18e-af35cf020146.png">  
-
-The **Product** Page - It has a list of feature requests added by users
-<img width="1148" alt="Screen Shot 2021-09-19 at 5 25 04 PM" src="https://user-images.githubusercontent.com/11090612/133944169-5529ea32-40c8-4786-b198-6e5c1eecd64f.png">  
-
-The **Comment** Section - Each product page has a comment section (Powered by [utteranc.es](https://utteranc.es))
-<img width="830" alt="Screen Shot 2021-09-19 at 5 25 15 PM" src="https://user-images.githubusercontent.com/11090612/133943532-1a834e0e-2ea5-477f-a09f-122b05f7de7a.png">
-
-### Newest Features:
-You can now create an account and mange the products you are a part of! This includes - 
-
-**Project Submittal** - You can instantly add new products to be reviewed by the community. 
-<img width="1200" alt="Screen Shot 2021-09-19 at 5 24 43 PM" src="https://github.com/CSC510-Group-25/feature-hunt/blob/group25-improvements/docs/component-screenshots/Screenshot%202021-11-04%20submitform.png">  
-
-**Tag Management** - You can now give feature feedback though tags. Want to say that you are working on a feature? Add a `IN DEVELOPMENT` tag!
-<img width="1200" alt="Screen Shot 2021-09-19 at 5 24 43 PM" src="https://user-images.githubusercontent.com/78971563/140238752-a6ebe8ab-942f-462e-94b6-5d3d4064115e.png"> 
-
-### Phase 3 Enhancements :
-We have fixed various bugs in the Project and we have also added new features. To know more details please check our [Delta Document](https://github.com/elric97/feature-hunt/blob/main/Phase_3_Docs/deltaDocument.md)
-## Getting Started
-#### Before you get started, if you are using Windows, please visit our [wiki page on Windows development](https://github.com/CSC510-Group-25/feature-hunt/wiki/How-to-develop-with-Windows).
+## Installation Steps
 There are two ways to install and develop for featurehunt 
 
 1. Using Docker
@@ -103,8 +102,12 @@ https://docs.docker.com/get-docker
 ```
 git clone https://github.com/elric97/feature-hunt.git
 ```
-
-#### 3. Run the following Commands
+#### 3. In the following files, make the changes:
+```
+auth_controller.py - change the redirect url to 6060
+service.js - change the redirect url to 6060
+```
+#### 4. Run the following commands
 ```
 cd feature-hunt
 
@@ -119,7 +122,7 @@ This will run two docker containers. The frontend will run on port 3000 and the 
 
 #### 1. Git clone the Repository using 
 ```
-git clone https://github.com/elric97/feature-hunt.git
+git clone https://github.com/msethi13/feature-hunt.git
 ```
 #### 2. Run the following Commands
 ```
@@ -155,14 +158,11 @@ The API runs on [http://localhost:5000](http://localhost:5000).
 
 Requests made to [http://localhost:3000](http://localhost:3000) that don't exist on the react server are automatically forwarded to this API
 
-
 ## Connecting with a Database
 
 > We use Mongo Cloud Atlas for our project as we find it very convenient. You may choose to use a local mongodb instance or run a docker container
 
-#### Check out our [tutorial](https://github.com/CSC510-Group-25/feature-hunt/wiki/Getting-Started-with-Database-Development:-Connection-and-Setup) to get started with creating and connecting to a database.
-
-> You can also connect to the database from your shell using [mongosh](https://docs.mongodb.com/mongodb-shell/)
+In the file db_init.py - insert the mongo connection url
 
 #### Update :
 > Connecting with DB - We have introduced an environment variable DB_PATH, to make sure that you set it to your local or deployed environment
@@ -184,47 +184,31 @@ Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
 The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Your app is ready!
 
-## Deployment
-We used Heroku and Netlify for deploying the application.
-We have deployed our application's front end you can check it out [here]( https://feature-hunt-g29.netlify.app/)
-, the application's backend can be found [here](https://feature-hunt-final.herokuapp.com/).
-
-Check out our [wiki page](https://github.com/elric97/feature-hunt/wiki/Deployment) to understand how to deploy the application.
-## Future Scope
-We believe in the ability to add new features in any project (including our own). 
-
-#### Check out our ideas for the future: [Future scope](https://github.com/elric97/feature-hunt/projects/1)
-
-## Contributors 🎯
+## Contributors 
 
 <table>
   <tr>
-    <td>Group 27</td>
-    <td align="center"><a href="https://github.com/shahrk/"><img src="https://avatars.githubusercontent.com/u/11090612?v=4" width="80px;" alt=""/><br /><sub><b>Raj Shah</b></sub></a></td>
-    <td align="center"><a href="https://github.com/Nirav1929/"><img src="https://avatars.githubusercontent.com/u/11133468?v=4" width="80px;" alt=""/><br /><sub><b>Nirav Patel</b></sub></a><br /></td>
-    <td align="center"><a href="https://github.com/Parth59/"><img src="https://avatars.githubusercontent.com/u/22288099?v=4" width="80px;" alt=""/><br /><sub><b>Parth Kanakiya</b></sub></a><br /></td>
-    <td align="center"><a href="https://github.com/mithildave/"><img src="https://avatars.githubusercontent.com/u/26930183?v=4" width="80px;" alt=""/><br /><sub><b>Mithil Dave</b></sub></a><br /></td>
-    <td align="center"><a href="https://www.github.com/BhargavJethwa"><img src="https://avatars.githubusercontent.com/u/70560970?v=4" width="80px;" alt=""/><br /><sub><b>Bhargav Jethwa</b></sub></a><br /></td>   
+    <td>Group 21</td>
+    <td align="center"><a href="https://github.com/bhavya180301/"><img src="https://avatars.githubusercontent.com/u/145395517?v=4" width="80px;" alt=""/><br /><sub><b>Bhavya Harchandani</b></sub></a></td>
+    <td align="center"><a href="https://github.com/msethi13/"><img src="https://avatars.githubusercontent.com/u/44026796?v=4" width="80px;" alt=""/><br /><sub><b>Mitali Sethi</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/saxena1701/"><img src="https://avatars.githubusercontent.com/u/143452326?v=4" width="80px;" alt=""/><br /><sub><b>Akshat Saxena</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/sid-ncsu/"><img src="https://avatars.githubusercontent.com/u/142809941?v=4" width="80px;" alt=""/><br /><sub><b>Siddharth Shah</b></sub></a><br /></td>
   </tr>
-  
-  <tr>
-    <td>Group 25</td>
-    <td align="center"><a href="https://github.com/etracey7/"><img src="https://avatars.githubusercontent.com/u/78971563?v=4" width="80px;" alt=""/><br /><sub><b>Emily Tracey</b></sub></a></td>
-    <td align="center"><a href="https://github.com/peeyush10234/"><img src="https://avatars.githubusercontent.com/u/10905673?v=4" width="80px;" alt=""/><br /><sub><b>Peeyush Taneja</b></sub></a><br /></td>
-    <td align="center"><a href="https://github.com/jhnguye4/"><img src="https://avatars.githubusercontent.com/u/42051115?v=4" width="80px;" alt=""/><br /><sub><b>Jonathan Nguyen</b></sub></a><br /></td>
-    <td align="center"><a href="https://github.com/snapcat/"><img src="https://avatars.githubusercontent.com/u/89357283?v=4" width="80px;" alt=""/><br /><sub><b>Leila Moran</b></sub></a><br /></td>
-    <td align="center"><a href="https://www.github.com/shraddhamishra7"><img src="https://avatars.githubusercontent.com/u/7471821?v=4" width="80px;" alt=""/><br /><sub><b>Shraddha Mishra</b></sub></a><br /></td>
-  </tr>
-  
-  <tr>
-    <td>Group 29</td>
-    <td align="center"><a href="https://github.com/palvitgarg99/"><img src="https://avatars.githubusercontent.com/u/16212546?v=4" width="80px;" alt=""/><br /><sub><b>Palvit Garg</b></sub></a></td>
-    <td align="center"><a href="https://github.com/elric97/"><img src="https://avatars.githubusercontent.com/u/17125417?v=4" width="80px;" alt=""/><br /><sub><b>Rachit Sharma</b></sub></a><br /></td>
-    <td align="center"><a href="https://github.com/aditi12200"><img src="https://avatars.githubusercontent.com/u/55187770?v=4" width="80px;" alt=""/><br /><sub><b>Aditi Bhagwat</b></sub></a><br /></td>
-    <td align="center"><a href="https://github.com/anumitgarg"><img src="https://avatars.githubusercontent.com/u/32408402?v=4" width="80px;" alt=""/><br /><sub><b>Anumit Garg</b></sub></a><br /></td>
-    <td align="center"><a href="https://github.com/ShreeSub"><img src="https://avatars.githubusercontent.com/u/67685445?v=4" width="80px;" alt=""/><br /><sub><b>Shree Lakshmi Ramasubramanian</b></sub></a><br /></td>
-  </tr>
+  </table>
 
-</table>
+
+## Contribution
+Please refer the CONTRIBUTING.md file for instructions on how to contribute to our repository.
+
+## License
+This project is licensed under the MIT License.
+
+## Future Scope
+- Can add frontend for Image Upload
+- Allow user to edit their own comments (on the comments page of feature)
+- Add dates to the feature timeline
+- Feature being displayed after first refresh when clicked on searched product.
+- Features page of a product does not display features directly (without reload) when the product is found through Search
+

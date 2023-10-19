@@ -2,138 +2,146 @@
 
 ## Bug Fixes 🐛
 
-* Up vote feature was breaking the UI
+* Fixed the upvote/downvote for Features 
 <table>
     <tr>
-        <th>Phase 2</th>
         <th>Phase 3</th>
+        <th>Phase 4</th>
     </tr>
     <tr>
         <td>
             before upvoting
-        <img src="../docs/phase_3_images/before_upvote.png">
+        <img src="../docs/Bug_fix_old/Feature Voting.png">
         </td>
         <td>
             before upvoting<br>
-            <img src="../docs/phase_3_images/before_upvote.png">
+            <img src="../docs/Bug_fix_new/feature-upvote-before.png">
         </td>
     </tr>
       <tr>
         <td>
-            after upvoting in phase 2
-        <img src="../docs/phase_3_images/after_upvote_breaking.png">
+            after upvoting in phase 3
+        <img src="../docs/Bug_fix_old/Feature Voting.png">
         </td>
         <td>
-            after upvoting in phase 3<br>
-            <img src="../docs/phase_3_images/working_feature_upvote.png">
+            after upvoting in phase 4<br>
+            <img src="../docs/Bug_fix_new/feature-upvote-after.png">
         </td>
     </tr>
   </table>
 
-* On submitting the project form, duplicate projects are created
+* Fixed the upvote/downvote for Products 
 <table>
     <tr>
-        <th>Phase 2</th>
         <th>Phase 3</th>
+        <th>Phase 4</th>
     </tr>
     <tr>
         <td>
-            Submission form
-        <img src="../docs/phase_3_images/submission_form.png">
+            before upvoting
+        <img src="../docs/Bug_fix_old/Product Voting.png">
         </td>
         <td>
-            Submission form
-        <img src="../docs/phase_3_images/updated_submission_form.png">
+            before upvoting<br>
+            <img src="../docs/Bug_fix_new/Product-upvote-before.png">
         </td>
     </tr>
       <tr>
         <td>
-            Submitted Project
-        <img src="../docs/phase_3_images/submitted_project.png">
+            after upvoting in phase 3
+        <img src="../docs/Bug_fix_old/Product Voting.png">
         </td>
         <td>
-            No duplicates are formed after submission
-        <img src="../docs/phase_3_images/updated_project.png">
+            after upvoting in phase 4<br>
+            <img src="../docs/Bug_fix_new/Product-upvote-after.png">
+        </td>
+    </tr>
+  </table>
+  
+* Fixed url manipulation bug which used to display non-existent products
+<table>
+    <tr>
+        <th>Phase 3</th>
+        <th>Phase 4</th>
+    </tr>
+    <tr>
+        <td>
+            Can view non existing projects
+        <img src="../docs/Bug_fix_old/Manipulating URLs.png">
+        </td>
+        <td>
+            Getting an error if we manipulate the url
+        <img src="../docs/Bug_fix_new/Product-not-found.png">
         </td>
     </tr>
   </table>
 
-* User is shown as logged in even without creating an account
+<!-- * On submitting the project form, duplicate projects are created
 <table>
     <tr>
-        <th>Phase 2</th>
         <th>Phase 3</th>
+        <th>Phase 4</th>
     </tr>
     <tr>
         <td>
-            User is automatically logged in
-        <img src="../docs/phase_3_images/auto_loggedin.png">
+            Can create duplicate projects
+        <img src="/docs/Bug_fix_old/Duplicate Projects.png">
         </td>
         <td>
-            User needs to create an account first
-        <img src="../docs/phase_3_images/login.png">
+            Duplicate creation shows error
+        <img src=".g">
+        </td>
+    </tr>
+  </table> -->
+
+
+* Restricted the add feature functionality to logged in users
+<table>
+    <tr>
+        <th>Phase 3</th>
+        <th>Phase 4</th>
+    </tr>
+    <tr>
+        <td>
+            User not logged in
+        <img src="../docs/Bug_fix_old/Feature without logging in.png">
+        </td>
+        <td>
+            User can suggest feature
+        <img src="../docs/Bug_fix_new/login-before-feature-add.png">
+        </td>
+    </tr>
+     <tr>
+        <th>Phase 3</th>
+        <th>Phase 4</th>
+    </tr>
+    <tr>
+        <td>
+            User not logged in
+        <img src="../docs/Bug_fix_old/Feature without logging in 2.png">
+        </td>
+        <td>
+            User cannot suggest feature
+        <img src="../docs/Bug_fix_new/login-before-feature-add.png">
         </td>
     </tr>
   </table>
 
-*  
-
-## New features and Enhancements 🎉
-
-* We have added a check to validate if user is logged in before voting
+*  Fixed the non clickable projects under “Your Projects”
 <table>
     <tr>
         <th>Phase 3</th>
+        <th>Phase 4</th>
     </tr>
     <tr>
         <td>
-	Added login check for upvoting
-	<img src="../docs/phase_3_images/login_check.png">
-	</td>
-    </tr>
-</table>
-
-* We have added a delete feature for users to delete their projects
-<table>
-    <tr>
-        <th>Phase 3</th>
-    </tr>
-    <tr>
+            User cannot click on products
+        <img src="../docs/Bug_fix_old/My projects -Not clickable.png">
+        </td>
         <td>
-	Added delete functionality for features
-	<img src="../docs/phase_3_images/delete_project.png">
-	</td>
+            User can click on products
+        <img src="../docs/Bug_fix_new/clickable-project-dashboard.png">
+        </td>
     </tr>
- </table>
- 
- * We have improved existing search functionality
-<table>
-    <tr>
-        <th>Phase 3</th>
-    </tr>
-    <tr>
-        <td>
-	1) The search was done in frontend server, which was wrong from design point of view. In future when data size increases its better to filter the results at backend.
-	<br>
-	2) Many searches were failing, because search query was not correct. Like tags were not correctly identified because of wrong case. This part is corrected.
-	<img src="../docs/phase_3_images/Search.png">
-	</td>
-    </tr>
- </table>
+  </table>
 
-* We have provided functionality to upload images from your local device. This gives you the functionality to upload images if you do not have an image url (Frontend part is pending, can be picked at a later stage).
-<table>
-    <tr>
-        <th>Phase 3</th>
-    </tr>
-    <tr>
-        <td>
-	Functionality to upload images
-	<img src="../docs/phase_3_images/upload_image.png">
-	</td>
-    </tr>
-</table>
-
-
-* Automated heroku deployment. Whenever something is pushed to main branch
-<br> Check out the github action here [https://github.com/elric97/feature-hunt/blob/main/.github/workflows/deploy.yml]

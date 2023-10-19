@@ -6,7 +6,7 @@ The following is a set of guidelines for contributing to Feature Hunt. These are
 
 See the [contributing guidelines](https://github.com/shahrk/feature-hunt/blob/main/CONTRIBUTING.md) of the original [feature-hunt](https://github.com/shahrk/feature-hunt) if you plan to contribute upstream from this fork.
 
-To contribute to [Group 25's fork](https://github.com/CSC510-Group-25/feature-hunt), continue reading here.
+To contribute to [Group 21's fork](https://github.com/msethi13/feature-hunt), continue reading here.
 
 
 
@@ -18,7 +18,7 @@ This section guides you through submitting a bug report. Following these guideli
 ### How Do I Submit A (Good) Bug Report?
 Bugs are tracked as GitHub issues. After you've determined which repository your bug is related to, create an issue on that repository and provide the following information by filling in the template.
 
-Alternatively, you can open a new discussion here: https://github.com/CSC510-Group-25/feature-hunt/discussions/categories/bugs
+Alternatively, you can open a new discussion here: https://github.com/msethi13/feature-hunt/discussions
 
 Explain the problem and include additional details to help maintainers reproduce the problem:
 
@@ -45,8 +45,8 @@ Enhancement suggestions are tracked as Github issues. After you have determined 
 * List some other text editors or applications where this enhancement exists.
 * Specify the name and version of the OS you're using.
 
+Alternatively, you can open a new discussion here: https://github.com/msethi13/feature-hunt/discussions
 
-Alternatively, you can open a new discussion here: https://github.com/CSC510-Group-25/feature-hunt/discussions/categories/ideas
 
 
 ## Pull Requests
