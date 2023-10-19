@@ -142,9 +142,12 @@ Outputs:
 
 @app.route('/<product_name>/getTimeline', methods=['GET'])
 def get_timeline(product_name):
-    if request.method == 'GET':
-        data = product_records.find({"name": product_name}, {"timeline": 1})
-        return dumps(data)
+    try:
+        if request.method == 'GET':
+            data = product_records.find({"name": product_name}, {"timeline": 1})
+            return dumps(data)
+    except:
+        return jsonify(success=False)
 
     
 '''

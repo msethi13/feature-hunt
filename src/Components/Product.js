@@ -128,7 +128,7 @@ const Product = ({query}) => {
     Service.get('/' + id + '/getTimeline').then((data) => {
       if (data) {
         //console.log(data[0]['timeline'])
-        setTimeline(data[0]['timeline']);
+        setTimeline(data[0]?data[0]['timeline']:[]);
       }
     });
   }, []);
