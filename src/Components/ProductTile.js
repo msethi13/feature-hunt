@@ -120,7 +120,7 @@ const ProductTile = ({ products, index, setProducts }) => {
   };
   
   return (
-    <div className="child product">
+    <div className="child product" style={{margin:'0'}}>
       <div className="product-container">
         <div className="image-container">
           <img src={products[index].image_url} alt={products[index].name} />

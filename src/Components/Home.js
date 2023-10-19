@@ -29,10 +29,10 @@ const Home = ({query}) => {
   useEffect(() => {
     Service.get('products', "query=" + query).then(products => {
       setProducts(products);
-      setNumberOfProducts(products.length);
-      if (numberOfProducts >= 3){
+      const numProducts = products.length;
+      setNumberOfProducts(numProducts);
+      if (products.length >= 3){
         setTopProducts(findTopProducts(products));
-        console.log(topProducts);
       }
     });
 
@@ -43,7 +43,7 @@ const Home = ({query}) => {
     return (
       <div className="container">
       <div className="row" style={{ display: 'flex' }}>
-        <div className="left-column" style={{ width: '40%' }}>
+        <div className="left-column" style={{}}>
           <div className="child">
             <div className="product-title">
               <h3 data-testid="home_header">PRODUCTS</h3>
@@ -82,7 +82,7 @@ const Home = ({query}) => {
           </div>
         </div>
         
-        <div className="column" style={{ width: '50%', textAlign: 'right' }}>
+        <div className="right-column" style={{}}>
         <div class="row">
             <p>TOP PRODUCTS</p>
         </div>
@@ -106,7 +106,7 @@ const Home = ({query}) => {
     return (
       <div className="container">
       <div className="row" style={{ display: 'flex' }}>
-        <div className="left-column" style={{ width: '40%' }}>
+        <div className="left-column" style={{ }}>
           <div className="child">
             <div className="product-title">
               <h3 data-testid="home_header">PRODUCTS</h3>
