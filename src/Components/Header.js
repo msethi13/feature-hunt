@@ -68,9 +68,9 @@ function Header({setQuery}) {
                     Submit Project
                   </li>
                 )}
-                <li data-testid="header_rm" onClick={goTo('feature-hunt')}>
+                {/* <li data-testid="header_rm" onClick={goTo('feature-hunt')}>
                   RoadMap
-                </li>
+                </li> */}
                 <li data-testid="header_fb" onClick={goTo('feedback')}>
                   Feedback
                 </li>
