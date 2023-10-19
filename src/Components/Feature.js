@@ -224,25 +224,23 @@ const Feature = ({
       size="small"
         onClick={handleButtonClick}
         variant="outlined"
-        style={{ color: '#218888', borderColor: '#218888', marginRight: '5px' }}
-      >
+        style={{ color: '#218888', borderColor: '#218888', marginRight: '5px' }}>
         Add to timeline
-      </Button>
-      <Button
-      size="small"
-        onClick={goTo(features[index].id)}
-        variant="outlined"
-        style={{ color: '#218888', borderColor: '#218888' }}
-      >
-        View Comments
       </Button>
     </>
   )}
+  <Button
+      size="small"
+        onClick={goTo(features[index].id)}
+        variant="outlined"
+        style={{ color: '#218888', borderColor: '#218888' }}>
+        View Comments
+      </Button>
 </div>
 
         </div>
 
-        <div className="votes-container">
+        <div className="votes-container" style={{ display: 'flex', alignItems: 'center' }}>
           <span>
             <FontAwesomeIcon
               icon={faChevronUp}
@@ -265,10 +263,7 @@ const Feature = ({
               <Button onClick={handleClose}>Ok</Button>
             </DialogActions>
           </Dialog>
-          <span></span>
-          <span data-testid={'fvoteval:' + features[index].id}>
-            {features[index].votes}
-          </span>
+          <span data-testid={'fvoteval:' + features[index].id}>{features[index].votes}</span>
           <span>
             <FontAwesomeIcon
               icon={faChevronDown}

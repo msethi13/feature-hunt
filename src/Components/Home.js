@@ -41,7 +41,7 @@ const Home = ({query}) => {
     return (
       <div className="container">
         <div className="row" style={{display: 'flex'}}>
-          <div className="left-column" style={{width:'100%'}}>
+          <div className="left-column" style={{width:'70%'}}>
             <div className="child">
               <div className="product-title">
                 <h3 data-testid="home_header">PRODUCTS</h3>
@@ -80,21 +80,20 @@ const Home = ({query}) => {
             </div>
           </div>
 
-          <div className="right-column" style={{width:'20%'}}>
-            <div class="row">
-            <p style={{ color: 'teal', fontWeight: 'bold' }}>TOP PRODUCTS</p>
-            </div>
-            <div className="row">
-    <p style={{ fontWeight: 'bold' }}>{topProducts[0]}</p>
+          <div className="right-column" style={{ width: '20%' }}>
+  <div style={{ position: 'sticky', top: '20px' }}>
+    <p style={{ color: 'teal', fontWeight: 'bold' }}>TOP PRODUCTS</p>
+    <div className="row">
+      <p style={{ fontWeight: 'bold' }}>{topProducts[0]}</p>
+    </div>
+    <div className="row">
+      <p style={{ fontWeight: 'bold' }}>{topProducts[1]}</p>
+    </div>
+    <div className="row">
+      <p style={{ fontWeight: 'bold' }}>{topProducts[2]}</p>
+    </div>
+  </div>
 </div>
-<div className="row">
-    <p style={{ fontWeight: 'bold' }}>{topProducts[1]}</p>
-</div>
-<div className="row">
-    <p style={{ fontWeight: 'bold' }}>{topProducts[2]}</p>
-</div>
-
-          </div>
         </div>
       </div>
     );
