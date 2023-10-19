@@ -2,6 +2,7 @@
 //const baseUrl = "https://damp-citadel-25681.herokuapp.com/"
 
 const baseUrl = 'http://127.0.0.1:5000/';
+// const baseUrl = 'http://127.0.0.1:6060/'; Use this when using docker build
 const requestOptionsBuilder = (method, body, headers) => {
   let options = {
     method: method,
