@@ -196,9 +196,13 @@ const Product = ({query}) => {
         </div>
       </div>
       <div className="child inputContainer">
-        <button onClick={loggedin ? featureFormOpen : loginCheckOpen}>
-          Add Feature
-        </button>
+        <Button
+        size="small"
+        onClick={loggedin ? featureFormOpen : loginCheckOpen}
+        variant="outlined"
+        style={{ backgroundColor: '#218888', color: '#fff', marginRight: '10px' }}>
+        Add New Feature
+      </Button>
 
         <Dialog open={featureForm} onClose={featureFormClose}>
           <DialogTitle>Add a feature</DialogTitle>
@@ -297,7 +301,7 @@ const Product = ({query}) => {
             )}
         </div>
         <div className="timeline">
-          <h3 className="timeline-title">{id.toUpperCase()} Timeline</h3>
+          <h3 className="timeline-title">TIMELINE</h3>
           <Timeline position="alternate-reverse">
             {timeline.map((t, index) => {
               return (

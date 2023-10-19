@@ -188,21 +188,17 @@ const Feature = ({
             data-testid={'feature_content:' + features[index].id}
           >
             <span style={{marginTop: 'auto', marginBottom: 'auto'}}>
-              {capitalizeFirstLetter(features[index].text)}
+            {capitalizeFirstLetter(features[index].text)}
             </span>
-          </div>
-          <div
+            <div
             className="tag-container"
-            data-testid={'feature_tag_container:' + features[index].id}
+            data-testid={'feature_tag_container:' + features[index].id} style={{marginBottom:'25px'}}
           >
             {features[index]['tags'].map((tag) => (
-              <div key={tag}>
-                <span className="tag" data-testid="feature_tag">
-                  {tag.toUpperCase()}
-                </span>
-                <div>&nbsp;</div>
-              </div>
-            ))}
+            <span key={tag} className="tag" >
+            {tag.toUpperCase()}
+            </span>))}
+
             {editable && (
               <div>
                 {/* <TextField
@@ -219,12 +215,31 @@ const Feature = ({
               </div>
             )}
           </div>
+          </div>
+          
           <div className="button-container">
-            {editable && <Button onClick={handleButtonClick}>Add</Button>}
-          </div>
-          <div className="button-container" onClick={goTo(features[index].id)}>
-            {<Button onClick={handleButtonClick}>View Chat</Button>}
-          </div>
+  {editable && (
+    <>
+      <Button
+      size="small"
+        onClick={handleButtonClick}
+        variant="outlined"
+        style={{ color: '#218888', borderColor: '#218888', marginRight: '5px' }}
+      >
+        Add to timeline
+      </Button>
+      <Button
+      size="small"
+        onClick={goTo(features[index].id)}
+        variant="outlined"
+        style={{ color: '#218888', borderColor: '#218888' }}
+      >
+        View Comments
+      </Button>
+    </>
+  )}
+</div>
+
         </div>
 
         <div className="votes-container">
