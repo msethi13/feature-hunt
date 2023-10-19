@@ -14,8 +14,7 @@
 [![Tests](https://github.com/msethi13/feature-hunt/actions/workflows/nodejs_tests.yml/badge.svg)](https://github.com/msethi13/feature-hunt/actions/workflows/nodejs_tests.yml)
 [![Coverage Status](https://coveralls.io/repos/github/CSC510-Group-25/feature-hunt/badge.svg?branch=main)](https://coveralls.io/github/elric97/feature-hunt)
 [![CodeQL](https://github.com/CSC510-Group-25/feature-hunt/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/elric97/feature-hunt/blob/main/.github/workflows/codeql-analysis.yml)
-[![Pylint](https://github.com/msethi13/feature-hunt/actions/workflows/pylint.yml/badge.svg)](https://github.com/msethi13/feature-hunt/blob/main/.github/workflows/pylint.yml)
-
+[![Pylint](https://github.com/msethi13/feature-hunt/actions/workflows/pylint.yml/badge.svg)](https://github.com/msethi13/feature-hunt/actions/workflows/pylint.yml)
 
 
 Have a look at [Phase3-Video](https://youtu.be/watch?v=TEacECgr1qk)
