@@ -52,7 +52,7 @@ Feature Hunt is a platform designed to empower you to make better product decisi
 [Additional details can be viewed here](/Phase_3_Docs/deltaDocument.md)
 
 ## Rubric
-Can be viewed [here](https://github.com/msethi13/feature-hunt/blob/main/docs/Project%202%20Grading%20Rubric%20-%20Sheet1.csv)
+Can be viewed [here](https://github.com/msethi13/feature-hunt/blob/main/PROJ%202/Project%202%20Grading%20Rubric%20-%20Sheet1.csv)
 ## Preview
  - Homepage
   <img src = "docs/Bug_fix_new/Home-page.png"/>
