@@ -61,7 +61,8 @@ def add_product():
             return jsonify(success=False, message="Product with the same name already exists. Please try a different name.")
 
         feature_dict = []
-        product_input = {'uid': str(int(time.time())), 'name': product_name, 'description': product_description,
+        #the products added to the database are always lowercase
+        product_input = {'uid': str(int(time.time())), 'name': product_name_lower, 'description': product_description,
                          'image_url': image_url, 'users': [email], 'tags': tags, 'features': feature_dict, 'votes': 0,
                          'file_name': file_name,'views':views, 'timeline':timeline}
 
