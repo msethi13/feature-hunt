@@ -12,7 +12,6 @@
 ![GitHub closed issues](https://img.shields.io/github/issues-closed/msethi13/feature-hunt)
 ![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/msethi13/feature-hunt/nodejs.yml)
 [![Tests](https://github.com/msethi13/feature-hunt/actions/workflows/nodejs_tests.yml/badge.svg)](https://github.com/msethi13/feature-hunt/actions/workflows/nodejs_tests.yml)
-[![Coverage Status](https://coveralls.io/repos/github/CSC510-Group-25/feature-hunt/badge.svg?branch=main)](https://coveralls.io/github/elric97/feature-hunt)
 [![CodeQL](https://github.com/msethi13/feature-hunt/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/msethi13/feature-hunt/actions/workflows/codeql-analysis.yml)
 [![Pylint](https://github.com/msethi13/feature-hunt/actions/workflows/pylint.yml/badge.svg)](https://github.com/msethi13/feature-hunt/actions/workflows/pylint.yml)
 
@@ -51,6 +50,9 @@ Feature Hunt is a platform designed to empower you to make better product decisi
 - 🐞 Fixed the issue of non-clickable projects under "Your Projects."
 
 [Additional details can be viewed here](/Phase_3_Docs/deltaDocument.md)
+
+## Rubric
+Can be viewed [here](https://github.com/msethi13/feature-hunt/blob/main/docs/Project%202%20Grading%20Rubric%20-%20Sheet1.csv)
 ## Preview
  - Homepage
   <img src = "docs/Bug_fix_new/Home-page.png"/>
@@ -114,7 +116,7 @@ cd feature-hunt
 docker-compose up --build (This is only needed when you're running the project for the first time. Upon building once, you can run this command without providing --build option)
 ```
 
-This will run two docker containers. The frontend will run on port 3000 and the backend will run on port 5000
+This will run two docker containers. The frontend will run on port 3000 and the backend will run on port 6060
 
 ## Installation in Local Machine without Docker.
 
