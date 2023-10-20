@@ -64,6 +64,7 @@ Can be viewed [here](https://github.com/msethi13/feature-hunt/blob/main/docs/Pro
   <img src = "docs/Bug_fix_new/clickable-project-dashboard.png"/>
 
 ## Link to Phase 4 Video: 
+[Click here to view video](https://www.youtube.com/watch?v=gZ2k6g4rDa0)
 
 We have used the following technologies were used for the development of this project:  
 <p align="left">
