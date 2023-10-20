@@ -192,7 +192,7 @@ Your app is ready!
   <tr>
     <td>Group 21</td>
     <td align="center"><a href="https://github.com/bhavya180301/"><img src="https://avatars.githubusercontent.com/u/145395517?v=4" width="80px;" alt=""/><br /><sub><b>Bhavya Harchandani</b></sub></a></td>
-    <td align="center"><a href="https://github.com/msethi13/"><img src="https://avatars.githubusercontent.com/u/44026796?v=4" width="80px;" alt=""/><br /><sub><b>Mitali Sethi</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/msethi13/"><img src="https://avatars.githubusercontent.com/u/145397337?v=4" width="80px;" alt=""/><br /><sub><b>Mitali Sethi</b></sub></a><br /></td>
     <td align="center"><a href="https://github.com/saxena1701/"><img src="https://avatars.githubusercontent.com/u/143452326?v=4" width="80px;" alt=""/><br /><sub><b>Akshat Saxena</b></sub></a><br /></td>
     <td align="center"><a href="https://github.com/sid-ncsu/"><img src="https://avatars.githubusercontent.com/u/142809941?v=4" width="80px;" alt=""/><br /><sub><b>Siddharth Shah</b></sub></a><br /></td>
   </tr>
@@ -212,3 +212,8 @@ This project is licensed under the MIT License.
 - Feature being displayed after first refresh when clicked on searched product.
 - Features page of a product does not display features directly (without reload) when the product is found through Search
 
+# Funding Information
+This project has not yet been funded by any source
+
+## Support
+For any concerns and queries, please send an email to [seproject37@gmail.com](seproject37@gmail.com)

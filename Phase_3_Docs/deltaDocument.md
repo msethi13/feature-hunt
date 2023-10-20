@@ -76,7 +76,7 @@
     </tr>
   </table>
 
-<!-- * On submitting the project form, duplicate projects are created
+* On submitting the project form, duplicate projects are created
 <table>
     <tr>
         <th>Phase 3</th>
@@ -85,14 +85,14 @@
     <tr>
         <td>
             Can create duplicate projects
-        <img src="/docs/Bug_fix_old/Duplicate Projects.png">
+        <img src="../docs/Bug_fix_old/Duplicate Projects.png">
         </td>
         <td>
             Duplicate creation shows error
-        <img src=".g">
+        <img src="../docs/Bug_fix_new/Image 19-10-23 at 7.41 PM.jpg">
         </td>
     </tr>
-  </table> -->
+  </table>
 
 
 * Restricted the add feature functionality to logged in users
