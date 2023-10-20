@@ -55,13 +55,13 @@ Feature Hunt is a platform designed to empower you to make better product decisi
 Can be viewed [here](https://github.com/msethi13/feature-hunt/blob/main/PROJ%202/Project%202%20Grading%20Rubric%20-%20Sheet1.csv)
 ## Preview
  - Homepage
-  <img src = "docs/Bug_fix_new/Home-page.png"/>
+  <img src = "../docs/Bug_fix_new/Home-page.png"/>
  - Products Page
-  <img src = "docs/Bug_fix_new/product-page.png"/>
+  <img src = "../docs/Bug_fix_new/product-page.png"/>
  - Features and Timeline Displayed Page
-   <img src = "docs/Bug_fix_new/feature-displayed.png"/>
+   <img src = "../docs/Bug_fix_new/feature-displayed.png"/>
  - Your projects Page
-  <img src = "docs/Bug_fix_new/clickable-project-dashboard.png"/>
+  <img src = "../docs/Bug_fix_new/clickable-project-dashboard.png"/>
 
 ## Link to Phase 4 Video: 
 [Click here to view video](https://www.youtube.com/watch?v=gZ2k6g4rDa0)
