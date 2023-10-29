@@ -212,8 +212,8 @@ This project is licensed under the MIT License.
 - Can add frontend for Image Upload
 - Allow user to edit their own comments (on the comments page of feature)
 - Add dates to the feature timeline
-- Feature being displayed after first refresh when clicked on searched product.
-- Features page of a product does not display features directly (without reload) when the product is found through Search
+- Make the UI of the feature comments page better
+- Make timeline editable
 
 # Funding Information
 This project has not yet been funded by any source
